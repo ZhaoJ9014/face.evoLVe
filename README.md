@@ -79,8 +79,8 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig2.png" width="900px"/>
 
-
-TO DO
+* Folder: ```./align```
+* Face detection and landmark localization: 
 
 
 ### Data Processing
