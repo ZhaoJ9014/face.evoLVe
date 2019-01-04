@@ -20,6 +20,7 @@ The code of face.evoLVe is released under the MIT License.
 ## Contents
 * [Introduction](#Introduction)
 * [Pre-Requisites](#Pre-Requisites)
+* [Usage](#Usage)
 * [Face Alignment](#Face-Alignment)
 
 ## face.evoLVe for Face Recognition
@@ -47,5 +48,10 @@ This repo can help researchers/engineers develop deep face recognition models an
 * bcolz 1.2.0 (install w/ `pip install bcolz`)
 
 While not required, for optimal performance it is **highly** recommended to run the code using a CUDA enabled GPU. We used 4 NVIDIA Tesla P40 in parallel.
+
+### Usage
+
+* Clone the repo: `git clone `
+
 
 ### Face Alignment
