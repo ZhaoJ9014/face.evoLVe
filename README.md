@@ -10,7 +10,7 @@
 
 |Author|Jian Zhao|
 |---|---
-|Homepage|https://zhaoj9014.github.io/
+|Homepage|https://zhaoj9014.github.io
 
 ## License
 
