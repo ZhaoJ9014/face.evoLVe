@@ -54,7 +54,6 @@ While not required, for optimal performance it is **highly** recommended to run 
 * Clone the repo: `git clone https://github.com/ZhaoJ9014/face.evoLVe.PyTorch.git`.
 * `mkdir data checkpoint log` to store your train/val/test data, checkpoints and training logs.
 * Ensure each database folder has the following structure:
-
 ```
 ./data/db_name/
         -> id1/
@@ -67,5 +66,6 @@ While not required, for optimal performance it is **highly** recommended to run 
             -> ...
             -> ...
 ```
+* Run the codes of the corresponding section.
 
 ### Face Alignment
