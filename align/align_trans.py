@@ -3,8 +3,8 @@ import cv2
 from matlab_cp2tform import get_similarity_transform_for_cv2
 
 # reference facial points, a list of coordinates (x,y)
-REFERENCE_FACIAL_POINTS = [
-    [30.29459953,  51.69630051],
+REFERENCE_FACIAL_POINTS = [        # default reference facial points for crop_size = (112, 112); should adjust REFERENCE_FACIAL_POINTS accordingly for other crop_size
+    [30.29459953,  51.69630051], 
     [65.53179932,  51.50139999],
     [48.02519989,  71.73660278],
     [33.54930115,  92.3655014],
