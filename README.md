@@ -8,4 +8,4 @@
 
 ## License
 
-The code of InsightFace is released under the MIT License.
+The code of face.evoLVe is released under the MIT License.
