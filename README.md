@@ -36,8 +36,8 @@ This repo can help researchers/engineers develop deep face recognition models an
 
 ### Pre-Requisites
 
-* Python 3.7 (for training \& validation) and Python 2.7 (for visualization w/ tensorboardx)
 * Linux or macOS
+* [Python 3.7](https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh) (for training \& validation) and [Python 2.7](https://repo.continuum.io/archive/Anaconda2-2018.12-Linux-x86_64.sh) (for visualization w/ tensorboardx)
 * PyTorch 1.0 (for traininig \& validation, install w/ `pip install torch torchvision`)
 * MXNet 1.3.1 (optinal, for data processing, install w/ `pip install mxnet-cu90`)
 * TensorFlow 1.12 (optinal, for visualization, install w/ `pip install tensorflow-gpu`)
