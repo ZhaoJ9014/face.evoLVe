@@ -21,4 +21,4 @@ The code of face.evoLVe is released under the MIT License.
 
 
 
-![margin penalty for target logit](https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/master/disp/Fig1.png)
+![margin penalty for target logit](https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig1.png)
