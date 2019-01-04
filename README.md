@@ -57,15 +57,15 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 ```
 ./data/db_name/
-        ---> id1/
-            ---> 1.jpg
-            ---> 2.jpg
-        ---> id2/
-            ---> 1.jpg
-            ---> 2.jpg
-        ---> id3/
-            ---> 1.jpg
-            ---> 2.jpg
+        -> id1/
+            -> 1.jpg
+            -> 2.jpg
+        -> id2/
+            -> 1.jpg
+            -> 2.jpg
+        -> id3/
+            -> 1.jpg
+            -> 2.jpg
 ```
 
 ### Face Alignment
