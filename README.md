@@ -23,7 +23,10 @@ The code of face.evoLVe is released under the MIT License.
 * [Usage](#Usage)
 * [Face Alignment](#Face-Alignment)
 * [Data Processing](#Data-Processing)
-* [Training \& Validation](#Training-\&-Validation)
+* [Training and Validation](#Training-and-Validation)
+* [Data Zoo](#Data-Zoo)
+* [Model Zoo](#Model-Zoo)
+* [Citation](#Citation)
 
 ## face.evoLVe for Face Recognition
 
@@ -72,6 +75,75 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 ### Face Alignment
 
+TO DO
+
 ### Data Processing
 
-### Training \& Validation
+TO DO
+
+### Training and Validation
+
+TO DO
+
+### Data Zoo
+
+TO DO
+
+### Model Zoo
+
+TO DO
+
+### Citation
+- Please consult and consider citing the following papers:
+
+
+      @article{zhao2018look,
+      title={Look Across Elapse: Disentangled Representation Learning and Photorealistic Cross-Age Face Synthesis for Age-Invariant Face Recognition},
+      author={Zhao, Jian and Cheng, Yu and Cheng, Yi and Yang, Yang and Lan, Haochong and Zhao, Fang and Xiong, Lin and Xu, Yan and Li, Jianshu and Pranata, Sugiri and others},
+      journal={arXiv preprint arXiv:1809.00338},
+      year={2018}
+      }
+      
+      
+      @article{zhao20183d,
+      title={3D-Aided Dual-Agent GANs for Unconstrained Face Recognition},
+      author={Zhao, Jian and Xiong, Lin and Li, Jianshu and Xing, Junliang and Yan, Shuicheng and Feng, Jiashi},
+      journal={T-PAMI},
+      year={2018}
+      }
+      
+      
+      @inproceedings{zhao2017dual,
+      title={Dual-agent gans for photorealistic and identity preserving profile face synthesis},
+      author={Zhao, Jian and Xiong, Lin and Jayashree, Panasonic Karlekar and Li, Jianshu and Zhao, Fang and Wang, Zhecan and Pranata,           Panasonic Sugiri and Shen, Panasonic Shengmei and Yan, Shuicheng and Feng, Jiashi},
+      booktitle={NIPS},
+      pages={66--76},
+      year={2017}
+      }
+      
+      
+      @inproceedings{zhao2018towards,
+      title={Towards Pose Invariant Face Recognition in the Wild},
+      author={Zhao, Jian and Cheng, Yu and Xu, Yan and Xiong, Lin and Li, Jianshu and Zhao, Fang and Jayashree, Karlekar and Pranata,         Sugiri and Shen, Shengmei and Xing, Junliang and others},
+      booktitle={CVPR},
+      pages={2207--2216},
+      year={2018}
+      }
+      
+      
+      @inproceedings{zhao3d,
+      title={3D-Aided Deep Pose-Invariant Face Recognition},
+      author={Zhao, Jian and Xiong, Lin and Cheng, Yu and Cheng, Yi and Li, Jianshu and Zhou, Li and Xu, Yan and Karlekar, Jayashree and       Pranata, Sugiri and Shen, Shengmei and others},
+      booktitle={IJCAI},
+      pages={1184--1190},
+      year={2018}
+      }
+
+
+      @inproceedings{cheng2017know,
+      title={Know you at one glance: A compact vector representation for low-shot learning},
+      author={Cheng, Yu and Zhao, Jian and Wang, Zhecan and Xu, Yan and Jayashree, Karlekar and Shen, Shengmei and Feng, Jiashi},
+      booktitle={ICCVW},
+      pages={1924--1932},
+      year={2017}
+      }
