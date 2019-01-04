@@ -1,6 +1,6 @@
 # face.evoLVe: Face Recognition Toolbox on PyTorch
 
-* Evolve to be More Comprehensive, Effective and Efficient for Face Related Analytics \& Applications!
+* Evolve to be more comprehensive, effective and efficient for face related analytics \& applications!
 
 |Author|Jian Zhao|
 |---|---
