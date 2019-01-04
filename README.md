@@ -38,6 +38,10 @@ This repo can help researchers/engineers develop deep face recognition models an
 
 * Python 3.7 (for training \& validation) and Python 2.7 (for visualization w/ tensorboardx)
 * Linux or macOS
-* PyTorch (>=0.4)
+* PyTorch 1.0 (for traininig \& validation, install w/ `pip install torch torchvision`)
+* MXNet 1.3.1 (optinal, for data processing, install w/ `pip install mxnet-cu90`)
+* TensorFlow 1.12 (optinal, for visualization, install w/ `pip install tensorflow-gpu`)
+* OpenCV 3.4.5 (install w/ `pip install opencv-python`)
+* bcolz 1.2.0 (install w/ `pip install bcolz`)
 
 While not required, for optimal performance it is **highly** recommended to run the code using a CUDA enabled GPU. We used 4 NVIDIA Tesla P40 in parallel.
