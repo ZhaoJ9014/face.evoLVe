@@ -1,4 +1,4 @@
-# face.evoLVe: Face Recognition Library based on PyTorch
+# face.evoLVe: High-Performance Face Recognition Library based on PyTorch
 
 * Evolve to be more comprehensive, effective and efficient for face related analytics \& applications!
 
@@ -28,7 +28,7 @@ The code of face.evoLVe is released under the MIT License.
 * [Model Zoo](#Model-Zoo)
 * [Citation](#Citation)
 
-## face.evoLVe for Face Recognition
+## face.evoLVe for High-Performance Face Recognition
 
 ### Introduction
 
