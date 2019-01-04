@@ -80,17 +80,17 @@ While not required, for optimal performance it is **highly** recommended to run 
 <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig2.png" width="900px"/>
 
 * Folder: ```./align```
-* Face detection, landmark localization and visualization toy example:
+* Face detection, landmark localization APIs and visualization toy example:
 ``` 
 from PIL import Image
 from detector import detect_faces
 from visualization_utils import show_results
        
-img = Image.open('some_img.jpg')
-bounding_boxes, landmarks = detect_faces(img)
-show_results(img, bounding_boxes, landmarks)
+img = Image.open('some_img.jpg') # modify the image path to yours
+bounding_boxes, landmarks = detect_faces(img) # detect bboxes and landmarks for all faces in the image
+show_results(img, bounding_boxes, landmarks) # visualize the results
 ``` 
-
+* Face alignment API: ```face_align.py```. Keynotes for customed use: 1) modify the ```source_root``` and ```dest_root``` at Line 8 \& 9 to your own dirs, respectively; 2) modify the ```crop_size``` at Line 29 according to your case; 3) if you changed the ```crop_size``` at Line 29 of ```face_align.py```, you should also adjust the ```REFERENCE_FACIAL_POINTS``` values between Line 7--11 of ```align_trans.py``` accordingly.
 
 ### Data Processing
 
