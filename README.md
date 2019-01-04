@@ -77,7 +77,8 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 ### Face Alignment
 
-<img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig2.png" width="500px"/>
+<img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig2.png" width="700px"/>
+
 
 TO DO
 
