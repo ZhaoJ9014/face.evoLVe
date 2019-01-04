@@ -29,7 +29,7 @@ This repo provides a comprehensive face recognition library for face related ana
 
 The data before \& after alignment, source codes and trained models are all provided.
 
-This repo can help researchers/engineers develop deep face recognition models and algorithms quickly for practical use.
+This repo can help researchers/engineers develop deep face recognition models and algorithms quickly for practical use and deployment.
 
 
 <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig1.png" width="500px"/>
