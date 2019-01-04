@@ -1,4 +1,4 @@
-# face.evoLVe: Face Recognition Library on PyTorch
+# face.evoLVe: Face Recognition Library based on PyTorch
 
 * Evolve to be more comprehensive, effective and efficient for face related analytics \& applications!
 
