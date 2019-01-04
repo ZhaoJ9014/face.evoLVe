@@ -91,7 +91,7 @@ img = Image.open('some_img.jpg') # modify the image path to yours
 bounding_boxes, landmarks = detect_faces(img) # detect bboxes and landmarks for all faces in the image
 show_results(img, bounding_boxes, landmarks) # visualize the results
 ``` 
-* Face alignment API: ```face_align.py```. Keynotes for customed use: 1) modify the ```source_root``` and ```dest_root``` at Line 8 \& 9 to your own dirs, respectively; 2) modify the ```crop_size``` at Line 29 according to your case; 3) if you changed the ```crop_size``` at Line 29 of ```face_align.py```, you should also adjust the ```REFERENCE_FACIAL_POINTS``` values between Line 7--11 of ```align_trans.py``` accordingly.
+* Face alignment API: ```face_align.py```. Keynotes for customed use: 1) modify the ```source_root``` and ```dest_root``` at Line 8 \& 9 to your own dirs, respectively; 2) modify the ```crop_size``` at Line 29 according to your case; 3) if you changed the ```crop_size``` at Line 29 of ```face_align.py```, you should also adjust the ```REFERENCE_FACIAL_POINTS``` values between Line 7--11 of ```align_trans.py``` accordingly; 4) you can also pass customed ```min_face_size```, ```thresholds``` and ```nms_thresholds``` to the ```detect_faces``` function of ```detector.py``` according to practical requirements.
 
 ### Data Processing
 
