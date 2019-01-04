@@ -5,3 +5,7 @@
 |Author|Jian Zhao|
 |---|---
 |Homepage|https://zhaoj9014.github.io/
+
+## License
+
+The code of InsightFace is released under the MIT License.
