@@ -19,6 +19,7 @@ The code of face.evoLVe is released under the MIT License.
 ****
 ## Contents
 * [Introduction](#Introduction)
+* [Pre-Requisites](#Pre-Requisites)
 
 ## face.evoLVe for Face Recognition
 
@@ -32,3 +33,11 @@ This repo can help researchers/engineers develop deep face recognition models an
 
 
 <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig1.png" width="500px"/>
+
+### Pre-Requisites
+
+* Python 3.7 (for training \& validation) and Python 2.7 (for visualization w/ tensorboardx)
+* Linux or macOS
+* PyTorch (>=0.4)
+
+While not required, for optimal performance it is **highly** recommended to run the code using a CUDA enabled GPU. We used 4 NVIDIA Tesla P40 in parallel.
