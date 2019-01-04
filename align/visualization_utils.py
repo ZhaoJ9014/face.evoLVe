@@ -1,6 +1,6 @@
 from PIL import ImageDraw
 
-def show_bboxes(img, bounding_boxes, facial_landmarks=[]):
+def show_results(img, bounding_boxes, facial_landmarks=[]):
     """Draw bounding boxes and facial landmarks.
     Arguments:
         img: an instance of PIL.Image.
