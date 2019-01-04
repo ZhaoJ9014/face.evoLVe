@@ -77,7 +77,10 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 ### Face Alignment
 
+<img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig2.png" width="500px"/>
+
 TO DO
+
 
 ### Data Processing
 
@@ -115,7 +118,7 @@ TO DO
 
 ### Acknowledgement
 
-* This repo is inspired by [InsightFace.MXNet](https://github.com/deepinsight/insightface), [InsightFace.PyTorch](https://github.com/TreB1eN/InsightFace_Pytorch), [ArcFace.PyTorch](https://github.com/ronghuaiyang/arcface-pytorch) and [PretrainedModels.PyTorch](https://github.com/Cadene/pretrained-models.pytorch).
+* This repo is inspired by [InsightFace.MXNet](https://github.com/deepinsight/insightface), [InsightFace.PyTorch](https://github.com/TreB1eN/InsightFace_Pytorch), [ArcFace.PyTorch](https://github.com/ronghuaiyang/arcface-pytorch), [MTCNN.MXNet](https://github.com/pangyupo/mxnet_mtcnn_face_detection) and [PretrainedModels.PyTorch](https://github.com/Cadene/pretrained-models.pytorch).
 * The work of Jian Zhao was partially supported by China Scholarship Council (CSC) grant 201503170248.
 
 ### Citation
