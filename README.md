@@ -66,6 +66,6 @@ While not required, for optimal performance it is **highly** recommended to run 
             -> ...
             -> ...
 ```
-* Run the codes of the corresponding section.
+* Run the codes of the corresponding section for specific purpose.
 
 ### Face Alignment
