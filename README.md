@@ -22,6 +22,8 @@ The code of face.evoLVe is released under the MIT License.
 * [Pre-Requisites](#Pre-Requisites)
 * [Usage](#Usage)
 * [Face Alignment](#Face-Alignment)
+* [Data Processing](#Data-Processing)
+* [Training \& Validation](#Training-\&-Validation)
 
 ## face.evoLVe for Face Recognition
 
@@ -69,3 +71,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 * Run the codes of the corresponding section for specific purpose.
 
 ### Face Alignment
+
+### Data Processing
+
+### Training \& Validation
