@@ -26,6 +26,7 @@ The code of face.evoLVe is released under the MIT License.
 * [Training and Validation](#Training-and-Validation)
 * [Data Zoo](#Data-Zoo)
 * [Model Zoo](#Model-Zoo)
+* [Acknowledgement](#Acknowledgement)
 * [Citation](#Citation)
 
 ## face.evoLVe for High-Performance Face Recognition
@@ -92,6 +93,11 @@ TO DO
 ### Model Zoo
 
 TO DO
+
+### Acknowledgement
+
+* This repo is inspired by [InsightFace.MXNet](https://github.com/deepinsight/insightface), [InsightFace.PyTorch](https://github.com/TreB1eN/InsightFace_Pytorch), [ArcFace.PyTorch](https://github.com/ronghuaiyang/arcface-pytorch) and [PretrainedModels.PyTorch](https://github.com/Cadene/pretrained-models.pytorch).
+* The work of Jian Zhao was partially supported by China Scholarship Council (CSC) grant 201503170248.
 
 ### Citation
 - Please consult and consider citing the following papers:
