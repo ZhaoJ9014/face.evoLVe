@@ -80,7 +80,16 @@ While not required, for optimal performance it is **highly** recommended to run 
 <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig2.png" width="900px"/>
 
 * Folder: ```./align```
-* Face detection and landmark localization: 
+* Face detection, landmark localization and visualization toy example:
+``` 
+       from PIL import Image
+       from detector import detect_faces
+       from visualization_utils import show_results
+       
+       img = Image.open('some_img.jpg')
+       bounding_boxes, landmarks = detect_faces(img)
+       show_results(img, bounding_boxes, landmarks)
+``` 
 
 
 ### Data Processing
