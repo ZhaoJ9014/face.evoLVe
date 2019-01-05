@@ -165,7 +165,7 @@ TO DO
     * FG-NET (Rank1 Accuracy: 93.20%).
 
 ### Acknowledgement 
-:gift:
+:two_men_holding_hands:
 
 * This repo is inspired by [InsightFace.MXNet](https://github.com/deepinsight/insightface), [InsightFace.PyTorch](https://github.com/TreB1eN/InsightFace_Pytorch), [ArcFace.PyTorch](https://github.com/ronghuaiyang/arcface-pytorch), [MTCNN.MXNet](https://github.com/pangyupo/mxnet_mtcnn_face_detection) and [PretrainedModels.PyTorch](https://github.com/Cadene/pretrained-models.pytorch).
 * The work of Jian Zhao was partially supported by China Scholarship Council (CSC) grant 201503170248.
