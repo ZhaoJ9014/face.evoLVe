@@ -6,8 +6,8 @@ import torch.nn.functional as F
 from torch.nn import Parameter
 import math
 
-class ArcMarginProduct(nn.Module):
-    r"""Implement of large margin arc distance: :
+class ArcFace(nn.Module):
+    r"""Implement of ArcFace:
         Args:
             in_features: size of each input sample
             out_features: size of each output sample
@@ -17,7 +17,7 @@ class ArcMarginProduct(nn.Module):
             cos(theta + m)
         """
     def __init__(self, in_features, out_features, s=30.0, m=0.50, easy_margin=False):
-        super(ArcMarginProduct, self).__init__()
+        super(ArcFace, self).__init__()
         self.in_features = in_features
         self.out_features = out_features
         self.s = s
@@ -47,13 +47,12 @@ class ArcMarginProduct(nn.Module):
         # -------------torch.where(out_i = {x_i if condition_i else y_i) -------------
         output = (one_hot * phi) + ((1.0 - one_hot) * cosine)  # you can use torch.where if your torch.__version__ is 0.4
         output *= self.s
-        # print(output)
 
         return output
 
 
-class AddMarginProduct(nn.Module):
-    r"""Implement of large margin cosine distance: :
+class CosineFace(nn.Module):
+    r"""Implement of CosineFace:
     Args:
         in_features: size of each input sample
         out_features: size of each output sample
@@ -63,7 +62,7 @@ class AddMarginProduct(nn.Module):
     """
 
     def __init__(self, in_features, out_features, s=30.0, m=0.40):
-        super(AddMarginProduct, self).__init__()
+        super(CosineFace, self).__init__()
         self.in_features = in_features
         self.out_features = out_features
         self.s = s
@@ -82,7 +81,6 @@ class AddMarginProduct(nn.Module):
         # -------------torch.where(out_i = {x_i if condition_i else y_i) -------------
         output = (one_hot * phi) + ((1.0 - one_hot) * cosine)  # you can use torch.where if your torch.__version__ is 0.4
         output *= self.s
-        # print(output)
 
         return output
 
@@ -94,8 +92,8 @@ class AddMarginProduct(nn.Module):
                + ', m=' + str(self.m) + ')'
 
 
-class SphereProduct(nn.Module):
-    r"""Implement of large margin cosine distance: :
+class SphereFace(nn.Module):
+    r"""Implement of SphereFace:
     Args:
         in_features: size of each input sample
         out_features: size of each output sample
@@ -103,7 +101,7 @@ class SphereProduct(nn.Module):
         cos(m*theta)
     """
     def __init__(self, in_features, out_features, m=4):
-        super(SphereProduct, self).__init__()
+        super(SphereFace, self).__init__()
         self.in_features = in_features
         self.out_features = out_features
         self.m = m
