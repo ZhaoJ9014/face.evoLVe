@@ -92,23 +92,23 @@ img = Image.open('some_img.jpg') # modify the image path to yours
 bounding_boxes, landmarks = detect_faces(img) # detect bboxes and landmarks for all faces in the image
 show_results(img, bounding_boxes, landmarks) # visualize the results
 ``` 
-* Face alignment API (perform face detection, landmark localization and alignment with affine transformations on a whole database folder ```source_folder``` with the directory structure as demonstrated in Sec. [Usage](#Usage), and store the aligned results to a new folder ```dest_folder``` with the same directory structure): 
+* Face alignment API (perform face detection, landmark localization and alignment with affine transformations on a whole database folder ```source_root``` with the directory structure as demonstrated in Sec. [Usage](#Usage), and store the aligned results to a new folder ```dest_root``` with the same directory structure): 
 ```
-python face_align.py -source_folder [source_folder] -dest_folder [dest_folder] -crop_size [crop_size]
+python face_align.py -source_root [source_root] -dest_root [dest_root] -crop_size [crop_size]
 
-# python face_align.py -source_folder './data/test' -dest_folder './data/test_Aligned' -crop_size 112
+# python face_align.py -source_root './data/test' -dest_root './data/test_Aligned' -crop_size 112
 ```
 * For macOS users, there is no need to worry about ```*.DS_Store``` files which may ruin your data, since they will be automatically removed when you run the scripts.
-* Keynotes for customed use: 1) specify the arguments of ```source_folder```, ```dest_folder``` and ```crop_size``` to your own values when you run ```face_align.py```; 2) pass your customed ```min_face_size```, ```thresholds``` and ```nms_thresholds``` values to the ```detect_faces``` function of ```detector.py``` to match your practical requirements.
+* Keynotes for customed use: 1) specify the arguments of ```source_root```, ```dest_root``` and ```crop_size``` to your own values when you run ```face_align.py```; 2) pass your customed ```min_face_size```, ```thresholds``` and ```nms_thresholds``` values to the ```detect_faces``` function of ```detector.py``` to match your practical requirements.
 
 ### Data Processing
 
 * Folder: ```./balance```
-* Remove low-shot API (remove the low-shot classes with less than ```min_num``` samples in the training set ```folder``` with the directory structure as demonstrated in Sec. [Usage](#Usage) for data balance and effective model training):
+* Remove low-shot API (remove the low-shot classes with less than ```min_num``` samples in the training set ```root``` with the directory structure as demonstrated in Sec. [Usage](#Usage) for data balance and effective model training):
 ```
-python remove_lowshot.py -folder [folder] -min_num [min_num]
+python remove_lowshot.py -root [root] -min_num [min_num]
 
-# python remove_lowshot.py -folder './data/train' -min_num 10
+# python remove_lowshot.py -root './data/train' -min_num 10
 ```
 
 ### Training and Validation
