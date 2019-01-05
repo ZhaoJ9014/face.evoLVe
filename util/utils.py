@@ -5,7 +5,7 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 import numpy as np
-from verifacation import evaluate
+from verification import evaluate
 import io
 
 
