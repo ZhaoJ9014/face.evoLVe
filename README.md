@@ -1,12 +1,12 @@
 # face.evoLVe: High-Performance Face Recognition Library based on PyTorch
 
-* Evolve to be more comprehensive, effective and efficient for face related analytics \& applications!
+:triangular_flag_on_post: Evolve to be more comprehensive, effective and efficient for face related analytics \& applications!
 
-* About the name:
-  * "face" means this repo is dedicated for face related analytics \& applications.
-  * "evolve" means unleash your greatness to be better and better. "LV" are capitalized to acknowledge the nurturing of Learning and Vision ([LV](http://www.lv-nus.org)) group, Nation University of Singapore (NUS).
+:triangular_flag_on_post: About the name:
+  :triangular_flag_on_post: "face" means this repo is dedicated for face related analytics \& applications.
+  :triangular_flag_on_post: "evolve" means unleash your greatness to be better and better. "LV" are capitalized to acknowledge the nurturing of Learning and Vision ([LV](http://www.lv-nus.org)) group, Nation University of Singapore (NUS).
   
- * This work was done during Jian Zhao served as a short-term "Texpert" Research Scientist at Tencent FiT DeepSea Lab, Shenzhen, China.
+:triangular_flag_on_post: This work was done during Jian Zhao served as a short-term "Texpert" Research Scientist at Tencent FiT DeepSea Lab, Shenzhen, China.
 
 |Author|Jian Zhao|
 |---|---
@@ -32,7 +32,7 @@ The code of face.evoLVe is released under the MIT License.
 
 ## face.evoLVe for High-Performance Face Recognition
 
-### Introduction
+### Introduction:information_desk_person:
 
 This repo provides a comprehensive face recognition library for face related analytics \& applications, including face alignment (detection, landmark localization, affine transformation, *etc.*), data processing (*e.g.*, augmentation, data balancing, normalization, *etc.*), various backbones (*e.g.*, ResNet, IR-SE, ResNeXt, SE-ResNeXt, DenseNet, LightCNN, MobileNet, ShuffleNet, DPN, *etc.*), various losses (*e.g.*, Softmax, Focal, Center, SphereFace, CosineFace, AmSoftmax, ArcFace, Triplet, *etc.*) and bags of tricks for improving performance (*e.g.*, training refinements, model tweaks, knowledge distillation, *etc.*).
 
@@ -43,7 +43,7 @@ This repo can help researchers/engineers develop deep face recognition models an
 
 <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig1.png" width="500px"/>
 
-### Pre-Requisites
+### Pre-Requisites:cake:
 
 * Linux or macOS
 * [Python 3.7](https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh) (for training \& validation) and [Python 2.7](https://repo.continuum.io/archive/Anaconda2-2018.12-Linux-x86_64.sh) (for visualization w/ tensorboardx)
@@ -56,7 +56,7 @@ This repo can help researchers/engineers develop deep face recognition models an
 
 While not required, for optimal performance it is **highly** recommended to run the code using a CUDA enabled GPU. We used 4 NVIDIA Tesla P40 in parallel.
 
-### Usage
+### Usage:green_book:
 
 * Clone the repo: `git clone https://github.com/ZhaoJ9014/face.evoLVe.PyTorch.git`.
 * `mkdir data checkpoint log` at appropriate directory to store your train/val/test data, checkpoints and training logs.
@@ -75,7 +75,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 ```
 * Refer to the codes of corresponding sections for specific purposes.
 
-### Face Alignment
+### Face Alignment:triangular_ruler:
 
 <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig2.png" width="900px"/>
 <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig3.png" width="500px"/>
@@ -101,7 +101,7 @@ python face_align.py -source_root [source_root] -dest_root [dest_root] -crop_siz
 * For macOS users, there is no need to worry about ```*.DS_Store``` files which may ruin your data, since they will be automatically removed when you run the scripts.
 * Keynotes for customed use: 1) specify the arguments of ```source_root```, ```dest_root``` and ```crop_size``` to your own values when you run ```face_align.py```; 2) pass your customed ```min_face_size```, ```thresholds``` and ```nms_thresholds``` values to the ```detect_faces``` function of ```detector.py``` to match your practical requirements.
 
-### Data Processing
+### Data Processing:bar_chart:
 
 * Folder: ```./balance```
 * Remove low-shot data API (remove the low-shot classes with less than ```min_num``` samples in the training set ```root``` with the directory structure as demonstrated in Sec. [Usage](#Usage) for data balance and effective model training):
@@ -113,7 +113,7 @@ python remove_lowshot.py -root [root] -min_num [min_num]
 * Keynotes for customed use: specify the arguments of ```root``` and ```min_num``` to your own values when you run ```remove_lowshot.py```.
 * We prefer to include other data processing tricks, *e.g.*, augmentation (flip horizontally, scale hue/satuation/brightness with coefficients uniformly drawn from \[0.6,1.4\], add PCA noise with a coefficient sampled from a normal distribution N(0,0.1), *etc.*), weighted random sampling, normalization, *etc.* to the main training script in Sec. [Training and Validation](#Training-and-Validation) to be self-contained.
 
-### Training and Validation
+### Training and Validation:coffee:
 
 TO DO
 
