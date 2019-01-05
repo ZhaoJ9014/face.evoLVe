@@ -121,7 +121,7 @@ TO DO
 |:---:|:----:|:-----:|:-----:|:-----:|
 |[CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf)|Raw|10,575|494,414|[Google Drive](https://drive.google.com/file/d/19R6Svdj5HbUA0y6aJv3P1WkIR5wXeCnO/view?usp=sharing) [Baidu Drive](https://pan.baidu.com/s/1cZqsRxln-JmrA4xevLfjYQ)|
 |[CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf)|Raw_Clean|10,575|466,711|[Google Drive](https://drive.google.com/file/d/1wJC2aPA4AC0rI-tAL2BFs2M8vfcpX-w6/view?usp=sharing)|
-|[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|Raw|5,749|13,233| |
+|[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|Aligned with Deep Funneling|5,749|13,233|[Google Drive](https://drive.google.com/file/d/11h-QIrhuszY3PzT17Q5eXw8yrewgqX7m/view?usp=sharing)|
 
 ### Model Zoo :monkey:
 
