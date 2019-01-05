@@ -91,13 +91,14 @@ img = Image.open('some_img.jpg') # modify the image path to yours
 bounding_boxes, landmarks = detect_faces(img) # detect bboxes and landmarks for all faces in the image
 show_results(img, bounding_boxes, landmarks) # visualize the results
 ``` 
-* Face alignment API (perform face detection, landmark localization and alignment with affine transformations on a whole database folder with the directory structure as demonstrated in Sec. [Usage](#Usage), and store the aligned results to a new folder with the same directory structure): 
+* Face alignment API (perform face detection, landmark localization and alignment with affine transformations on a whole database folder ```source_root``` with the directory structure as demonstrated in Sec. [Usage](#Usage), and store the aligned results to a new folder ```dest_root``` with the same directory structure): 
 ```
 python face_align.py -source_root [source_root] -dest_root [dest_root] -crop_size [crop_size]
 
 # python face_align.py -source_root './test' -dest_root './test_Aligned' -crop_size 112
 ```
-* Keynotes for customed use: 1) specify your own ```source_root```, ```dest_root``` and ```crop_size``` arguments when you run ```face_align.py```; 2) you can also specify customed ```min_face_size```, ```thresholds``` and ```nms_thresholds``` to the ```detect_faces``` function of ```detector.py``` to match your practical requirements.
+* For macOS users, there is no need to worry about ```*.DS_Store``` files which may ruin your data. They will be automatically removed when you run the scripts.
+* Keynotes for customed use: 1) specify the arguments of ```source_root```, ```dest_root``` and ```crop_size``` to your own values when you run ```face_align.py```; 2) pass your customed ```min_face_size```, ```thresholds``` and ```nms_thresholds``` values to the ```detect_faces``` function of ```detector.py``` to match your practical requirements.
 
 ### Data Processing
 
