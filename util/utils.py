@@ -15,6 +15,84 @@ def l2_norm(input,axis=1):
     return output
 
 
+def make_weights_for_balanced_classes(images, nclasses):
+    '''
+        Make a vector of weights for each image in the dataset, based
+        on class frequency. The returned vector of weights can be used
+        to create a WeightedRandomSampler for a DataLoader to have
+        class balancing when sampling for a training batch.
+            images - torchvisionDataset.imgs
+            nclasses - len(torchvisionDataset.classes)
+        https://discuss.pytorch.org/t/balanced-sampling-between-classes-with-torchvision-dataloader/2703/3
+    '''
+    count = [0] * nclasses
+    for item in images:
+        count[item[1]] += 1  # item is (img-data, label-id)
+    weight_per_class = [0.] * nclasses
+    N = float(sum(count))  # total number of images
+    for i in range(nclasses):
+        weight_per_class[i] = N / float(count[i])
+    weight = [0] * len(images)
+    for idx, val in enumerate(images):
+        weight[idx] = weight_per_class[val[1]]
+    return weight
+
+
+def separate_irse_bn_paras(modules):
+    if not isinstance(modules, list):
+        modules = [*modules.modules()]
+    paras_only_bn = []
+    paras_wo_bn = []
+    for layer in modules:
+        if 'model' in str(layer.__class__):
+            continue
+        if 'container' in str(layer.__class__):
+            continue
+        else:
+            if 'batchnorm' in str(layer.__class__):
+                paras_only_bn.extend([*layer.parameters()])
+            else:
+                paras_wo_bn.extend([*layer.parameters()])
+    return paras_only_bn, paras_wo_bn
+
+
+def de_preprocess(tensor):
+    return tensor*0.5 + 0.5
+
+
+hflip = transforms.Compose([
+            de_preprocess,
+            transforms.ToPILImage(),
+            transforms.functional.hflip,
+            transforms.ToTensor(),
+            transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+        ])
+
+
+def hflip_batch(imgs_tensor):
+    hfliped_imgs = torch.empty_like(imgs_tensor)
+    for i, img_ten in enumerate(imgs_tensor):
+        hfliped_imgs[i] = hflip(img_ten)
+    return hfliped_imgs
+
+
+def get_time():
+    return (str(datetime.now())[:-10]).replace(' ','-').replace(':','-')
+
+
+def gen_plot(fpr, tpr):
+    """Create a pyplot plot and save to buffer."""
+    plt.figure()
+    plt.xlabel("FPR", fontsize=14)
+    plt.ylabel("TPR", fontsize=14)
+    plt.title("ROC Curve", fontsize=14)
+    plot = plt.plot(fpr, tpr, linewidth=2)
+    buf = io.BytesIO()
+    plt.savefig(buf, format='jpeg')
+    buf.seek(0)
+    plt.close()
+    return buf
+
 def perform_validation(multi_gpu,device,embedding_size,batch_size,backbone,carray,issame,nrof_folds=5,tta=False):
     if multi_gpu:
         backbone = backbone.module # unpackage model from DataParallel
@@ -58,77 +136,3 @@ def schedule_lr(optimizer):
         for params in optimizer.param_groups:                 
             params['lr'] /= 10.
         print(optimizer)
-
-
-def make_weights_for_balanced_classes(images, nclasses):
-    '''
-        Make a vector of weights for each image in the dataset, based
-        on class frequency. The returned vector of weights can be used
-        to create a WeightedRandomSampler for a DataLoader to have
-        class balancing when sampling for a training batch.
-            images - torchvisionDataset.imgs
-            nclasses - len(torchvisionDataset.classes)
-        https://discuss.pytorch.org/t/balanced-sampling-between-classes-with-torchvision-dataloader/2703/3
-    '''
-    count = [0] * nclasses
-    for item in images:
-        count[item[1]] += 1  # item is (img-data, label-id)
-    weight_per_class = [0.] * nclasses
-    N = float(sum(count))  # total number of images
-    for i in range(nclasses):
-        weight_per_class[i] = N / float(count[i])
-    weight = [0] * len(images)
-    for idx, val in enumerate(images):
-        weight[idx] = weight_per_class[val[1]]
-    return weight
-
-
-def separate_irse_bn_paras(modules):
-    if not isinstance(modules, list):
-        modules = [*modules.modules()]
-    paras_only_bn = []
-    paras_wo_bn = []
-    for layer in modules:
-        if 'model' in str(layer.__class__):
-            continue
-        if 'container' in str(layer.__class__):
-            continue
-        else:
-            if 'batchnorm' in str(layer.__class__):
-                paras_only_bn.extend([*layer.parameters()])
-            else:
-                paras_wo_bn.extend([*layer.parameters()])
-    return paras_only_bn, paras_wo_bn
-
-def de_preprocess(tensor):
-    return tensor*0.5 + 0.5
-
-hflip = transforms.Compose([
-            de_preprocess,
-            transforms.ToPILImage(),
-            transforms.functional.hflip,
-            transforms.ToTensor(),
-            transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
-        ])
-
-def hflip_batch(imgs_tensor):
-    hfliped_imgs = torch.empty_like(imgs_tensor)
-    for i, img_ten in enumerate(imgs_tensor):
-        hfliped_imgs[i] = hflip(img_ten)
-    return hfliped_imgs
-
-def get_time():
-    return (str(datetime.now())[:-10]).replace(' ','-').replace(':','-')
-
-def gen_plot(fpr, tpr):
-    """Create a pyplot plot and save to buffer."""
-    plt.figure()
-    plt.xlabel("FPR", fontsize=14)
-    plt.ylabel("TPR", fontsize=14)
-    plt.title("ROC Curve", fontsize=14)
-    plot = plt.plot(fpr, tpr, linewidth=2)
-    buf = io.BytesIO()
-    plt.savefig(buf, format='jpeg')
-    buf.seek(0)
-    plt.close()
-    return buf
