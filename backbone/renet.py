@@ -3,7 +3,7 @@ from torch.nn import Linear, Conv2d, BatchNorm1d, BatchNorm2d, PReLU, ReLU, Sigm
 import torch.utils.model_zoo as model_zoo
 
 
-# support: ['resnet50', 'resnet101', 'resnet152']
+# Support: ['resnet50', 'resnet101', 'resnet152']
 
 
 def conv3x3(in_planes, out_planes, stride=1):
