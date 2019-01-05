@@ -6,15 +6,19 @@ import torch.nn.functional as F
 from torch.nn import Parameter
 import math
 
+
+# Support: ['ArcFace', 'CosineFace', 'SphereFace', 'Am_softmax']
+
+
 class ArcFace(nn.Module):
-    r"""Implement of ArcFace:
+    r"""Implement of ArcFace (https://arxiv.org/pdf/1801.07698v1.pdf):
         Args:
             in_features: size of each input sample
             out_features: size of each output sample
             s: norm of input feature
             m: margin
 
-            cos(theta + m)
+            cos(theta+m)
         """
     def __init__(self, in_features, out_features, s=30.0, m=0.50, easy_margin=False):
         super(ArcFace, self).__init__()
@@ -51,18 +55,18 @@ class ArcFace(nn.Module):
         return output
 
 
-class CosineFace(nn.Module):
-    r"""Implement of CosineFace:
+class CosFace(nn.Module):
+    r"""Implement of CosFace (https://arxiv.org/pdf/1801.09414.pdf):
     Args:
         in_features: size of each input sample
         out_features: size of each output sample
         s: norm of input feature
         m: margin
-        cos(theta) - m
+        cos(theta)-m
     """
 
     def __init__(self, in_features, out_features, s=30.0, m=0.40):
-        super(CosineFace, self).__init__()
+        super(CosFace, self).__init__()
         self.in_features = in_features
         self.out_features = out_features
         self.s = s
@@ -93,7 +97,7 @@ class CosineFace(nn.Module):
 
 
 class SphereFace(nn.Module):
-    r"""Implement of SphereFace:
+    r"""Implement of SphereFace (https://arxiv.org/pdf/1704.08063.pdf):
     Args:
         in_features: size of each input sample
         out_features: size of each output sample
@@ -156,7 +160,7 @@ class SphereFace(nn.Module):
 
     
 class Am_softmax(Module):
-    r"""Implement of SphereFace:
+    r"""Implement of Am_softmax (https://arxiv.org/pdf/1704.06369.pdf):
     Args:
         in_features: size of each input sample
         out_features: size of each output sample
@@ -169,8 +173,7 @@ class Am_softmax(Module):
         self.in_features = in_features
         self.out_features = out_features
         self.kernel = Parameter(torch.Tensor(self.in_features, self.out_features))
-        # initial kernel
-        self.kernel.data.uniform_(-1, 1).renorm_(2,1,1e-5).mul_(1e5)
+        self.kernel.data.uniform_(-1, 1).renorm_(2,1,1e-5).mul_(1e5) # initialize kernel
         self.m = m
         self.s = s
         
