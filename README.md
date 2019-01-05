@@ -83,7 +83,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 * This section is based on the work of [MTCNN](https://arxiv.org/pdf/1604.02878.pdf).
 * Folder: ```./align```
 * Face detection, landmark localization APIs and visualization toy example:
-``` 
+```python 
 from PIL import Image
 from detector import detect_faces
 from visualization_utils import show_results
