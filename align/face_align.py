@@ -4,17 +4,33 @@ from align_trans import get_reference_facial_points, warp_and_crop_face
 import numpy as np
 import os
 from tqdm import tqdm
+import argparse
 
-source_root = './test' # Modify to your source dir
-dest_root = './test_Aligned_112x112' # Modify to your destination dir
-reference = get_reference_facial_points(default_square = True)
-if not os.path.isdir(dest_root):
-    os.mkdir(dest_root)
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='face alignment')
+    parser.add_argument("-source_root", "--source_root", help="specify your source dir",default='./test', type=str)
+    parser.add_argument("-dest_root", "--dest_root", help="specify your destination dir",default='./test_Aligned', type=str)
+    parser.add_argument("-crop_size", "--crop_size", help="specify size of aligned faces, align and crop with padding", default=112, type=int)
+    args = parser.parse_args()
 
-for subfolder in tqdm(os.listdir(source_root)):
-    if not os.path.isdir(os.path.join(dest_root, subfolder)):
-        os.mkdir(os.path.join(dest_root, subfolder))
-    for image_name in os.listdir(os.path.join(source_root, subfolder)):
+    source_root = args.source_root # specify your source dir
+    dest_root = args.dest_root # specify your destination dir
+    crop_size = args.crop_size # specify size of aligned faces, align and crop with padding
+    scale = crop_size / 112.
+    reference = get_reference_facial_points(default_square = True) * scale
+
+    cwd = os.getcwd() # delete '.DS_Store' existed in the source_root
+    os.chdir(source_root)
+    os.system("find . -name '*.DS_Store' -type f -delete")
+    os.chdir(cwd)
+
+    if not os.path.isdir(dest_root):
+        os.mkdir(dest_root)
+
+    for subfolder in tqdm(os.listdir(source_root)):
+        if not os.path.isdir(os.path.join(dest_root, subfolder)):
+            os.mkdir(os.path.join(dest_root, subfolder))
+        for image_name in os.listdir(os.path.join(source_root, subfolder)):
             print("Processing\t{}".format(os.path.join(source_root, subfolder, image_name)))
             img = Image.open(os.path.join(source_root, subfolder, image_name))
             try: # Handle exception
@@ -26,6 +42,6 @@ for subfolder in tqdm(os.listdir(source_root)):
                 print("{} is discarded due to non-detected landmarks!".format(os.path.join(source_root, subfolder, image_name)))
                 continue
             facial5points = [[landmarks[0][j], landmarks[0][j + 5]] for j in range(5)]
-            warped_face = warp_and_crop_face(np.array(img), facial5points, reference, crop_size=(112, 112)) # Modidy the crop_size according to your case
+            warped_face = warp_and_crop_face(np.array(img), facial5points, reference, crop_size=(crop_size, crop_size))
             img_warped = Image.fromarray(warped_face)
             img_warped.save(os.path.join(dest_root, subfolder, image_name))
