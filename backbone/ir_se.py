@@ -6,6 +6,9 @@ import math
 import pdb
 
 
+# Support: ['ir50', 'ir101', 'ir152', 'irse50', 'irse101', 'irse152']
+
+
 class Flatten(Module):
     def forward(self, input):
         return input.view(input.size(0), -1)
@@ -145,3 +148,45 @@ class Backbone(Module):
         x = self.body(x)
         x = self.output_layer(x)
         return x
+    
+    
+def ir50(drop_ratio):
+    """Constructs a ir-50 model.
+    """
+    model = Backbone(50, drop_ratio, 'ir')
+    return model
+
+
+def ir101(drop_ratio):
+    """Constructs a ir-101 model.
+    """
+    model = Backbone(100, drop_ratio, 'ir')
+    return model
+
+
+def ir152(drop_ratio):
+    """Constructs a ir-152 model.
+    """
+    model = Backbone(152, drop_ratio, 'ir')
+    return model    
+    
+    
+def irse50(drop_ratio):
+    """Constructs a ir_se-50 model.
+    """
+    model = Backbone(50, drop_ratio, 'ir_se')
+    return model
+
+
+def irse101(drop_ratio):
+    """Constructs a ir_se-101 model.
+    """
+    model = Backbone(100, drop_ratio, 'ir_se')
+    return model
+
+
+def irse152(drop_ratio):
+    """Constructs a ir_se-152 model.
+    """
+    model = Backbone(152, drop_ratio, 'ir_se')
+    return model
