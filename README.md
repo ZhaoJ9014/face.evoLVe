@@ -79,7 +79,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig2.png" width="900px"/>
 
-<img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig3.pdf" width="600px"/>
+<img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig3.png" width="600px"/>
 
 * This section is based on the work of [MTCNN](https://arxiv.org/pdf/1604.02878.pdf).
 * Folder: ```./align```
