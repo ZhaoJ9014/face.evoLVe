@@ -118,7 +118,7 @@ TO DO
 ### Data Zoo :tiger:
 
 |Database|Version|\#Identity|\#Image|Download Link|
-|---|----|-----|-----|-----|
+|:---:|:----:|:-----:|:-----:|:-----:|
 |[CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf)|Raw|10,575|494,414|[Google Drive](https://drive.google.com/file/d/19R6Svdj5HbUA0y6aJv3P1WkIR5wXeCnO/view?usp=sharing)|
 |1|1|1|1|1|
 
