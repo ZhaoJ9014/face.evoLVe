@@ -3,7 +3,7 @@ import argparse
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='remove low-shot classes')
-    parser.add_argument("-root", "--root", help="specify your dir",default='./test', type=str)
+    parser.add_argument("-root", "--root", help="specify your dir",default='./data/train', type=str)
     parser.add_argument("-min_num", "--min_num", help="remove the classes with less than min_num samples", default=10, type=int)
     args = parser.parse_args()
 
