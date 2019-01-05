@@ -104,7 +104,7 @@ python face_align.py -source_root [source_root] -dest_root [dest_root] -crop_siz
 ### Data Processing
 
 * Folder: ```./balance```
-* Remove low-shot API (remove the low-shot classes with less than ```min_num``` samples in the training set ```root``` with the directory structure as demonstrated in Sec. [Usage](#Usage) for data balance and effective model training):
+* Remove low-shot data API (remove the low-shot classes with less than ```min_num``` samples in the training set ```root``` with the directory structure as demonstrated in Sec. [Usage](#Usage) for data balance and effective model training):
 ```
 python remove_lowshot.py -root [root] -min_num [min_num]
 
