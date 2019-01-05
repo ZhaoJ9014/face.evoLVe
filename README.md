@@ -111,6 +111,7 @@ python remove_lowshot.py -root [root] -min_num [min_num]
 # python remove_lowshot.py -root './data/train' -min_num 10
 ```
 * Keynotes for customed use: specify the arguments of ```root``` and ```min_num``` to your own values when you run ```remove_lowshot.py```.
+* We prefer to include other data processing tricks, *e.g.*, augmentation (flip horizontally, scale hue/satuation/brightness with coefficients uniformly drawn from \[0.6,1.4\], add PCA noise with a coefficient sampled from a normal distribution N(0,0.1), *etc.*), weighted random sampling, normalization, *etc.* to the main training script in Sec. [Training and Validation](#Training-and-Validation) to be self-contained.
 
 ### Training and Validation
 
