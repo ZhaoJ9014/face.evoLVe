@@ -96,14 +96,20 @@ show_results(img, bounding_boxes, landmarks) # visualize the results
 ```
 python face_align.py -source_root [source_root] -dest_root [dest_root] -crop_size [crop_size]
 
-# python face_align.py -source_root './test' -dest_root './test_Aligned' -crop_size 112
+# python face_align.py -source_root './data/test' -dest_root './data/test_Aligned' -crop_size 112
 ```
 * For macOS users, there is no need to worry about ```*.DS_Store``` files which may ruin your data, since they will be automatically removed when you run the scripts.
 * Keynotes for customed use: 1) specify the arguments of ```source_root```, ```dest_root``` and ```crop_size``` to your own values when you run ```face_align.py```; 2) pass your customed ```min_face_size```, ```thresholds``` and ```nms_thresholds``` values to the ```detect_faces``` function of ```detector.py``` to match your practical requirements.
 
 ### Data Processing
 
-TO DO
+* Folder: ```./balance```
+* Remove low-shot API (remove the low-shot classes with less than ```min_num``` samples in the training set with the directory structure as demonstrated in Sec. [Usage](#Usage) for data balance and effective model training):
+```
+python remove_lowshot.py -root [root] -min_num [min_num]
+
+# python remove_lowshot.py -root './data/train' -min_num 10
+```
 
 ### Training and Validation
 
