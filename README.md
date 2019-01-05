@@ -116,7 +116,8 @@ python remove_lowshot.py -root [root] -min_num [min_num]
 * Keynotes for customed use: specify the arguments of ```root``` and ```min_num``` to your own values when you run ```remove_lowshot.py```.
 * We prefer to include other data processing tricks, *e.g.*, augmentation (flip horizontally, scale hue/satuation/brightness with coefficients uniformly drawn from \[0.6,1.4\], add PCA noise with a coefficient sampled from a normal distribution N(0,0.1), *etc.*), weighted random sampling, normalization, *etc.* to the main training script in Sec. [Training and Validation](#Training-and-Validation) to be self-contained.
 
-### Training and Validation :coffee:
+### Training and Validation 
+:coffee:
 
 TO DO
 
@@ -127,7 +128,7 @@ TO DO
 |:---:|:----:|:-----:|:-----:|:-----:|
 |[CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf)|Raw|10,575|494,414|[Google Drive](https://drive.google.com/file/d/19R6Svdj5HbUA0y6aJv3P1WkIR5wXeCnO/view?usp=sharing) [Baidu Drive](https://pan.baidu.com/s/1cZqsRxln-JmrA4xevLfjYQ)|
 |[CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf)|Raw_Clean|10,575|466,711|[Google Drive](https://drive.google.com/file/d/1wJC2aPA4AC0rI-tAL2BFs2M8vfcpX-w6/view?usp=sharing)|
-|[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|Aligned with Deep Funneling|5,749|13,233|[Google Drive](https://drive.google.com/file/d/11h-QIrhuszY3PzT17Q5eXw8yrewgqX7m/view?usp=sharing)|
+|[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|Aligned with Deep Funneling|5,749|13,233|[Google Drive](https://drive.google.com/file/d/11h-QIrhuszY3PzT17Q5eXw8yrewgqX7m/view?usp=sharing) [Baidu Drive](https://pan.baidu.com/s/1Ir8kAcQjBJA6A_pWPL9ozQ)|
 
 ### Model Zoo 
 :monkey:
