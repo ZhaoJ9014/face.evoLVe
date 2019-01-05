@@ -98,7 +98,7 @@ python face_align.py -source_root [source_root] -dest_root [dest_root] -crop_siz
 
 # python face_align.py -source_root './test' -dest_root './test_Aligned' -crop_size 112
 ```
-* For macOS users, there is no need to worry about ```*.DS_Store``` files which may ruin your data. They will be automatically removed when you run the scripts.
+* For macOS users, there is no need to worry about ```*.DS_Store``` files which may ruin your data, since they will be automatically removed when you run the scripts.
 * Keynotes for customed use: 1) specify the arguments of ```source_root```, ```dest_root``` and ```crop_size``` to your own values when you run ```face_align.py```; 2) pass your customed ```min_face_size```, ```thresholds``` and ```nms_thresholds``` values to the ```detect_faces``` function of ```detector.py``` to match your practical requirements.
 
 ### Data Processing
