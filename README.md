@@ -30,7 +30,8 @@ The code of face.evoLVe is released under the MIT License.
 
 ## face.evoLVe for High-Performance Face Recognition
 
-### Introduction :information_desk_person:
+### Introduction 
+:information_desk_person:
 
 This repo provides a comprehensive face recognition library for face related analytics \& applications, including face alignment (detection, landmark localization, affine transformation, *etc.*), data processing (*e.g.*, augmentation, data balancing, normalization, *etc.*), various backbones (*e.g.*, ResNet, IR-SE, ResNeXt, SE-ResNeXt, DenseNet, LightCNN, MobileNet, ShuffleNet, DPN, *etc.*), various losses (*e.g.*, Softmax, Focal, Center, SphereFace, CosineFace, AmSoftmax, ArcFace, Triplet, *etc.*) and bags of tricks for improving performance (*e.g.*, training refinements, model tweaks, knowledge distillation, *etc.*).
 
@@ -41,7 +42,8 @@ This repo can help researchers/engineers develop deep face recognition models an
 
 <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig1.png" width="500px"/>
 
-### Pre-Requisites :cake:
+### Pre-Requisites 
+:cake:
 
 * Linux or macOS
 * [Python 3.7](https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh) (for training \& validation) and [Python 2.7](https://repo.continuum.io/archive/Anaconda2-2018.12-Linux-x86_64.sh) (for visualization w/ tensorboardx)
@@ -54,7 +56,8 @@ This repo can help researchers/engineers develop deep face recognition models an
 
 While not required, for optimal performance it is **highly** recommended to run the code using a CUDA enabled GPU. We used 4 NVIDIA Tesla P40 in parallel.
 
-### Usage :orange_book:
+### Usage 
+:orange_book:
 
 * Clone the repo: `git clone https://github.com/ZhaoJ9014/face.evoLVe.PyTorch.git`.
 * `mkdir data checkpoint log` at appropriate directory to store your train/val/test data, checkpoints and training logs.
@@ -73,7 +76,8 @@ While not required, for optimal performance it is **highly** recommended to run 
 ```
 * Refer to the codes of corresponding sections for specific purposes.
 
-### Face Alignment :triangular_ruler:
+### Face Alignment 
+:triangular_ruler:
 
 <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig2.png" width="900px"/>
 <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig3.png" width="500px"/>
@@ -99,7 +103,8 @@ python face_align.py -source_root [source_root] -dest_root [dest_root] -crop_siz
 * For macOS users, there is no need to worry about ```*.DS_Store``` files which may ruin your data, since they will be automatically removed when you run the scripts.
 * Keynotes for customed use: 1) specify the arguments of ```source_root```, ```dest_root``` and ```crop_size``` to your own values when you run ```face_align.py```; 2) pass your customed ```min_face_size```, ```thresholds``` and ```nms_thresholds``` values to the ```detect_faces``` function of ```detector.py``` to match your practical requirements.
 
-### Data Processing :bar_chart:
+### Data Processing 
+:bar_chart:
 
 * Folder: ```./balance```
 * Remove low-shot data API (remove the low-shot classes with less than ```min_num``` samples in the training set ```root``` with the directory structure as demonstrated in Sec. [Usage](#Usage) for data balance and effective model training):
@@ -115,7 +120,8 @@ python remove_lowshot.py -root [root] -min_num [min_num]
 
 TO DO
 
-### Data Zoo :tiger:
+### Data Zoo 
+:tiger:
 
 |Database|Version|\#Identity|\#Image|Download Link|
 |:---:|:----:|:-----:|:-----:|:-----:|
@@ -123,11 +129,13 @@ TO DO
 |[CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf)|Raw_Clean|10,575|466,711|[Google Drive](https://drive.google.com/file/d/1wJC2aPA4AC0rI-tAL2BFs2M8vfcpX-w6/view?usp=sharing)|
 |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|Aligned with Deep Funneling|5,749|13,233|[Google Drive](https://drive.google.com/file/d/11h-QIrhuszY3PzT17Q5eXw8yrewgqX7m/view?usp=sharing)|
 
-### Model Zoo :monkey:
+### Model Zoo 
+:monkey:
 
 TO DO
 
-### Achievement :confetti_ball:
+### Achievement 
+:confetti_ball:
 
 * 2017 No.1 on ICCV 2017 MS-Celeb-1M Large-Scale Face Recognition [Hard Set](https://www.msceleb.org/leaderboard/iccvworkshop-c1)/[Random Set](https://www.msceleb.org/leaderboard/iccvworkshop-c1)/[Low-Shot Learning](https://www.msceleb.org/leaderboard/c2) Challenges. [WeChat News](http://mp.weixin.qq.com/s/-G94Mj-8972i2HtEcIZDpA), [NUS ECE News](http://ece.nus.edu.sg/drupal/?q=node/215), [NUS ECE Poster](https://zhaoj9014.github.io/pub/ECE_Poster.jpeg), [Award Certificate for Track-1](https://zhaoj9014.github.io/pub/MS-Track1.jpeg), [Award Certificate for Track-2](https://zhaoj9014.github.io/pub/MS-Track2.jpeg), [Award Ceremony](https://zhaoj9014.github.io/pub/MS-Awards.jpeg).
 * 2017 No.1 on National Institute of Standards and Technology (NIST) IARPA Janus Benchmark A (IJB-A) Unconstrained Face [Verification](https://zhaoj9014.github.io/pub/IJBA_11_report.pdf) challenge and [Identification](https://zhaoj9014.github.io/pub/IJBA_1N_report.pdf) challenge. [WeChat News](https://mp.weixin.qq.com/s/s9H_OXX-CCakrTAQUFDm8g).
@@ -144,7 +152,8 @@ TO DO
     * CACD-VS (Accuracy: 99.76%).
     * FG-NET (Rank1 Accuracy: 93.20%).
 
-### Acknowledgement :gift:
+### Acknowledgement 
+:gift:
 
 * This repo is inspired by [InsightFace.MXNet](https://github.com/deepinsight/insightface), [InsightFace.PyTorch](https://github.com/TreB1eN/InsightFace_Pytorch), [ArcFace.PyTorch](https://github.com/ronghuaiyang/arcface-pytorch), [MTCNN.MXNet](https://github.com/pangyupo/mxnet_mtcnn_face_detection) and [PretrainedModels.PyTorch](https://github.com/Cadene/pretrained-models.pytorch).
 * The work of Jian Zhao was partially supported by China Scholarship Council (CSC) grant 201503170248.
@@ -152,6 +161,7 @@ TO DO
 
 ### Citation 
 :bookmark_tabs:
+
 - Please consult and consider citing the following papers:
 
 
