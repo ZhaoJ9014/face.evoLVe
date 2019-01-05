@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 import numpy as np
 from verification import evaluate
+import bcolz
 import io
 
 
@@ -36,6 +37,19 @@ def make_weights_for_balanced_classes(images, nclasses):
     for idx, val in enumerate(images):
         weight[idx] = weight_per_class[val[1]]
     return weight
+
+
+def get_val_pair(path, name):
+    carray = bcolz.carray(rootdir = os.path.join(path, name), mode='r')
+    issame = np.load('{}/{}_list.npy'.format(path, name))
+    return carray, issame
+
+
+def get_val_data(data_path):
+    agedb_30, agedb_30_issame = get_val_pair(data_path, 'agedb_30')
+    cfp_fp, cfp_fp_issame = get_val_pair(data_path, 'cfp_fp')
+    lfw, lfw_issame = get_val_pair(data_path, 'lfw')
+    return agedb_30, cfp_fp, lfw, agedb_30_issame, cfp_fp_issame, lfw_issame
 
 
 def separate_irse_bn_paras(modules):
