@@ -110,6 +110,7 @@ python remove_lowshot.py -root [root] -min_num [min_num]
 
 # python remove_lowshot.py -root './data/train' -min_num 10
 ```
+* Keynotes for customed use: specify the arguments of ```root``` and ```min_num``` to your own values when you run ```remove_lowshot.py```.
 
 ### Training and Validation
 
