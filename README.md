@@ -1,12 +1,10 @@
 # face.evoLVe: High-Performance Face Recognition Library based on PyTorch
 
-:triangular_flag_on_post: Evolve to be more comprehensive, effective and efficient for face related analytics \& applications!
-
-:triangular_flag_on_post: About the name:
-  :triangular_flag_on_post: "face" means this repo is dedicated for face related analytics \& applications.
-  :triangular_flag_on_post: "evolve" means unleash your greatness to be better and better. "LV" are capitalized to acknowledge the nurturing of Learning and Vision ([LV](http://www.lv-nus.org)) group, Nation University of Singapore (NUS).
-  
-:triangular_flag_on_post: This work was done during Jian Zhao served as a short-term "Texpert" Research Scientist at Tencent FiT DeepSea Lab, Shenzhen, China.
+* Evolve to be more comprehensive, effective and efficient for face related analytics \& applications!
+* About the name:
+  * "face" means this repo is dedicated for face related analytics \& applications.
+  * "evolve" means unleash your greatness to be better and better. "LV" are capitalized to acknowledge the nurturing of Learning and Vision ([LV](http://www.lv-nus.org)) group, Nation University of Singapore (NUS).
+* This work was done during Jian Zhao served as a short-term "Texpert" Research Scientist at Tencent FiT DeepSea Lab, Shenzhen, China.
 
 |Author|Jian Zhao|
 |---|---
