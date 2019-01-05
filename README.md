@@ -91,8 +91,13 @@ img = Image.open('some_img.jpg') # modify the image path to yours
 bounding_boxes, landmarks = detect_faces(img) # detect bboxes and landmarks for all faces in the image
 show_results(img, bounding_boxes, landmarks) # visualize the results
 ``` 
-* Face alignment API (perform face detection, landmark localization and alignment with affine transformations on a whole database folder with the directory structure as demonstrated in Sec. [Usage](#Usage), and store the aligned results to a new folder with the same directory structure): ```face_align.py```. 
-* Keynotes for customed use: 1) modify the ```source_root``` and ```dest_root``` at Line 8 \& 9 of ```face_align.py``` to your own dirs, respectively; 2) modify the ```crop_size``` at Line 29 of ```face_align.py``` according to your case; 3) if you changed the ```crop_size``` at Line 29 of ```face_align.py```, you should also adjust the ```REFERENCE_FACIAL_POINTS``` values between Line 7--11 of ```align_trans.py``` accordingly; 4) you can also pass customed ```min_face_size```, ```thresholds``` and ```nms_thresholds``` to the ```detect_faces``` function of ```detector.py``` according to practical requirements.
+* Face alignment API (perform face detection, landmark localization and alignment with affine transformations on a whole database folder with the directory structure as demonstrated in Sec. [Usage](#Usage), and store the aligned results to a new folder with the same directory structure): 
+```
+python face_align.py -source_root [source_root] -dest_root [dest_root] -crop_size [crop_size]
+
+# python face_align.py -source_root './test' -dest_root './test_Aligned' -crop_size 112
+```
+* Keynotes for customed use: 1) specify your own ```source_root```, ```dest_root``` and ```crop_size``` arguments when you run ```face_align.py```; 2) you can also specify customed ```min_face_size```, ```thresholds``` and ```nms_thresholds``` to the ```detect_faces``` function of ```detector.py``` to match your practical requirements.
 
 ### Data Processing
 
