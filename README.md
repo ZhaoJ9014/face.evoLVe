@@ -58,7 +58,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 * Clone the repo: `git clone https://github.com/ZhaoJ9014/face.evoLVe.PyTorch.git`.
 * `mkdir data checkpoint log` at appropriate directory to store your train/val/test data, checkpoints and training logs.
-* Ensure each database folder has the following structure:
+* Prepare your train/val/test data (refer to Sec. [Data Zoo](#Data-Zoo) for publicly available face related databases), and ensure each database folder has the following structure:
 ```
 ./data/db_name/
         -> id1/
