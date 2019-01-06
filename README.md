@@ -149,6 +149,25 @@ cd casia-maxpy-clean
 zip -F CASIA-maxpy-clean.zip --out CASIA-maxpy-clean_fix.zip    
 unzip CASIA-maxpy-clean_fix.zip
 ```
+* Remark: after unzip, get data from AgeDB, CFP and LFW align_112x112 versions with 
+```python
+import numpy as np
+import bcolz
+import os
+
+def get_pair(root, name):
+    carray = bcolz.carray(rootdir = os.path.join(root, name), mode='r')
+    issame = np.load('{}/{}_list.npy'.format(root, name))
+    return carray, issame
+
+def get_data(data_root):
+    agedb_30, agedb_30_issame = get_pair(data_root, 'agedb_30')
+    cfp_fp, cfp_fp_issame = get_pair(data_root, 'cfp_fp')
+    lfw, lfw_issame = get_pair(data_root, 'lfw')
+    return agedb_30, cfp_fp, lfw, agedb_30_issame, cfp_fp_issame, lfw_issame
+
+agedb_30, cfp_fp, lfw, agedb_30_issame, cfp_fp_issame, lfw_issame = get_data(DATA_ROOT)
+```
 * Due to release license issue, for other face related databases, please make contact with us in person for more details.
 
 ### Model Zoo 
