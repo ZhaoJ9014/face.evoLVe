@@ -35,11 +35,9 @@ The code of face.evoLVe is released under the MIT License.
 
 <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig1.png" width="500px"/>
 
-This repo provides a comprehensive face recognition library for face related analytics \& applications, including face alignment (detection, landmark localization, affine transformation, *etc.*), data processing (*e.g.*, augmentation, data balancing, normalization, *etc.*), various backbones (*e.g.*, ResNet, IR-SE, ResNeXt, SE-ResNeXt, DenseNet, LightCNN, MobileNet, ShuffleNet, DPN, *etc.*), various losses (*e.g.*, Softmax, Focal, Center, SphereFace, CosineFace, AmSoftmax, ArcFace, Triplet, *etc.*) and bags of tricks for improving performance (*e.g.*, training refinements, model tweaks, knowledge distillation, *etc.*).
-
-All data before \& after alignment, source codes and trained models are provided.
-
-This repo can help researchers/engineers develop deep face recognition models and algorithms quickly for practical use and deployment.
+* This repo provides a comprehensive face recognition library for face related analytics \& applications, including face alignment (detection, landmark localization, affine transformation, *etc.*), data processing (*e.g.*, augmentation, data balancing, normalization, *etc.*), various backbones (*e.g.*, ResNet, IR-SE, ResNeXt, SE-ResNeXt, DenseNet, LightCNN, MobileNet, ShuffleNet, DPN, *etc.*), various losses (*e.g.*, Softmax, Focal, Center, SphereFace, CosineFace, AmSoftmax, ArcFace, Triplet, *etc.*) and bags of tricks for improving performance (*e.g.*, training refinements, model tweaks, knowledge distillation, *etc.*).
+* All data before \& after alignment, source codes and trained models are provided.
+* This repo can help researchers/engineers develop deep face recognition models and algorithms quickly for practical use and deployment.
 
 ### Pre-Requisites 
 :cake:
@@ -139,7 +137,6 @@ TO DO
 |[IJB-A](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Klare_Pushing_the_Frontiers_2015_CVPR_paper.pdf)|Clean|500|5,712|20,412|2,085| |
 |[IJB-B](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w6/papers/Whitelam_IARPA_Janus_Benchmark-B_CVPR_2017_paper.pdf)|Raw|1,845|21,798|55,026|7,011|[Google Drive](https://drive.google.com/file/d/15oibCHL3NX-q-QV8q_UAmbIr9e_M0n1R/view?usp=sharing)|
 |[CFP](http://www.cfpw.io/paper.pdf)|Raw|500|7,000|-|-|[Google Drive](https://drive.google.com/file/d/1tGNtqzWeUx3BYAxRHBbH1Wy7AmyFtZkU/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/10Qq64LO_RWKD2cr_D32_6A)|
-
 * Remark: unzip CASIA-WebFace clean version with 
 ```
 unzip casia-maxpy-clean.zip    
@@ -147,6 +144,7 @@ cd casia-maxpy-clean
 zip -F CASIA-maxpy-clean.zip --out CASIA-maxpy-clean_fix.zip    
 unzip CASIA-maxpy-clean_fix.zip
 ```
+* Due to release license issue, for other face related databases, please make contact with us in person for more details.
 
 ### Model Zoo 
 :monkey:
