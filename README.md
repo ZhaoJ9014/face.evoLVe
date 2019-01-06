@@ -149,7 +149,7 @@ cd casia-maxpy-clean
 zip -F CASIA-maxpy-clean.zip --out CASIA-maxpy-clean_fix.zip    
 unzip CASIA-maxpy-clean_fix.zip
 ```
-* Remark: after unzip, get data from AgeDB, CFP and LFW align_112x112 versions with 
+* Remark: after unzip, get image data \& pair ground truths from AgeDB, CFP and LFW align_112x112 versions with 
 ```python
 import numpy as np
 import bcolz
