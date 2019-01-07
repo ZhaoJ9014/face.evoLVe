@@ -8,6 +8,7 @@ import numpy as np
 from verification import evaluate
 import bcolz
 import io
+import os
 
 
 def l2_norm(input,axis=1):
