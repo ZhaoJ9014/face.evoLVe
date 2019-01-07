@@ -144,7 +144,6 @@ TO DO
 |[CFP](http://www.cfpw.io/paper.pdf)|Align_112x112|500|7,000|-|-|[Google Drive](https://drive.google.com/file/d/1MWp7NGqzpkYeXl-WiKIINHc3F4o-aT6D/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1kvGaVP5dluJ4GgUFsR3QVA)|
 |[Umdfaces](https://arxiv.org/pdf/1611.01484.pdf)|Align_112x112|8,277|367,888|-|-| |
 |[DeepGlint](http://trillionpairs.deepglint.com/)|Align_112x112| | |-|-| |
-|[Asian-Celeb](http://trillionpairs.deepglint.com/)|Align_112x112| | |-|-| |
 * Remark: unzip CASIA-WebFace clean version with 
 ```
 unzip casia-maxpy-clean.zip    
