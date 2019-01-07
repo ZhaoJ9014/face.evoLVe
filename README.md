@@ -222,21 +222,21 @@ TO DO
       }
       
       
-      @inproceedings{zhao2017dual,
-      title={Dual-agent gans for photorealistic and identity preserving profile face synthesis},
-      author={Zhao, Jian and Xiong, Lin and Jayashree, Panasonic Karlekar and Li, Jianshu and Zhao, Fang and Wang, Zhecan and Pranata,           Panasonic Sugiri and Shen, Panasonic Shengmei and Yan, Shuicheng and Feng, Jiashi},
-      booktitle={NIPS},
-      pages={66--76},
-      year={2017}
-      }
-      
-      
       @inproceedings{zhao2018towards,
       title={Towards Pose Invariant Face Recognition in the Wild},
       author={Zhao, Jian and Cheng, Yu and Xu, Yan and Xiong, Lin and Li, Jianshu and Zhao, Fang and Jayashree, Karlekar and Pranata,         Sugiri and Shen, Shengmei and Xing, Junliang and others},
       booktitle={CVPR},
       pages={2207--2216},
       year={2018}
+      }
+      
+      
+      @inproceedings{zhao2017dual,
+      title={Dual-agent gans for photorealistic and identity preserving profile face synthesis},
+      author={Zhao, Jian and Xiong, Lin and Jayashree, Panasonic Karlekar and Li, Jianshu and Zhao, Fang and Wang, Zhecan and Pranata,           Panasonic Sugiri and Shen, Panasonic Shengmei and Yan, Shuicheng and Feng, Jiashi},
+      booktitle={NIPS},
+      pages={66--76},
+      year={2017}
       }
       
       
