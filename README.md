@@ -143,6 +143,8 @@ TO DO
 |[CFP](http://www.cfpw.io/paper.pdf)|Raw|500|7,000|-|-|[Google Drive](https://drive.google.com/file/d/1tGNtqzWeUx3BYAxRHBbH1Wy7AmyFtZkU/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/10Qq64LO_RWKD2cr_D32_6A)|
 |[CFP](http://www.cfpw.io/paper.pdf)|Align_112x112|500|7,000|-|-|[Google Drive](https://drive.google.com/file/d/1MWp7NGqzpkYeXl-WiKIINHc3F4o-aT6D/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1kvGaVP5dluJ4GgUFsR3QVA)|
 |[Umdfaces](https://arxiv.org/pdf/1611.01484.pdf)|Align_112x112| | |-|-| |
+|[DeepGlint](http://trillionpairs.deepglint.com/)|Align_112x112| | |-|-| |
+|[Asian-Celeb](http://trillionpairs.deepglint.com/)|Align_112x112| | |-|-| |
 * Remark: unzip CASIA-WebFace clean version with 
 ```
 unzip casia-maxpy-clean.zip    
