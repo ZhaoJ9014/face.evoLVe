@@ -153,7 +153,28 @@ configurations = {
 ),
 }
 ```
-* Train \& validation API (all folks about training \& validation, *i.e.*, import package, hyperparameters \& dataLoaders, model & loss & optimizer, train & validation & save checkpoint) ```train.py```. Since [MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf) serves as an "[ImageNet](https://www.researchgate.net/profile/Li_Jia_Li/publication/221361415_ImageNet_a_Large-Scale_Hierarchical_Image_Database/links/00b495388120dbc339000000/ImageNet-a-Large-Scale-Hierarchical-Image-Database.pdf)" in the filed of face recognition, we pre-train the [face.evoLVe](#Introduction) models on [MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf) and perform validation on [AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf), [LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf) and [CFP](http://www.cfpw.io/paper.pdf). Let's dive into details together step by step:
+* Train \& validation API (all folks about training \& validation, *i.e.*, import package, hyperparameters \& dataLoaders, model & loss & optimizer, train & validation & save checkpoint) ```train.py```. Since [MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf) serves as an "[ImageNet](https://www.researchgate.net/profile/Li_Jia_Li/publication/221361415_ImageNet_a_Large-Scale_Hierarchical_Image_Database/links/00b495388120dbc339000000/ImageNet-a-Large-Scale-Hierarchical-Image-Database.pdf)" in the filed of face recognition, we pre-train the [face.evoLVe](#Introduction) models on [MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf) and perform validation on [AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf), [LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf) and [CFP](http://www.cfpw.io/paper.pdf). Let's dive into details together step by step.
+  * Import package:
+    ```python
+    import torch
+    import torch.nn as nn
+    import torch.optim as optim
+    import torchvision.transforms as transforms
+    import torchvision.datasets as datasets
+
+    from config import configurations
+    from backbone.model_resnet import ResNet_50, ResNet_101, ResNet_152
+    from backbone.model_irse import IR_50, IR_101, IR_152, IR_SE_50, IR_SE_101, IR_SE_152
+    from head.metrics import ArcFace, CosFace, SphereFace, Am_softmax
+    from loss.focal import FocalLoss
+    from util.utils import make_weights_for_balanced_classes, get_val_data, separate_irse_bn_paras, separate_resnet_bn_paras, warm_up_lr, schedule_lr, perform_val, get_time, buffer_val
+
+    from tensorboardX import SummaryWriter
+    import numpy as np
+    from tqdm import tqdm
+    import os
+    ```
+
 
 
 
