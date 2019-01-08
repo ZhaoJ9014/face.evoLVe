@@ -27,7 +27,7 @@ configurations = {
 
         DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu"), # use GPU or CPU
         MULTI_GPU = True, # flag to use multiple GPUs
-        GPU_ID = [0,1,2,3], # specify your GPU ids
+        GPU_ID = [0, 1, 2, 3], # specify your GPU ids
         PIN_MEMORY = True,
         NUM_WORKERS = 0,
 ),
