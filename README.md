@@ -416,7 +416,7 @@ configurations = {
   
   * About number of training classes:
   
-    <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig5.png" width="900px"/>
+    <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig5.png" width="600px"/>
   
   * About backbone details:
   
@@ -424,15 +424,15 @@ configurations = {
   
   * About head details:
   
-    <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig7.png" width="900px"/>
+    <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig7.png" width="600px"/>
   
   * About loss details:
   
-    <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig8.png" width="900px"/>
+    <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig8.png" width="600px"/>
   
   * About optimizer details:
   
-    <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig9.png" width="900px"/>
+    <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig9.png" width="600px"/>
   
   * About training status \& statistics (when batch index reachs ```DISP_LOSS_FREQ``` or at the end of each epoch):
   
