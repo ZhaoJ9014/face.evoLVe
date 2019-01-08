@@ -412,7 +412,7 @@ configurations = {
 * Now, you can start to play with [face.evoLVe](#Introduction) and run ```train.py```. User friendly information will popped out on your terminal:
   * About overall configuration:
   
-    <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig4.png" width="800px"/>
+    <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig4.png" width="900px"/>
   
   * About number of training classes:
   * About backbone details:
