@@ -12,7 +12,7 @@
 
 ## License
 
-The code of face.evoLVe is released under the MIT License.
+The code of [face.evoLVe](#Introduction) is released under the MIT License.
 
 ****
 ## Contents
