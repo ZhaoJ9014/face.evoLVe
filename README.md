@@ -154,7 +154,7 @@ configurations = {
 }
 ```
 * Train \& validation API (all folks about training \& validation, *i.e.*, import package, hyperparameters \& dataLoaders, model & loss & optimizer, train & validation & save checkpoint) ```train.py```. Since [MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf) serves as an "[ImageNet](https://www.researchgate.net/profile/Li_Jia_Li/publication/221361415_ImageNet_a_Large-Scale_Hierarchical_Image_Database/links/00b495388120dbc339000000/ImageNet-a-Large-Scale-Hierarchical-Image-Database.pdf)" in the filed of face recognition, we pre-train the [face.evoLVe](#Introduction) models on [MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf) and perform validation on [AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf), [LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf) and [CFP](http://www.cfpw.io/paper.pdf). Let's dive into details together step by step.
-  * Import package:
+  * Import necessary packages:
     ```python
     import torch
     import torch.nn as nn
@@ -174,6 +174,46 @@ configurations = {
     from tqdm import tqdm
     import os
     ```
+   * Initialize hyperparameters:
+     ```python
+     cfg = configurations[1]
+
+     SEED = cfg['SEED'] # random seed for reproduce results
+     torch.manual_seed(SEED)
+
+     DATA_ROOT = cfg['DATA_ROOT'] # the parent root where your train/val/test data are stored
+     MODEL_ROOT = cfg['MODEL_ROOT'] # the root to buffer your checkpoints
+     LOG_ROOT = cfg['LOG_ROOT'] # the root to log your train/val status
+
+     BACKBONE_NAME = cfg['BACKBONE_NAME'] # support: ['ResNet_50', 'ResNet_101', 'ResNet_152', 'IR_50', 'IR_101', 'IR_152', 'IR_SE_50', 'IR_SE_101', 'IR_SE_152']
+     HEAD_NAME = cfg['HEAD_NAME'] # support:  ['ArcFace', 'CosFace', 'SphereFace', 'Am_softmax']
+     LOSS_NAME = cfg['LOSS_NAME'] # support: ['Focal', 'Softmax']
+
+     INPUT_SIZE = cfg['INPUT_SIZE']
+     RGB_MEAN = cfg['RGB_MEAN'] # for normalize inputs
+     RGB_STD = cfg['RGB_STD']
+     EMBEDDING_SIZE = cfg['EMBEDDING_SIZE'] # feature dimension
+     BATCH_SIZE = cfg['BATCH_SIZE']
+     DROP_LAST = cfg['DROP_LAST'] # whether drop the last batch to ensure consistent batch_norm statistics
+     LR = cfg['LR'] # initial LR
+     NUM_EPOCH = cfg['NUM_EPOCH'] # total epoch number (use the firt 1/5 epochs to warm up)
+     WEIGHT_DECAY = cfg['WEIGHT_DECAY']
+     MOMENTUM = cfg['MOMENTUM']
+     STAGES = cfg['STAGES'] # epoch stages to decay learning rate
+
+     DEVICE = cfg['DEVICE'] # use GPU or CPU
+     MULTI_GPU = cfg['MULTI_GPU'] # flag to use multiple GPUs
+     GPU_ID = cfg['GPU_ID'] # specify your GPU ids
+     PIN_MEMORY = cfg['PIN_MEMORY']
+     NUM_WORKERS = cfg['NUM_WORKERS']
+     print("=" * 60)
+     print("Overall Configurations:")
+     print(cfg)
+     print("=" * 60)
+
+     writer = SummaryWriter(LOG_ROOT) # writer for buffering intermedium results
+     ```
+   
 
 
 
