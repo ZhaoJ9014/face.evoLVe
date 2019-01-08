@@ -316,7 +316,7 @@ configurations = {
     BACKBONE.train()  # set to training mode
     HEAD.train()
     ```
-  * Training \& validation:
+  * Training \& validation \& save checkpoint (use the first 1/5 epochs to warm up -- gradually increase LR to the initial value to ensure stable convergence):
     ```python
     for epoch in range(NUM_EPOCH): # start training process
 
@@ -409,6 +409,15 @@ configurations = {
         print("Epoch {}/{}, Evaluation: AgeDB_30 Acc: {}, LFW Acc: {}, CFP_FP Acc: {}".format(epoch, NUM_EPOCH - 1, accuracy_agedb_30, accuracy_lfw, accuracy_cfp_fp))
         print("=" * 60)
     ```
+* Now, you can start to play with [face.evoLVe](#Introduction) and run ```train.py```. User friendly information will popped out on your terminal:
+  * About overall configuration:
+  * About number of training classes:
+  * About backbone details:
+  * About head details:
+  * About loss details:
+  * About optimizer details:
+  * About training status \& statistics (when batch index reachs ```DISP_LOSS_FREQ``` or at the end of each epoch):
+  * About validation statistics (when batch index reachs ```DISP_LOSS_FREQ``` or at the end of each epoch):
 
 ### Data Zoo 
 :tiger:
