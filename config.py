@@ -1,5 +1,6 @@
 import torch
 
+
 configurations = {
     1: dict(
         SEED = 1337, # random seed for reproduce results
