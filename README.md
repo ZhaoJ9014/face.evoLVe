@@ -117,7 +117,7 @@ python remove_lowshot.py -root [root] -min_num [min_num]
 :coffee:
 
 * Folder: ```./```
-* Configuration API (configurate your overall settings for training \& validation):
+* Configuration API (configurate your overall settings for training \& validation) ```config.py```:
 ```python
 import torch
 
