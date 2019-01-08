@@ -417,7 +417,7 @@ configurations = {
   * About loss details:
   * About optimizer details:
   * About training status \& statistics (when batch index reachs ```DISP_LOSS_FREQ``` or at the end of each epoch):
-  * About validation statistics (when batch index reachs ```DISP_LOSS_FREQ``` or at the end of each epoch):
+  * About validation statistics (when batch index reachs ```EVALUATE_FREQ``` or at the end of each epoch):
 
 ### Data Zoo 
 :tiger:
