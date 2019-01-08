@@ -19,7 +19,7 @@ import os
 
 if __name__ == '__main__':
 
-    #======= parameters and dataLoaders =======#
+    #======= hyperparameters and dataLoaders =======#
     cfg = configurations[1]
 
     SEED = cfg['SEED'] # random seed for reproduce results
