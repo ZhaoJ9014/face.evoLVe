@@ -174,45 +174,98 @@ configurations = {
     from tqdm import tqdm
     import os
     ```
-   * Initialize hyperparameters:
-     ```python
-     cfg = configurations[1]
+  * Initialize hyperparameters:
+    ```python
+    cfg = configurations[1]
 
-     SEED = cfg['SEED'] # random seed for reproduce results
-     torch.manual_seed(SEED)
+    SEED = cfg['SEED'] # random seed for reproduce results
+    torch.manual_seed(SEED)
 
-     DATA_ROOT = cfg['DATA_ROOT'] # the parent root where your train/val/test data are stored
-     MODEL_ROOT = cfg['MODEL_ROOT'] # the root to buffer your checkpoints
-     LOG_ROOT = cfg['LOG_ROOT'] # the root to log your train/val status
+    DATA_ROOT = cfg['DATA_ROOT'] # the parent root where your train/val/test data are stored
+    MODEL_ROOT = cfg['MODEL_ROOT'] # the root to buffer your checkpoints
+    LOG_ROOT = cfg['LOG_ROOT'] # the root to log your train/val status
 
-     BACKBONE_NAME = cfg['BACKBONE_NAME'] # support: ['ResNet_50', 'ResNet_101', 'ResNet_152', 'IR_50', 'IR_101', 'IR_152', 'IR_SE_50', 'IR_SE_101', 'IR_SE_152']
-     HEAD_NAME = cfg['HEAD_NAME'] # support:  ['ArcFace', 'CosFace', 'SphereFace', 'Am_softmax']
-     LOSS_NAME = cfg['LOSS_NAME'] # support: ['Focal', 'Softmax']
+    BACKBONE_NAME = cfg['BACKBONE_NAME'] # support: ['ResNet_50', 'ResNet_101', 'ResNet_152', 'IR_50', 'IR_101', 'IR_152', 'IR_SE_50', 'IR_SE_101', 'IR_SE_152']
+    HEAD_NAME = cfg['HEAD_NAME'] # support:  ['ArcFace', 'CosFace', 'SphereFace', 'Am_softmax']
+    LOSS_NAME = cfg['LOSS_NAME'] # support: ['Focal', 'Softmax']
 
-     INPUT_SIZE = cfg['INPUT_SIZE']
-     RGB_MEAN = cfg['RGB_MEAN'] # for normalize inputs
-     RGB_STD = cfg['RGB_STD']
-     EMBEDDING_SIZE = cfg['EMBEDDING_SIZE'] # feature dimension
-     BATCH_SIZE = cfg['BATCH_SIZE']
-     DROP_LAST = cfg['DROP_LAST'] # whether drop the last batch to ensure consistent batch_norm statistics
-     LR = cfg['LR'] # initial LR
-     NUM_EPOCH = cfg['NUM_EPOCH'] # total epoch number (use the firt 1/5 epochs to warm up)
-     WEIGHT_DECAY = cfg['WEIGHT_DECAY']
-     MOMENTUM = cfg['MOMENTUM']
-     STAGES = cfg['STAGES'] # epoch stages to decay learning rate
+    INPUT_SIZE = cfg['INPUT_SIZE']
+    RGB_MEAN = cfg['RGB_MEAN'] # for normalize inputs
+    RGB_STD = cfg['RGB_STD']
+    EMBEDDING_SIZE = cfg['EMBEDDING_SIZE'] # feature dimension
+    BATCH_SIZE = cfg['BATCH_SIZE']
+    DROP_LAST = cfg['DROP_LAST'] # whether drop the last batch to ensure consistent batch_norm statistics
+    LR = cfg['LR'] # initial LR
+    NUM_EPOCH = cfg['NUM_EPOCH'] # total epoch number (use the firt 1/5 epochs to warm up)
+    WEIGHT_DECAY = cfg['WEIGHT_DECAY']
+    MOMENTUM = cfg['MOMENTUM']
+    STAGES = cfg['STAGES'] # epoch stages to decay learning rate
 
-     DEVICE = cfg['DEVICE'] # use GPU or CPU
-     MULTI_GPU = cfg['MULTI_GPU'] # flag to use multiple GPUs
-     GPU_ID = cfg['GPU_ID'] # specify your GPU ids
-     PIN_MEMORY = cfg['PIN_MEMORY']
-     NUM_WORKERS = cfg['NUM_WORKERS']
-     print("=" * 60)
-     print("Overall Configurations:")
-     print(cfg)
-     print("=" * 60)
+    DEVICE = cfg['DEVICE'] # use GPU or CPU
+    MULTI_GPU = cfg['MULTI_GPU'] # flag to use multiple GPUs
+    GPU_ID = cfg['GPU_ID'] # specify your GPU ids
+    PIN_MEMORY = cfg['PIN_MEMORY']
+    NUM_WORKERS = cfg['NUM_WORKERS']
+    print("=" * 60)
+    print("Overall Configurations:")
+    print(cfg)
+    print("=" * 60)
 
-     writer = SummaryWriter(LOG_ROOT) # writer for buffering intermedium results
-     ```
+    writer = SummaryWriter(LOG_ROOT) # writer for buffering intermedium results
+    ```
+  * Train \& validation dataLoaders:
+    ```python
+    train_transform = transforms.Compose([ # refer to https://pytorch.org/docs/stable/torchvision/transforms.html for more build-in online data augmentation
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize(mean = RGB_MEAN,
+                             std = RGB_STD),
+    ])
+
+    test_transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize(mean = RGB_MEAN,
+                             std = RGB_STD),
+    ])
+
+    dataset_train = datasets.ImageFolder(os.path.join(DATA_ROOT, 'imgs'), train_transform)
+
+    # create a weighted random sampler to process imbalanced data
+    weights = make_weights_for_balanced_classes(dataset_train.imgs, len(dataset_train.classes))
+    weights = torch.DoubleTensor(weights)
+    sampler = torch.utils.data.sampler.WeightedRandomSampler(weights, len(weights))
+
+    train_loader = torch.utils.data.DataLoader(
+        dataset_train, batch_size = BATCH_SIZE, sampler = sampler, pin_memory = PIN_MEMORY,
+        num_workers = NUM_WORKERS, drop_last = DROP_LAST
+    )
+
+    NUM_CLASS = len(train_loader.dataset.classes)
+    print("Number of Training Classes: {}".format(NUM_CLASS))
+
+    agedb_30, cfp_fp, lfw, agedb_30_issame, cfp_fp_issame, lfw_issame = get_val_data(DATA_ROOT)
+    ```
+  * Define and initialize model (backbone \& head):
+    ```python
+    BACKBONE_DICT = {'ResNet_50': ResNet_50(INPUT_SIZE), 'ResNet_101': ResNet_101(INPUT_SIZE), 'ResNet_152': ResNet_152(INPUT_SIZE),
+                     'IR_50': IR_50(INPUT_SIZE), 'IR_101': IR_101(INPUT_SIZE), 'IR_152': IR_152(INPUT_SIZE),
+                     'IR_SE_50': IR_SE_50(INPUT_SIZE), 'IR_SE_101': IR_SE_101(INPUT_SIZE), 'IR_SE_152': IR_SE_152(INPUT_SIZE)} # "IR" is short for "Inception-ResNet"; "SE" is short for "Squeeze-Excitation"
+    BACKBONE = BACKBONE_DICT[BACKBONE_NAME]
+    print("=" * 60)
+    print(BACKBONE)
+    print("{} Backbone Generated".format(BACKBONE_NAME))
+    print("=" * 60)
+
+    HEAD_DICT = {'ArcFace': ArcFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS),
+                 'CosFace': CosFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS),
+                'SphereFace': SphereFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS),
+                'Am_softmax': Am_softmax(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS)}
+    HEAD = HEAD_DICT[HEAD_NAME]
+    print("=" * 60)
+    print(HEAD)
+    print("{} Head Generated".format(HEAD_NAME))
+    print("=" * 60)
+    ```
    
 
 
