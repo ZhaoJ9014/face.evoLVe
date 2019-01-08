@@ -266,11 +266,149 @@ configurations = {
     print("{} Head Generated".format(HEAD_NAME))
     print("=" * 60)
     ```
-   
+  * Define and initialize loss function:
+    ```python
+    LOSS_DICT = {'Focal': FocalLoss(), 'Softmax': nn.CrossEntropyLoss()}
+    LOSS = LOSS_DICT[LOSS_NAME]
+    print("=" * 60)
+    print(LOSS)
+    print("{} Loss Generated".format(LOSS_NAME))
+    print("=" * 60)
+    ```
+  * Define and initialize optimizer:
+    ```python
+    if BACKBONE_NAME.find("IR") >= 0:
+        backbone_paras_only_bn, backbone_paras_wo_bn = separate_irse_bn_paras(BACKBONE) # separate batch_norm parameters from others; do not do weight decay for batch_norm parameters to improve the generalizability
+        _, head_paras_wo_bn = separate_irse_bn_paras(HEAD)
+    else:
+        backbone_paras_only_bn, backbone_paras_wo_bn = separate_resnet_bn_paras(BACKBONE) # separate batch_norm parameters from others; do not do weight decay for batch_norm parameters to improve the generalizability
+        _, head_paras_wo_bn = separate_resnet_bn_paras(HEAD)
+    OPTIMIZER = optim.SGD([{'params': backbone_paras_wo_bn + head_paras_wo_bn,
+                            'weight_decay': WEIGHT_DECAY}, {'params': backbone_paras_only_bn}], lr = LR, momentum = MOMENTUM)
+    print("=" * 60)
+    print(OPTIMIZER)
+    print("Optimizer Generated")
+    print("=" * 60)
+    ```
+  * Whether use multi-GPU or not:
+    ```python
+    if MULTI_GPU:
+        # multi-GPU setting
+        BACKBONE = nn.DataParallel(BACKBONE, device_ids = GPU_ID)
+        BACKBONE = BACKBONE.to(DEVICE)
+        HEAD = nn.DataParallel(HEAD, device_ids = GPU_ID)
+        HEAD = HEAD.to(DEVICE)
+    else:
+        # single-GPU/CPU setting
+        BACKBONE = BACKBONE.to(DEVICE)
+        HEAD = HEAD.to(DEVICE)
+    ```
+  * Minor settings prior to training:
+    ```python
+    DISP_LOSS_FREQ = len(train_loader) // 100  # interval to display training loss & acc
+    EVALUATE_FREQ = len(train_loader) // 10  # interval to perform validation
+    SAVE_FREQ = len(train_loader) // 5  # interval to save checkpoints
+
+    NUM_EPOCH_WARM_UP = NUM_EPOCH // 5 # use the first 1/5 epochs to warm up
+    NUM_BATCH_WARM_UP = len(train_loader) * NUM_EPOCH_WARM_UP # use the first 1/5 epochs to warm up
+    batch = 0  # batch index
+
+    BACKBONE.train()  # set to training mode
+    HEAD.train()
+    ```
+  * Training \& validation:
+    ```python
+    for epoch in range(NUM_EPOCH): # start training process
+
+        if epoch == STAGES[0]: # adjust LR for each training stage after warm up
+            schedule_lr(OPTIMIZER)
+        if epoch == STAGES[1]:
+            schedule_lr(OPTIMIZER)
+        if epoch == STAGES[2]:
+            schedule_lr(OPTIMIZER)
+
+        running_loss = 0.0
+        running_corrects = 0
+
+        for inputs, labels in tqdm(iter(train_loader)):
+
+            if batch <= NUM_BATCH_WARM_UP - 1: # adjust LR for each training batch during warm up
+                warm_up_lr(batch, NUM_BATCH_WARM_UP - 1, LR, OPTIMIZER)
+
+            inputs = inputs.to(DEVICE)
+            labels = labels.to(DEVICE).long()
+            features = BACKBONE(inputs)
+            outputs = HEAD(features, labels)
+            _, preds = torch.max(outputs, 1)
+            loss = LOSS(outputs, labels)
+            OPTIMIZER.zero_grad()
+            loss.backward()
+            OPTIMIZER.step()
+
+            if (batch % DISP_LOSS_FREQ == 0) and batch != 0: # dispaly training loss & acc every DISP_LOSS_FREQ
+                display_preds = outputs.data.cpu().numpy()
+                display_preds = np.argmax(display_preds, axis = 1)
+                dispaly_labels = labels.data.cpu().numpy()
+                display_acc = np.mean((display_preds == dispaly_labels).astype(float))
+                print("=" * 60)
+                if batch <= NUM_BATCH_WARM_UP - 1:
+                    print("During Warm Up Process:")
+                else:
+                    print("During Normal Training Process:")
+                print("Epoch {}/{} Batch {}/{}, Training Loss {} Acc {}".format(epoch, NUM_EPOCH - 1, batch, len(train_loader) * NUM_EPOCH - 1, loss.data.item(), display_acc))
+                print("=" * 60)
+
+            if (batch % EVALUATE_FREQ) == 0 and batch != 0: # perform validation every EVALUATE_FREQ
+                print("=" * 60)
+                if batch <= NUM_BATCH_WARM_UP - 1:
+                    print("During Warm Up Process:")
+                else:
+                    print("During Normal Training Process:")
+                print("Perform Validation on AgeDB_30, LFW and CFP_FP...")
+                accuracy_agedb_30, best_threshold_agedb_30, roc_curve_agedb_30 = perform_val(MULTI_GPU, DEVICE, EMBEDDING_SIZE, BATCH_SIZE, BACKBONE, agedb_30, agedb_30_issame)
+                accuracy_lfw, best_threshold_lfw, roc_curve_lfw = perform_val(MULTI_GPU, DEVICE, EMBEDDING_SIZE, BATCH_SIZE, BACKBONE, lfw, lfw_issame)
+                accuracy_cfp_fp, best_threshold_cfp_fp, roc_curve_cfp_fp = perform_val(MULTI_GPU, DEVICE, EMBEDDING_SIZE, BATCH_SIZE, BACKBONE, cfp_fp, cfp_fp_issame)
+                print("Epoch {}/{} Batch {}/{}, Evaluation: AgeDB_30 Acc: {}, LFW Acc: {}, CFP_FP Acc: {}".format(epoch, NUM_EPOCH - 1, batch, len(train_loader) * NUM_EPOCH - 1, accuracy_agedb_30, accuracy_lfw, accuracy_cfp_fp))
+                print("=" * 60)
 
 
+            if (batch % SAVE_FREQ) == 0 and batch != 0: # save checkpoints (only save BACKBONE) every SAVE_FREQ
+                torch.save(BACKBONE.state_dict(), os.path.join(MODEL_ROOT, "Backbone_{}_Head_{}_Loss_{}_agedb_30_acc_{}_lfw_acc_{}_cfp_fp_acc_{}_epoch_{}_batch_{}_time_{}".format(BACKBONE_NAME, HEAD_NAME, LOSS_NAME, accuracy_agedb_30, accuracy_lfw, accuracy_cfp_fp, epoch, batch, get_time())))
 
+            running_loss += loss.data.item() * inputs.data.size(0) # compute training loss & acc every epoch
+            running_corrects += torch.sum(preds == labels.data)
 
+            batch += 1 # batch index
+
+        # training statistics per epoch (buffer for visualization)
+        epoch_loss = running_loss / len(train_loader.dataset)
+        epoch_acc = running_corrects.double() / len(train_loader.dataset)
+        writer.add_scalar("Training_Loss", epoch_loss, epoch)
+        writer.add_scalar("Training_Accuracy", epoch_acc, epoch)
+        print("=" * 60)
+        if epoch <= NUM_EPOCH_WARM_UP - 1:
+            print("During Warm Up Process:")
+        else:
+            print("During Normal Training Process:")
+        print("Epoch {}/{}, Training Loss {} Acc {}".format(epoch, NUM_EPOCH - 1, epoch_loss, epoch_acc))
+        print("=" * 60)
+
+        # validation statistics per epoch (buffer for visualization)
+        print("=" * 60)
+        if epoch <= NUM_EPOCH_WARM_UP - 1:
+            print("During Warm Up Process:")
+        else:
+            print("During Normal Training Process:")
+        print("Perform Validation on AgeDB_30, LFW and CFP_FP...")
+        accuracy_agedb_30, best_threshold_agedb_30, roc_curve_agedb_30 = perform_val(MULTI_GPU, DEVICE, EMBEDDING_SIZE, BATCH_SIZE, BACKBONE, agedb_30, agedb_30_issame)
+        buffer_val(writer, "AgeDB_30", accuracy_agedb_30, best_threshold_agedb_30, roc_curve_agedb_30, epoch)
+        accuracy_lfw, best_threshold_lfw, roc_curve_lfw = perform_val(MULTI_GPU, DEVICE, EMBEDDING_SIZE, BATCH_SIZE, BACKBONE, lfw, lfw_issame)
+        buffer_val(writer, "LFW", accuracy_lfw, best_threshold_lfw, roc_curve_lfw, epoch)
+        accuracy_cfp_fp, best_threshold_cfp_fp, roc_curve_cfp_fp = perform_val(MULTI_GPU, DEVICE, EMBEDDING_SIZE, BATCH_SIZE, BACKBONE, cfp_fp, cfp_fp_issame)
+        buffer_val(writer, "CFP_FP", accuracy_cfp_fp, best_threshold_cfp_fp, roc_curve_cfp_fp, epoch)
+        print("Epoch {}/{}, Evaluation: AgeDB_30 Acc: {}, LFW Acc: {}, CFP_FP Acc: {}".format(epoch, NUM_EPOCH - 1, accuracy_agedb_30, accuracy_lfw, accuracy_cfp_fp))
+        print("=" * 60)
+    ```
 
 ### Data Zoo 
 :tiger:
