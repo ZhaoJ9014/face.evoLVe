@@ -88,7 +88,7 @@ class Bottleneck(Module):
 
 class ResNet(Module):
 
-    def __init__(self, input_size, block, layers, zero_init_residual = False):
+    def __init__(self, input_size, block, layers, zero_init_residual = True):
         super(ResNet, self).__init__()
         assert input_size[0] in [112, 224], "input_size should be [112, 112] or [224, 224]"
         self.inplanes = 64
