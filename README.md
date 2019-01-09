@@ -490,9 +490,10 @@ def get_data(data_root):
     agedb_30, agedb_30_issame = get_pair(data_root, 'agedb_30')
     cfp_fp, cfp_fp_issame = get_pair(data_root, 'cfp_fp')
     lfw, lfw_issame = get_pair(data_root, 'lfw')
-    return agedb_30, cfp_fp, lfw, agedb_30_issame, cfp_fp_issame, lfw_issame
+    vgg2_fp, vgg2_fp_issame = get_pair(data_root, 'vgg2_fp')
+    return agedb_30, cfp_fp, lfw, vgg2_fp, agedb_30_issame, cfp_fp_issame, lfw_issame, vgg2_fp_issame
 
-agedb_30, cfp_fp, lfw, agedb_30_issame, cfp_fp_issame, lfw_issame = get_data(DATA_ROOT)
+agedb_30, cfp_fp, lfw, vgg2_fp, agedb_30_issame, cfp_fp_issame, lfw_issame, vgg2_fp_issame = get_data(DATA_ROOT)
 ```
 * Due to release license issue, for other face related databases, please make contact with us in person for more details.
 
