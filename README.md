@@ -475,7 +475,7 @@ cd casia-maxpy-clean
 zip -F CASIA-maxpy-clean.zip --out CASIA-maxpy-clean_fix.zip    
 unzip CASIA-maxpy-clean_fix.zip
 ```
-* Remark: after unzip, get image data \& pair ground truths from [AgeDB]((http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf)), [CFP](http://www.cfpw.io/paper.pdf), [LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf) and [VGGFace2_FP](https://arxiv.org/pdf/1710.08092.pdf) align_112x112 versions with 
+* Remark: after unzip, get image data \& pair ground truths from [AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf), [CFP](http://www.cfpw.io/paper.pdf), [LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf) and [VGGFace2_FP](https://arxiv.org/pdf/1710.08092.pdf) align_112x112 versions with 
 ```python
 import numpy as np
 import bcolz
