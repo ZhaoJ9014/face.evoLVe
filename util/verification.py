@@ -49,9 +49,9 @@ def calculate_roc(thresholds, embeddings1, embeddings2, actual_issame, nrof_fold
     # print('pca', pca)
 
     if pca == 0:
-        # diff = np.subtract(embeddings1, embeddings2)
-        # dist = np.sum(np.square(diff), 1)
-        dist = pdist(np.vstack([embeddings1, embeddings2]), 'cosine')
+        diff = np.subtract(embeddings1, embeddings2)
+        dist = np.sum(np.square(diff), 1)
+        # dist = pdist(np.vstack([embeddings1, embeddings2]), 'cosine')
 
     for fold_idx, (train_set, test_set) in enumerate(k_fold.split(indices)):
         # print('train_set', train_set)
