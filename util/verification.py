@@ -29,8 +29,6 @@ from sklearn.decomposition import PCA
 import sklearn
 from scipy import interpolate
 from scipy.spatial.distance import pdist
-import datetime
-import mxnet as mx
 
 
 # Support: ['calculate_roc', 'calculate_accuracy', 'calculate_val', 'calculate_val_far', 'evaluate']
