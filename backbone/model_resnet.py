@@ -7,7 +7,7 @@ from torch.nn import Linear, Conv2d, BatchNorm1d, BatchNorm2d, ReLU, Dropout, Ma
 
 def conv3x3(in_planes, out_planes, stride = 1):
     """3x3 convolution with padding"""
-    
+
     return Conv2d(in_planes, out_planes, kernel_size = 3, stride = stride,
                      padding = 1, bias = False)
 
