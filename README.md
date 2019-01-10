@@ -170,7 +170,7 @@ configurations = {
     from backbone.model_irse import IR_50, IR_101, IR_152, IR_SE_50, IR_SE_101, IR_SE_152
     from head.metrics import ArcFace, CosFace, SphereFace, Am_softmax
     from loss.focal import FocalLoss
-    from util.utils import make_weights_for_balanced_classes, get_val_data, separate_irse_bn_paras, separate_resnet_bn_paras, warm_up_lr, schedule_lr, perform_val, get_time, buffer_val
+    from util.utils import make_weights_for_balanced_classes, get_val_data, separate_irse_bn_paras, separate_resnet_bn_paras, warm_up_lr, schedule_lr, perform_val, get_time, buffer_val, AverageMeter, accuracy, save_checkpoint
 
     from tensorboardX import SummaryWriter
     import numpy as np
@@ -187,9 +187,11 @@ configurations = {
     DATA_ROOT = cfg['DATA_ROOT'] # the parent root where your train/val/test data are stored
     MODEL_ROOT = cfg['MODEL_ROOT'] # the root to buffer your checkpoints
     LOG_ROOT = cfg['LOG_ROOT'] # the root to log your train/val status
+    BACKBONE_RESUME_ROOT = cfg['BACKBONE_RESUME_ROOT'] # the root to resume training from a saved checkpoint
+    HEAD_RESUME_ROOT = cfg['HEAD_RESUME_ROOT']  # the root to resume training from a saved checkpoint
 
     BACKBONE_NAME = cfg['BACKBONE_NAME'] # support: ['ResNet_50', 'ResNet_101', 'ResNet_152', 'IR_50', 'IR_101', 'IR_152', 'IR_SE_50', 'IR_SE_101', 'IR_SE_152']
-    HEAD_NAME = cfg['HEAD_NAME'] # support:  ['ArcFace', 'CosFace', 'SphereFace', 'Am_softmax']
+    HEAD_NAME = cfg['HEAD_NAME'] # support:  ['Softmax', 'ArcFace', 'CosFace', 'SphereFace', 'Am_softmax']
     LOSS_NAME = cfg['LOSS_NAME'] # support: ['Focal', 'Softmax']
 
     INPUT_SIZE = cfg['INPUT_SIZE']
@@ -199,12 +201,13 @@ configurations = {
     BATCH_SIZE = cfg['BATCH_SIZE']
     DROP_LAST = cfg['DROP_LAST'] # whether drop the last batch to ensure consistent batch_norm statistics
     LR = cfg['LR'] # initial LR
+    START_EPOCH = cfg['START_EPOCH'] # epoch index to start with
     NUM_EPOCH = cfg['NUM_EPOCH'] # total epoch number (use the firt 1/5 epochs to warm up)
     WEIGHT_DECAY = cfg['WEIGHT_DECAY']
     MOMENTUM = cfg['MOMENTUM']
     STAGES = cfg['STAGES'] # epoch stages to decay learning rate
 
-    DEVICE = cfg['DEVICE'] # use GPU or CPU
+    DEVICE = cfg['DEVICE']
     MULTI_GPU = cfg['MULTI_GPU'] # flag to use multiple GPUs
     GPU_ID = cfg['GPU_ID'] # specify your GPU ids
     PIN_MEMORY = cfg['PIN_MEMORY']
@@ -252,7 +255,7 @@ configurations = {
     ```python
     BACKBONE_DICT = {'ResNet_50': ResNet_50(INPUT_SIZE), 'ResNet_101': ResNet_101(INPUT_SIZE), 'ResNet_152': ResNet_152(INPUT_SIZE),
                      'IR_50': IR_50(INPUT_SIZE), 'IR_101': IR_101(INPUT_SIZE), 'IR_152': IR_152(INPUT_SIZE),
-                     'IR_SE_50': IR_SE_50(INPUT_SIZE), 'IR_SE_101': IR_SE_101(INPUT_SIZE), 'IR_SE_152': IR_SE_152(INPUT_SIZE)} # "IR" is short for "Inception-ResNet"; "SE" is short for "Squeeze-Excitation"
+                     'IR_SE_50': IR_SE_50(INPUT_SIZE), 'IR_SE_101': IR_SE_101(INPUT_SIZE), 'IR_SE_152': IR_SE_152(INPUT_SIZE)}
     BACKBONE = BACKBONE_DICT[BACKBONE_NAME]
     print("=" * 60)
     print(BACKBONE)
@@ -293,6 +296,22 @@ configurations = {
     print("Optimizer Generated")
     print("=" * 60)
     ```
+  * Whether resume from a checkpoint or not:
+    ```python
+    if BACKBONE_RESUME_ROOT and HEAD_RESUME_ROOT:
+        print("=" * 60)
+        if os.path.isfile(BACKBONE_RESUME_ROOT) and os.path.isfile(HEAD_RESUME_ROOT):
+            print("Loading Backbone Checkpoint '{}'".format(BACKBONE_RESUME_ROOT))
+            checkpoint = torch.load(BACKBONE_RESUME_ROOT)
+            START_EPOCH = checkpoint['epoch']
+            BACKBONE.load_state_dict(checkpoint['state_dict'])
+            print("Loading Head Checkpoint '{}'".format(HEAD_RESUME_ROOT))
+            checkpoint = torch.load(HEAD_RESUME_ROOT)
+            HEAD.load_state_dict(checkpoint['state_dict'])
+        else:
+            print("No Checkpoint Found at '{}' and '{}'. Please Have a Check or Continue to Train from Scratch".format(BACKBONE_RESUME_ROOT, HEAD_RESUME_ROOT))
+        print("=" * 60)
+    ```
   * Whether use multi-GPU or not:
     ```python
     if MULTI_GPU:
@@ -302,7 +321,7 @@ configurations = {
         HEAD = nn.DataParallel(HEAD, device_ids = GPU_ID)
         HEAD = HEAD.to(DEVICE)
     else:
-        # single-GPU/CPU setting
+        # single-GPU setting
         BACKBONE = BACKBONE.to(DEVICE)
         HEAD = HEAD.to(DEVICE)
     ```
@@ -321,7 +340,7 @@ configurations = {
     ```
   * Training \& validation \& save checkpoint (use the first 1/5 epochs to warm up -- gradually increase LR to the initial value to ensure stable convergence):
     ```python
-    for epoch in range(NUM_EPOCH): # start training process
+    for epoch in range(START_EPOCH, NUM_EPOCH): # start training process
 
         if epoch == STAGES[0]: # adjust LR for each training stage after warm up
             schedule_lr(OPTIMIZER)
@@ -333,37 +352,47 @@ configurations = {
         running_loss = 0.0
         running_corrects = 0
 
+        losses = AverageMeter()
+        top1 = AverageMeter()
+        top5 = AverageMeter()
+
         for inputs, labels in tqdm(iter(train_loader)):
 
-            if batch <= NUM_BATCH_WARM_UP - 1: # adjust LR for each training batch during warm up
-                warm_up_lr(batch, NUM_BATCH_WARM_UP - 1, LR, OPTIMIZER)
+            if (epoch + 1 <= NUM_EPOCH_WARM_UP) and (batch + 1 <= NUM_BATCH_WARM_UP): # adjust LR for each training batch during warm up
+                warm_up_lr(batch + 1, NUM_BATCH_WARM_UP, LR, OPTIMIZER)
 
+            # compute output
             inputs = inputs.to(DEVICE)
             labels = labels.to(DEVICE).long()
             features = BACKBONE(inputs)
             outputs = HEAD(features, labels)
-            _, preds = torch.max(outputs, 1)
             loss = LOSS(outputs, labels)
+
+            # measure accuracy and record loss
+            prec1, prec5 = accuracy(outputs.data, labels, topk = (1, 5))
+            losses.update(loss.data.item(), inputs.size(0))
+            top1.update(prec1.data.item(), inputs.size(0))
+            top5.update(prec5.data.item(), inputs.size(0))
+
+            # compute gradient and do SGD step
             OPTIMIZER.zero_grad()
             loss.backward()
             OPTIMIZER.step()
 
-            if (batch % DISP_LOSS_FREQ == 0) and batch != 0: # dispaly training loss & acc every DISP_LOSS_FREQ
-                display_preds = outputs.data.cpu().numpy()
-                display_preds = np.argmax(display_preds, axis = 1)
-                dispaly_labels = labels.data.cpu().numpy()
-                display_acc = np.mean((display_preds == dispaly_labels).astype(float))
+            # dispaly training loss & acc every DISP_LOSS_FREQ
+            if ((batch + 1) % DISP_LOSS_FREQ == 0) and batch != 0:
                 print("=" * 60)
-                if batch <= NUM_BATCH_WARM_UP - 1:
-                    print("During Warm Up Process:")
-                else:
-                    print("During Normal Training Process:")
-                print("Epoch {}/{} Batch {}/{}, Training Loss {} Acc {}".format(epoch, NUM_EPOCH - 1, batch, len(train_loader) * NUM_EPOCH - 1, loss.data.item(), display_acc))
+                print('Epoch {}/{} Batch {}/{}\t'
+                      'Training Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+                      'Training Prec@1 {top1.val:.3f} ({top1.avg:.3f})\t'
+                      'Training Prec@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
+                    epoch + 1, NUM_EPOCH, batch + 1, len(train_loader) * NUM_EPOCH, loss = losses, top1 = top1, top5 = top5))
                 print("=" * 60)
 
-            if (batch % EVALUATE_FREQ) == 0 and batch != 0: # perform validation every EVALUATE_FREQ
+            # perform validation every EVALUATE_FREQ
+            if ((batch + 1) % EVALUATE_FREQ) == 0 and batch != 0:
                 print("=" * 60)
-                if batch <= NUM_BATCH_WARM_UP - 1:
+                if (epoch + 1 <= NUM_EPOCH_WARM_UP) and (batch + 1 <= NUM_BATCH_WARM_UP):
                     print("During Warm Up Process:")
                 else:
                     print("During Normal Training Process:")
@@ -371,34 +400,47 @@ configurations = {
                 accuracy_agedb_30, best_threshold_agedb_30, roc_curve_agedb_30 = perform_val(MULTI_GPU, DEVICE, EMBEDDING_SIZE, BATCH_SIZE, BACKBONE, agedb_30, agedb_30_issame)
                 accuracy_lfw, best_threshold_lfw, roc_curve_lfw = perform_val(MULTI_GPU, DEVICE, EMBEDDING_SIZE, BATCH_SIZE, BACKBONE, lfw, lfw_issame)
                 accuracy_cfp_fp, best_threshold_cfp_fp, roc_curve_cfp_fp = perform_val(MULTI_GPU, DEVICE, EMBEDDING_SIZE, BATCH_SIZE, BACKBONE, cfp_fp, cfp_fp_issame)
-                print("Epoch {}/{} Batch {}/{}, Evaluation: AgeDB_30 Acc: {}, LFW Acc: {}, CFP_FP Acc: {}".format(epoch, NUM_EPOCH - 1, batch, len(train_loader) * NUM_EPOCH - 1, accuracy_agedb_30, accuracy_lfw, accuracy_cfp_fp))
+                print("Epoch {}/{} Batch {}/{}, Evaluation: AgeDB_30 Acc: {}, LFW Acc: {}, CFP_FP Acc: {}".format(epoch + 1, NUM_EPOCH, batch + 1, len(train_loader) * NUM_EPOCH, accuracy_agedb_30, accuracy_lfw, accuracy_cfp_fp))
                 print("=" * 60)
 
+            # save checkpoints every SAVE_FREQ
+            if ((batch + 1) % SAVE_FREQ) == 0 and batch != 0:
+                save_checkpoint({
+                    'epoch': epoch + 1,
+                    'batch': batch + 1,
+                    'backbone_name': BACKBONE_NAME,
+                    'state_dict': BACKBONE.state_dict(),
+                }, os.path.join(MODEL_ROOT, "Backbone_{}_agedb_30_acc_{}_lfw_acc_{}_cfp_fp_acc_{}_epoch_{}_batch_{}_time_{}_checkpoint.pth.tar".format(BACKBONE_NAME, accuracy_agedb_30, accuracy_lfw, accuracy_cfp_fp, epoch + 1, batch + 1, get_time())))
 
-            if (batch % SAVE_FREQ) == 0 and batch != 0: # save checkpoints (only save BACKBONE) every SAVE_FREQ
-                torch.save(BACKBONE.state_dict(), os.path.join(MODEL_ROOT, "Backbone_{}_Head_{}_Loss_{}_agedb_30_acc_{}_lfw_acc_{}_cfp_fp_acc_{}_epoch_{}_batch_{}_time_{}".format(BACKBONE_NAME, HEAD_NAME, LOSS_NAME, accuracy_agedb_30, accuracy_lfw, accuracy_cfp_fp, epoch, batch, get_time())))
-
-            running_loss += loss.data.item() * inputs.data.size(0) # compute training loss & acc every epoch
-            running_corrects += torch.sum(preds == labels.data)
+                save_checkpoint({
+                    'epoch': epoch + 1,
+                    'batch': batch + 1,
+                    'head_name': HEAD_NAME,
+                    'state_dict': HEAD.state_dict(),
+                }, os.path.join(MODEL_ROOT, "Head_{}_agedb_30_acc_{}_lfw_acc_{}_cfp_fp_acc_{}_epoch_{}_batch_{}_time_{}_checkpoint.pth.tar".format(HEAD_NAME, accuracy_agedb_30, accuracy_lfw, accuracy_cfp_fp, epoch + 1, batch + 1, get_time())))
 
             batch += 1 # batch index
 
         # training statistics per epoch (buffer for visualization)
-        epoch_loss = running_loss / len(train_loader.dataset)
-        epoch_acc = running_corrects.double() / len(train_loader.dataset)
+        epoch_loss = losses.avg
+        epoch_acc = top1.avg
         writer.add_scalar("Training_Loss", epoch_loss, epoch)
         writer.add_scalar("Training_Accuracy", epoch_acc, epoch)
         print("=" * 60)
-        if epoch <= NUM_EPOCH_WARM_UP - 1:
+        if epoch + 1 <= NUM_EPOCH_WARM_UP:
             print("During Warm Up Process:")
         else:
             print("During Normal Training Process:")
-        print("Epoch {}/{}, Training Loss {} Acc {}".format(epoch, NUM_EPOCH - 1, epoch_loss, epoch_acc))
+        print('Epoch: {}/{}\t'
+              'Training Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+              'Training Prec@1 {top1.val:.3f} ({top1.avg:.3f})\t'
+              'Training Prec@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
+            epoch + 1, NUM_EPOCH, loss = losses, top1 = top1, top5 = top5))
         print("=" * 60)
 
         # validation statistics per epoch (buffer for visualization)
         print("=" * 60)
-        if epoch <= NUM_EPOCH_WARM_UP - 1:
+        if epoch + 1 <= NUM_EPOCH_WARM_UP:
             print("During Warm Up Process:")
         else:
             print("During Normal Training Process:")
@@ -409,7 +451,7 @@ configurations = {
         buffer_val(writer, "LFW", accuracy_lfw, best_threshold_lfw, roc_curve_lfw, epoch)
         accuracy_cfp_fp, best_threshold_cfp_fp, roc_curve_cfp_fp = perform_val(MULTI_GPU, DEVICE, EMBEDDING_SIZE, BATCH_SIZE, BACKBONE, cfp_fp, cfp_fp_issame)
         buffer_val(writer, "CFP_FP", accuracy_cfp_fp, best_threshold_cfp_fp, roc_curve_cfp_fp, epoch)
-        print("Epoch {}/{}, Evaluation: AgeDB_30 Acc: {}, LFW Acc: {}, CFP_FP Acc: {}".format(epoch, NUM_EPOCH - 1, accuracy_agedb_30, accuracy_lfw, accuracy_cfp_fp))
+        print("Epoch {}/{}, Evaluation: AgeDB_30 Acc: {}, LFW Acc: {}, CFP_FP Acc: {}".format(epoch + 1, NUM_EPOCH, accuracy_agedb_30, accuracy_lfw, accuracy_cfp_fp))
         print("=" * 60)
     ```
 * Now, you can start to play with [face.evoLVe](#Introduction) and run ```train.py```. User friendly information will popped out on your terminal:
@@ -462,7 +504,7 @@ configurations = {
 |[CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf)|Raw_v1|10,575|494,414|-|-|[Baidu Drive](https://pan.baidu.com/s/1xh073sKX3IYp9xPm9S6F5Q)|
 |[CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf)|Raw_v2|10,575|494,414|-|-|[Google Drive](https://drive.google.com/file/d/19R6Svdj5HbUA0y6aJv3P1WkIR5wXeCnO/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1cZqsRxln-JmrA4xevLfjYQ)|
 |[CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf)|Clean|10,575|455,594|-|-|[Google Drive](https://drive.google.com/file/d/1wJC2aPA4AC0rI-tAL2BFs2M8vfcpX-w6/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1x_VJlG9WV1OdrrJ7ARUZQw)|
-|[MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf)|Clean|10,000|5,084,127|-|-|[Google Drive](https://drive.google.com/file/d/18FxgfXgKwuYzY3DmWJXNJuY51TPmC9yH/view?usp=sharing)|
+|[MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf)|Clean|100,000|5,084,127|-|-|[Google Drive](https://drive.google.com/file/d/18FxgfXgKwuYzY3DmWJXNJuY51TPmC9yH/view?usp=sharing)|
 |[MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf)|Align_112x112|85,742|5,822,653|-|-|[Google Drive](https://drive.google.com/file/d/1e7lGsFi6jNc84Vtv5rspOVodsc9vANPG/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1uYXnlK3Ga2YT0ETS5hQkRw)|
 |[Vggface2](https://arxiv.org/pdf/1710.08092.pdf)|Clean|8,631|3,086,894|-|-|[Google Drive](https://drive.google.com/file/d/1jdZw6ZmB7JRK6RS6QP3YEr2sufJ5ibtO/view?usp=sharing)|
 |[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf)|Align_112x112|8,631|3,086,894|-|-|[Google Drive](https://drive.google.com/file/d/1N7QEEQZPJ2s5Hs34urjseFwIoPVSmn4r/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1STSgORPyRT-eyk5seUTcRA)|
