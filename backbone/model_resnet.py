@@ -7,12 +7,14 @@ from torch.nn import Linear, Conv2d, BatchNorm1d, BatchNorm2d, ReLU, Dropout, Ma
 
 def conv3x3(in_planes, out_planes, stride = 1):
     """3x3 convolution with padding"""
+    
     return Conv2d(in_planes, out_planes, kernel_size = 3, stride = stride,
                      padding = 1, bias = False)
 
 
 def conv1x1(in_planes, out_planes, stride = 1):
     """1x1 convolution"""
+
     return Conv2d(in_planes, out_planes, kernel_size = 1, stride = stride, bias = False)
 
 
@@ -166,6 +168,7 @@ def ResNet_50(input_size, **kwargs):
     """Constructs a ResNet-50 model.
     """
     model = ResNet(input_size, Bottleneck, [3, 4, 6, 3], **kwargs)
+
     return model
 
 
@@ -173,6 +176,7 @@ def ResNet_101(input_size, **kwargs):
     """Constructs a ResNet-101 model.
     """
     model = ResNet(input_size, Bottleneck, [3, 4, 23, 3], **kwargs)
+
     return model
 
 
@@ -180,4 +184,5 @@ def ResNet_152(input_size, **kwargs):
     """Constructs a ResNet-152 model.
     """
     model = ResNet(input_size, Bottleneck, [3, 8, 36, 3], **kwargs)
+
     return model
