@@ -519,7 +519,7 @@ configurations = {
 |[CFP](http://www.cfpw.io/paper.pdf)|Raw|500|7,000|-|-|[Google Drive](https://drive.google.com/file/d/1tGNtqzWeUx3BYAxRHBbH1Wy7AmyFtZkU/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/10Qq64LO_RWKD2cr_D32_6A)|
 |[CFP](http://www.cfpw.io/paper.pdf)|Align_112x112|500|7,000|-|-|[Google Drive](https://drive.google.com/file/d/1MWp7NGqzpkYeXl-WiKIINHc3F4o-aT6D/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1kvGaVP5dluJ4GgUFsR3QVA)|
 |[Umdfaces](https://arxiv.org/pdf/1611.01484.pdf)|Align_112x112|8,277|367,888|-|-|[Google Drive](https://drive.google.com/file/d/13IDdIMqPCd8h1vWOYBkW6T5bjAxwmxm5/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1UzrBMguV5YLh8aawIodKeQ)|
-|[CelebA](https://arxiv.org/pdf/1411.7766.pdf)|Raw|10,177|202,599|-|-| |
+|[CelebA](https://arxiv.org/pdf/1411.7766.pdf)|Raw|10,177|202,599|-|-|[Google Drive](https://drive.google.com/file/d/1FO_p759JtKOf3qOnxOGpmoxCcnKiPdBI/view?usp=sharing)|
 * Remark: unzip [CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf) clean version with 
 ```
 unzip casia-maxpy-clean.zip    
