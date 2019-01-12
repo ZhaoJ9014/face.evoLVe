@@ -154,9 +154,10 @@ def gen_plot(fpr, tpr):
 def perform_val(multi_gpu, device, embedding_size, batch_size, backbone, carray, issame, nrof_folds = 5, tta = False):
     if multi_gpu:
         backbone = backbone.module # unpackage model from DataParallel
+        backbone = backbone.to(device)
     else:
-        backbone = backbone
-    backbone.eval().to(device)
+        backbone = backbone.to(device)
+    backbone.eval() # switch to evaluation mode
     idx = 0
     embeddings = np.zeros([len(carray), embedding_size])
     with torch.no_grad():
