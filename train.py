@@ -43,7 +43,7 @@ if __name__ == '__main__':
     LR = cfg['LR'] # initial LR
     START_EPOCH = cfg['START_EPOCH'] # epoch index to start with
     NUM_EPOCH = cfg['NUM_EPOCH'] # total epoch number (use the firt 1/5 epochs to warm up)
-    WEIGHT_DECAY = cfg['WEIGHT_DECAY']
+    WEIGHT_DECAY = cfg['WEIGHT_DECAY'] # do not apply to batch_norm parameters
     MOMENTUM = cfg['MOMENTUM']
     STAGES = cfg['STAGES'] # epoch stages to decay learning rate
 
