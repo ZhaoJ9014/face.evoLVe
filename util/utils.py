@@ -155,13 +155,14 @@ def gen_plot(fpr, tpr):
     return buf
 
 
-def perform_val(multi_gpu, device, embedding_size, batch_size, backbone, carray, issame, nrof_folds = 10, tta = Ture):
+def perform_val(multi_gpu, device, embedding_size, batch_size, backbone, carray, issame, nrof_folds = 10, tta = True):
     if multi_gpu:
         backbone = backbone.module # unpackage model from DataParallel
         backbone = backbone.to(device)
     else:
         backbone = backbone.to(device)
     backbone.eval() # switch to evaluation mode
+
     idx = 0
     embeddings = np.zeros([len(carray), embedding_size])
     with torch.no_grad():
@@ -169,23 +170,25 @@ def perform_val(multi_gpu, device, embedding_size, batch_size, backbone, carray,
             batch = torch.tensor(carray[idx:idx + batch_size])
             if tta:
                 fliped = hflip_batch(batch)
-                emb_batch = backbone(batch.to(device)) + backbone(fliped.to(device))
-                embeddings[idx:idx + batch_size] = F.normalize(emb_batch)
+                emb_batch = backbone(batch.to(device)).cpu() + backbone(fliped.to(device)).cpu()
+                embeddings[idx:idx + batch_size] = l2_norm(emb_batch)
             else:
-                embeddings[idx:idx + batch_size] = F.normalize(backbone(batch.to(device)).cpu())
+                embeddings[idx:idx + batch_size] = backbone(batch.to(device)).cpu()
             idx += batch_size
         if idx < len(carray):
             batch = torch.tensor(carray[idx:])
             if tta:
                 fliped = hflip_batch(batch)
-                emb_batch = backbone(batch.to(device)) + backbone(fliped.to(device))
-                embeddings[idx:] = F.normalize(emb_batch)
+                emb_batch = backbone(batch.to(device)).cpu() + backbone(fliped.to(device)).cpu()
+                embeddings[idx:] = l2_norm(emb_batch)
             else:
-                embeddings[idx:] = F.normalize(backbone(batch.to(device)).cpu())
+                embeddings[idx:] = backbone(batch.to(device)).cpu()
+
     tpr, fpr, accuracy, best_thresholds = evaluate(embeddings, issame, nrof_folds)
     buf = gen_plot(fpr, tpr)
     roc_curve = Image.open(buf)
     roc_curve_tensor = transforms.ToTensor()(roc_curve)
+
     return accuracy.mean(), best_thresholds.mean(), roc_curve_tensor
 
 
