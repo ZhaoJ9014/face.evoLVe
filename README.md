@@ -330,9 +330,6 @@ configurations = {
     NUM_EPOCH_WARM_UP = NUM_EPOCH // 5 # use the first 1/5 epochs to warm up
     NUM_BATCH_WARM_UP = len(train_loader) * NUM_EPOCH_WARM_UP # use the first 1/5 epochs to warm up
     batch = 0 # batch index
-
-    BACKBONE.train() # set to training mode
-    HEAD.train()
     ```
   * Training \& validation \& save checkpoint (use the first 1/5 epochs to warm up -- gradually increase LR to the initial value to ensure stable convergence):
     ```python
@@ -345,6 +342,9 @@ configurations = {
         if epoch == STAGES[2]:
             schedule_lr(OPTIMIZER)
 
+        BACKBONE.train() # set to training mode
+        HEAD.train()
+        
         losses = AverageMeter()
         top1 = AverageMeter()
         top5 = AverageMeter()
