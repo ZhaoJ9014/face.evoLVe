@@ -155,9 +155,9 @@ if __name__ == '__main__':
 
 
     # ======= train & validation & save checkpoint =======#
-    DISP_FREQ = len(train_loader) // 100  # frequency to display training loss & acc
-    EVALUATE_FREQ = len(train_loader) // 10  # frequency to perform validation
-    SAVE_FREQ = len(train_loader) // 5  # frequency to save checkpoints
+    DISP_FREQ = len(train_loader) // 100 # frequency to display training loss & acc
+    EVALUATE_FREQ = len(train_loader) // 10 # frequency to perform validation
+    SAVE_FREQ = len(train_loader) // 5 # frequency to save checkpoints
 
     NUM_EPOCH_WARM_UP = NUM_EPOCH // 5 # use the first 1/5 epochs to warm up
     NUM_BATCH_WARM_UP = len(train_loader) * NUM_EPOCH_WARM_UP # use the first 1/5 epochs to warm up
