@@ -15,7 +15,7 @@ configurations = {
         HEAD_NAME = 'ArcFace', # support:  ['Softmax', 'ArcFace', 'CosFace', 'SphereFace', 'Am_softmax']
         LOSS_NAME = 'Focal', # support: ['Focal', 'Softmax']
 
-        INPUT_SIZE = [112, 112],
+        INPUT_SIZE = [112, 112], # support: [112, 112] and [224, 224]
         RGB_MEAN = [0.5, 0.5, 0.5], # for normalize inputs
         RGB_STD = [0.5, 0.5, 0.5],
         EMBEDDING_SIZE = 512, # feature dimension
