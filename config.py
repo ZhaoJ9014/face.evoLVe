@@ -16,7 +16,7 @@ configurations = {
         LOSS_NAME = 'Focal', # support: ['Focal', 'Softmax']
 
         INPUT_SIZE = [112, 112], # support: [112, 112] and [224, 224]
-        RGB_MEAN = [0.5, 0.5, 0.5], # for normalize inputs
+        RGB_MEAN = [0.5, 0.5, 0.5], # for normalize inputs to [-1, 1]
         RGB_STD = [0.5, 0.5, 0.5],
         EMBEDDING_SIZE = 512, # feature dimension
         BATCH_SIZE = 512,
