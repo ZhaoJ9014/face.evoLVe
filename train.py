@@ -161,9 +161,9 @@ if __name__ == '__main__':
 
     NUM_EPOCH_WARM_UP = NUM_EPOCH // 5 # use the first 1/5 epochs to warm up
     NUM_BATCH_WARM_UP = len(train_loader) * NUM_EPOCH_WARM_UP # use the first 1/5 epochs to warm up
-    batch = 0  # batch index
+    batch = 0 # batch index
 
-    BACKBONE.train()  # set to training mode
+    BACKBONE.train() # set to training mode
     HEAD.train()
 
     for epoch in range(START_EPOCH, NUM_EPOCH): # start training process
