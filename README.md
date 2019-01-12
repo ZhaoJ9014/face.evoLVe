@@ -135,8 +135,8 @@ configurations = {
         HEAD_NAME = 'ArcFace', # support:  ['Softmax', 'ArcFace', 'CosFace', 'SphereFace', 'Am_softmax']
         LOSS_NAME = 'Focal', # support: ['Focal', 'Softmax']
 
-        INPUT_SIZE = [112, 112],
-        RGB_MEAN = [0.5, 0.5, 0.5], # for normalize inputs
+        INPUT_SIZE = [112, 112], # support: [112, 112] and [224, 224]
+        RGB_MEAN = [0.5, 0.5, 0.5], # for normalize inputs to [-1, 1]
         RGB_STD = [0.5, 0.5, 0.5],
         EMBEDDING_SIZE = 512, # feature dimension
         BATCH_SIZE = 512,
@@ -144,9 +144,9 @@ configurations = {
         LR = 0.1, # initial LR
         START_EPOCH = 0, # epoch index to start with
         NUM_EPOCH = 25, # total epoch number (use the firt 1/5 epochs to warm up)
-        WEIGHT_DECAY = 5e-4,
+        WEIGHT_DECAY = 5e-4, # do not apply to batch_norm parameters
         MOMENTUM = 0.9,
-        STAGES = [17, 20, 23], # epoch stages to decay learning rate
+        STAGES = [16, 19, 22], # epoch stages to decay learning rate
 
         DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu"),
         MULTI_GPU = True, # flag to use multiple GPUs
@@ -156,7 +156,7 @@ configurations = {
 ),
 }
 ```
-* Train \& validation API (all folks about training \& validation, *i.e.*, import package, hyperparameters \& data loaders, model & loss & optimizer, train & validation & save checkpoint) ```train.py```. Since [MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf) serves as an [ImageNet](https://www.researchgate.net/profile/Li_Jia_Li/publication/221361415_ImageNet_a_Large-Scale_Hierarchical_Image_Database/links/00b495388120dbc339000000/ImageNet-a-Large-Scale-Hierarchical-Image-Database.pdf) in the filed of face recognition, we pre-train the [face.evoLVe](#Introduction) models on [MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf) and perform validation on [AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf), [LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf) and [CFP](http://www.cfpw.io/paper.pdf). Let's dive into details together step by step.
+* Train \& validation API (all folks about training \& validation, *i.e.*, import package, hyperparameters \& data loaders, model & loss & optimizer, train & validation & save checkpoint) ```train.py```. Since [MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf) serves as an [ImageNet](https://www.researchgate.net/profile/Li_Jia_Li/publication/221361415_ImageNet_a_Large-Scale_Hierarchical_Image_Database/links/00b495388120dbc339000000/ImageNet-a-Large-Scale-Hierarchical-Image-Database.pdf) in the filed of face recognition, we pre-train the [face.evoLVe](#Introduction) models on [MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf) and perform validation on [LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf), [CFP_FF](http://www.cfpw.io/paper.pdf), [CFP_FP](http://www.cfpw.io/paper.pdf), [AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf), [CALFW](https://arxiv.org/pdf/1708.08197.pdf), [CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf) and [Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf). Let's dive into details together step by step.
   * Import necessary packages:
     ```python
     import torch
@@ -491,7 +491,7 @@ configurations = {
   
     <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig10.png" width="400px"/>
   
-  * About training status \& statistics (when batch index reachs ```DISP_LOSS_FREQ``` or at the end of each epoch):
+  * About training status \& statistics (when batch index reachs ```DISP_FREQ``` or at the end of each epoch):
   
     <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig11.png" width="900px"/>
   
