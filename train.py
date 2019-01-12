@@ -163,9 +163,6 @@ if __name__ == '__main__':
     NUM_BATCH_WARM_UP = len(train_loader) * NUM_EPOCH_WARM_UP # use the first 1/5 epochs to warm up
     batch = 0 # batch index
 
-    BACKBONE.train() # set to training mode
-    HEAD.train()
-
     for epoch in range(START_EPOCH, NUM_EPOCH): # start training process
 
         if epoch == STAGES[0]: # adjust LR for each training stage after warm up
@@ -175,6 +172,9 @@ if __name__ == '__main__':
         if epoch == STAGES[2]:
             schedule_lr(OPTIMIZER)
 
+        BACKBONE.train() # set to training mode
+        HEAD.train()
+        
         losses = AverageMeter()
         top1 = AverageMeter()
         top5 = AverageMeter()
