@@ -175,9 +175,6 @@ if __name__ == '__main__':
         if epoch == STAGES[2]:
             schedule_lr(OPTIMIZER)
 
-        running_loss = 0.0
-        running_corrects = 0
-
         losses = AverageMeter()
         top1 = AverageMeter()
         top5 = AverageMeter()
