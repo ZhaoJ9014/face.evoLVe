@@ -24,7 +24,7 @@ configurations = {
         LR = 0.1, # initial LR
         START_EPOCH = 0, # epoch index to start with
         NUM_EPOCH = 25, # total epoch number (use the firt 1/5 epochs to warm up)
-        WEIGHT_DECAY = 5e-4,
+        WEIGHT_DECAY = 5e-4, # do not apply to batch_norm parameters
         MOMENTUM = 0.9,
         STAGES = [16, 19, 22], # epoch stages to decay learning rate
 
