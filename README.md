@@ -464,7 +464,7 @@ configurations = {
   
     <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig11.png" width="900px"/>
   
-  * About validation statistics (when batch index reachs ```EVALUATE_FREQ``` or at the end of each epoch):
+  * About validation statistics \& save checkpoints (at the end of each epoch):
   
     <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig12.png" width="900px"/>
     
