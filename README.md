@@ -521,7 +521,7 @@ agedb_30, cfp_fp, lfw, vgg2_fp, agedb_30_issame, cfp_fp_issame, lfw_issame, vgg2
 ### Model Zoo 
 :monkey:
 
-TO DO
+COMING SOON
 
 ### Achievement 
 :confetti_ball:
