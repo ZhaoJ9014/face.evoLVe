@@ -488,7 +488,7 @@ configurations = {
 |[Umdfaces](https://arxiv.org/pdf/1611.01484.pdf)|Align_112x112|8,277|367,888|-|-|[Google Drive](https://drive.google.com/file/d/13IDdIMqPCd8h1vWOYBkW6T5bjAxwmxm5/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1UzrBMguV5YLh8aawIodKeQ)|
 |[CelebA](https://arxiv.org/pdf/1411.7766.pdf)|Raw|10,177|202,599|-|-|[Google Drive](https://drive.google.com/file/d/1FO_p759JtKOf3qOnxOGpmoxCcnKiPdBI/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1DfvDKKEB11MrZcf7hPjJfw)|
 |[CACD](http://cmlab.csie.ntu.edu.tw/~sirius42/papers/chen14eccv.pdf)|Raw|2,000|163,446|-|-|[Google Drive](https://drive.google.com/file/d/1syrMyJGeXYxbjbmWKLxo1ASzpj2DRrk3/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/13XI67Zn_D_Kncp_9hlTbQQ)|
-|[YTF](http://www.cs.tau.ac.il/~wolf/ytfaces/WolfHassnerMaoz_CVPR11.pdf)|Raw|1,595|-|3,425|621,127| |
+|[YTF](http://www.cs.tau.ac.il/~wolf/ytfaces/WolfHassnerMaoz_CVPR11.pdf)|Align_344x344|1,595|-|3,425|621,127| |
 * Remark: unzip [CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf) clean version with 
 ```
 unzip casia-maxpy-clean.zip    
