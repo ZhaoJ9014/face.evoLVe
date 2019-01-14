@@ -7,9 +7,10 @@
 * This work was done during Jian Zhao served as a short-term "Texpert" Research Scientist at Tencent FiT DeepSea AI Lab, Shenzhen, China.
 
 |Author|Jian Zhao|
-|---|---
-|Homepage|https://zhaoj9014.github.io
+|:---:|:---:|
+|Homepage|https://zhaoj9014.github.io|
 
+****
 ## License
 
 The code of [face.evoLVe](#Introduction) is released under the MIT License.
@@ -28,6 +29,7 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 * [Acknowledgement](#Acknowledgement)
 * [Citation](#Citation)
 
+****
 ## face.evoLVe for High-Performance Face Recognition
 
 ### Introduction 
@@ -39,6 +41,7 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 * All data before \& after alignment, source codes and trained models are provided.
 * This repo can help researchers/engineers develop deep face recognition models and algorithms quickly for practical use and deployment.
 
+****
 ### Pre-Requisites 
 :cake:
 
@@ -53,6 +56,7 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 
 While not required, for optimal performance it is **highly** recommended to run the code using a CUDA enabled GPU. We used 4 NVIDIA Tesla P40 in parallel.
 
+****
 ### Usage 
 :orange_book:
 
@@ -73,6 +77,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 ```
 * Refer to the codes of corresponding sections for specific purposes.
 
+****
 ### Face Alignment 
 :triangular_ruler:
 
@@ -100,6 +105,7 @@ python face_align.py -source_root [source_root] -dest_root [dest_root] -crop_siz
 * For macOS users, there is no need to worry about ```*.DS_Store``` files which may ruin your data, since they will be automatically removed when you run the scripts.
 * Keynotes for customed use: 1) specify the arguments of ```source_root```, ```dest_root``` and ```crop_size``` to your own values when you run ```face_align.py```; 2) pass your customed ```min_face_size```, ```thresholds``` and ```nms_thresholds``` values to the ```detect_faces``` function of ```detector.py``` to match your practical requirements.
 
+****
 ### Data Processing 
 :bar_chart:
 
@@ -113,6 +119,7 @@ python remove_lowshot.py -root [root] -min_num [min_num]
 * Keynotes for customed use: specify the arguments of ```root``` and ```min_num``` to your own values when you run ```remove_lowshot.py```.
 * We prefer to include other data processing tricks, *e.g.*, augmentation (flip horizontally, scale hue/satuation/brightness with coefficients uniformly drawn from \[0.6,1.4\], add PCA noise with a coefficient sampled from a normal distribution N(0,0.1), *etc.*), weighted random sampling, normalization, *etc.* to the main training script in Sec. [Training and Validation](#Training-and-Validation) to be self-contained.
 
+****
 ### Training and Validation 
 :coffee:
 
@@ -460,6 +467,7 @@ configurations = {
     
 * Please refer to Sec. [Model Zoo](#Model-Zoo) for specific model weights and corresponding performance.
   
+****
 ### Data Zoo 
 :tiger:
 
@@ -518,6 +526,7 @@ agedb_30, cfp_fp, lfw, vgg2_fp, agedb_30_issame, cfp_fp_issame, lfw_issame, vgg2
 ```
 * Due to release license issue, for other face related databases, please make contact with us in person for more details.
 
+****
 ### Model Zoo 
 :monkey:
 
@@ -537,7 +546,7 @@ agedb_30, cfp_fp, lfw, vgg2_fp, agedb_30_issame, cfp_fp_issame, lfw_issame, vgg2
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | | | | | | | |
 
-
+****
 ### Achievement 
 :confetti_ball:
 
@@ -556,6 +565,7 @@ agedb_30, cfp_fp, lfw, vgg2_fp, agedb_30_issame, cfp_fp_issame, lfw_issame, vgg2
     * CACD-VS (Accuracy: 99.76%).
     * FG-NET (Rank1 Accuracy: 93.20%).
 
+****
 ### Acknowledgement 
 :two_men_holding_hands:
 
@@ -563,6 +573,7 @@ agedb_30, cfp_fp, lfw, vgg2_fp, agedb_30_issame, cfp_fp_issame, lfw_issame, vgg2
 * The work of Jian Zhao was partially supported by China Scholarship Council (CSC) grant 201503170248.
 * We would like to thank [Prof. Jiashi Feng](https://sites.google.com/site/jshfeng/), [Dr. Jianshu Li](https://sites.google.com/view/li-js), Mr. Yu Cheng (Learning and Vision group, National University of Singapore), Mr. Yuan Xin, Mr. Di Wu, Mr. Zhenyuan Shen (Tencent FiT DeepSea AI Lab, China), [Prof. Ran He](http://www.nlpr.ia.ac.cn/english/irds/People/rhe.html), [Prof. Junliang Xing](http://people.ucas.ac.cn/~0051452?language=en), [Mr. Xiang Wu](http://alfredxiangwu.github.io/) (Institute of Automation, Chinese Academy of Sciences), [Prof. Guosheng Hu](https://www.linkedin.com/in/guosheng-hu-6801b333/) (AnyVision Inc., U.K.), [Dr. Lin Xiong](https://bruinxiong.github.io/xionglin.github.io/) (JD Digits AI Lab, U.S.), Miss Yi Cheng (Panasonic R\&D Center, Singapore) for helpful discussions.
 
+****
 ### Citation 
 :bookmark_tabs:
 
