@@ -328,9 +328,9 @@ configurations = {
     ```
   * Training \& validation \& save checkpoint (use the first 1/5 epochs to warm up -- gradually increase LR to the initial value to ensure stable convergence):
     ```python
-    for epoch in range(START_EPOCH, NUM_EPOCH): # start training process
+    for epoch in range(NUM_EPOCH): # start training process
 
-        if epoch == STAGES[0]: # adjust LR for each training stage after warm up
+        if epoch == STAGES[0]: # adjust LR for each training stage after warm up, you can also choose to adjust LR manually once plaueau observed
             schedule_lr(OPTIMIZER)
         if epoch == STAGES[1]:
             schedule_lr(OPTIMIZER)
