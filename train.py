@@ -158,9 +158,9 @@ if __name__ == '__main__':
     NUM_BATCH_WARM_UP = len(train_loader) * NUM_EPOCH_WARM_UP # use the first 1/5 epochs to warm up
     batch = 0 # batch index
 
-    for epoch in range(START_EPOCH, NUM_EPOCH): # start training process
+    for epoch in range(NUM_EPOCH): # start training process
 
-        if epoch == STAGES[0]: # adjust LR for each training stage after warm up
+        if epoch == STAGES[0]: # adjust LR for each training stage after warm up, you can also choose to adjust LR manually once plaueau observed
             schedule_lr(OPTIMIZER)
         if epoch == STAGES[1]:
             schedule_lr(OPTIMIZER)
