@@ -298,12 +298,9 @@ configurations = {
         print("=" * 60)
         if os.path.isfile(BACKBONE_RESUME_ROOT) and os.path.isfile(HEAD_RESUME_ROOT):
             print("Loading Backbone Checkpoint '{}'".format(BACKBONE_RESUME_ROOT))
-            checkpoint = torch.load(BACKBONE_RESUME_ROOT)
-            START_EPOCH = checkpoint['epoch']
-            BACKBONE.load_state_dict(checkpoint['state_dict'])
+            BACKBONE = torch.load(BACKBONE_RESUME_ROOT)
             print("Loading Head Checkpoint '{}'".format(HEAD_RESUME_ROOT))
-            checkpoint = torch.load(HEAD_RESUME_ROOT)
-            HEAD.load_state_dict(checkpoint['state_dict'])
+            HEAD = torch.load(HEAD_RESUME_ROOT)
         else:
             print("No Checkpoint Found at '{}' and '{}'. Please Have a Check or Continue to Train from Scratch".format(BACKBONE_RESUME_ROOT, HEAD_RESUME_ROOT))
         print("=" * 60)
@@ -416,20 +413,13 @@ configurations = {
         print("Epoch {}/{}, Evaluation: LFW Acc: {}, CFP_FF Acc: {}, CFP_FP Acc: {}, AgeDB Acc: {}, CALFW Acc: {}, CPLFW Acc: {}, VGG2_FP Acc: {}".format(epoch + 1, NUM_EPOCH, accuracy_lfw, accuracy_cfp_ff, accuracy_cfp_fp, accuracy_agedb, accuracy_calfw, accuracy_cplfw, accuracy_vgg2_fp))
         print("=" * 60)
 
-        # save checkpoints per epoch
-        save_checkpoint({
-            'epoch': epoch + 1,
-            'batch': batch + 1,
-            'backbone_name': BACKBONE_NAME,
-            'state_dict': BACKBONE.state_dict(),
-        }, os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth.tar".format(BACKBONE_NAME, epoch + 1,
-                                                                                          batch + 1, get_time())))
-        save_checkpoint({
-            'epoch': epoch + 1,
-            'batch': batch + 1,
-            'head_name': HEAD_NAME,
-            'state_dict': HEAD.state_dict(),
-        }, os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth.tar".format(HEAD_NAME, epoch + 1, batch + 1, get_time())))
+         # save checkpoints per epoch
+        if MULTI_GPU:
+            torch.save(BACKBONE.module, os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch + 1, get_time())))
+            torch.save(HEAD.module, os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch + 1, get_time())))
+        else:
+             torch.save(BACKBONE, os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch + 1, get_time())))
+             torch.save(HEAD, os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch + 1, get_time())))
     ```
 * Now, you can start to play with [face.evoLVe](#Introduction) and run ```train.py```. User friendly information will popped out on your terminal:
   * About overall configuration:
