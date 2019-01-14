@@ -530,7 +530,7 @@ agedb_30, cfp_fp, lfw, vgg2_fp, agedb_30_issame, cfp_fp_issame, lfw_issame, vgg2
 ### Model Zoo 
 :monkey:
 
-|Backbone|Head|Loss|Training Data|Download Link|
+1. |Backbone|Head|Loss|Training Data|Download Link|
 |:---:|:---:|:---:|:---:|:---:|
 |[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)| |
 
@@ -538,7 +538,7 @@ agedb_30, cfp_fp, lfw, vgg2_fp, agedb_30_issame, cfp_fp_issame, lfw_issame, vgg2
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | | | | | | | |
 
-|Backbone|Head|Loss|Training Data|Download Link|
+2. |Backbone|Head|Loss|Training Data|Download Link|
 |:---:|:---:|:---:|:---:|:---:|
 |[IR-SE-50](https://arxiv.org/pdf/1709.01507.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)| |
 
