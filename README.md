@@ -484,6 +484,7 @@ configurations = {
 |[CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf)|Raw_v2|10,575|494,414|-|-|[Google Drive](https://drive.google.com/file/d/19R6Svdj5HbUA0y6aJv3P1WkIR5wXeCnO/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1cZqsRxln-JmrA4xevLfjYQ)|
 |[CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf)|Clean|10,575|455,594|-|-|[Google Drive](https://drive.google.com/file/d/1wJC2aPA4AC0rI-tAL2BFs2M8vfcpX-w6/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1x_VJlG9WV1OdrrJ7ARUZQw)|
 |[MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf)|Clean|100,000|5,084,127|-|-|[Google Drive](https://drive.google.com/file/d/18FxgfXgKwuYzY3DmWJXNJuY51TPmC9yH/view?usp=sharing)|
+|[MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf)|Align_224x224|100,000|5,084,127|-|-| |
 |[MS-Celeb-1M](https://arxiv.org/pdf/1607.08221.pdf)|Align_112x112|85,742|5,822,653|-|-|[Google Drive](https://drive.google.com/file/d/1tFMAuCfu6mZl7xHaqbEtCAKF0Bi4RoN2/view?usp=sharing)|
 |[Vggface2](https://arxiv.org/pdf/1710.08092.pdf)|Clean|8,631|3,086,894|-|-|[Google Drive](https://drive.google.com/file/d/1jdZw6ZmB7JRK6RS6QP3YEr2sufJ5ibtO/view?usp=sharing)|
 |[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf)|Align_112x112|-|-|-|-|[Google Drive](https://drive.google.com/file/d/1N7QEEQZPJ2s5Hs34urjseFwIoPVSmn4r/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1STSgORPyRT-eyk5seUTcRA)|
