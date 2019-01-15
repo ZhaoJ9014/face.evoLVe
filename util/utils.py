@@ -14,7 +14,7 @@ import io
 import os
 
 
-# Support: ['get_time', 'l2_norm', 'make_weights_for_balanced_classes', 'get_val_pair', 'get_val_data', 'separate_irse_bn_paras', 'separate_resnet_bn_paras', 'warm_up_lr', 'schedule_lr', 'de_preprocess', 'hflip_batch', 'gen_plot', 'perform_val', 'buffer_val', 'AverageMeter', 'accuracy', 'save_checkpoint']
+# Support: ['get_time', 'l2_norm', 'make_weights_for_balanced_classes', 'get_val_pair', 'get_val_data', 'separate_irse_bn_paras', 'separate_resnet_bn_paras', 'warm_up_lr', 'schedule_lr', 'de_preprocess', 'hflip_batch', 'gen_plot', 'perform_val', 'buffer_val', 'AverageMeter', 'accuracy']
 
 
 def get_time():
@@ -231,7 +231,3 @@ def accuracy(output, target, topk=(1,)):
         res.append(correct_k.mul_(100.0 / batch_size))
 
     return res
-
-
-def save_checkpoint(state, filename):
-    torch.save(state, filename)
