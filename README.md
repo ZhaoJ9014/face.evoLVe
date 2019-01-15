@@ -46,7 +46,7 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 :cake:
 
 * Linux or macOS
-* [Python 3.7](https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh) (for training \& validation) and [Python 2.7](https://repo.continuum.io/archive/Anaconda2-2018.12-Linux-x86_64.sh) (for visualization w/ tensorboardx)
+* [Python 3.7](https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh) (for training \& validation) and [Python 2.7](https://repo.continuum.io/archive/Anaconda2-2018.12-Linux-x86_64.sh) (for visualization w/ tensorboardX)
 * PyTorch 1.0 (for traininig \& validation, install w/ `pip install torch torchvision`)
 * MXNet 1.3.1 (optinal, for data processing, install w/ `pip install mxnet-cu90`)
 * TensorFlow 1.12 (optinal, for visualization, install w/ `pip install tensorflow-gpu`)
@@ -464,6 +464,7 @@ configurations = {
     <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig12.png" width="900px"/>
     
 * Please refer to Sec. [Model Zoo](#Model-Zoo) for specific model weights and corresponding performance.
+* Visualize training \& validation statistics w/ tensorboardX (under Python 2.7): ```tensorboard --logdir /media/pc/6T/jasonjzhao/buffer/log```.
   
 ****
 ### Data Zoo 
