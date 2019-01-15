@@ -22,7 +22,6 @@ configurations = {
         BATCH_SIZE = 512,
         DROP_LAST = True, # whether drop the last batch to ensure consistent batch_norm statistics
         LR = 0.1, # initial LR
-        START_EPOCH = 0, # epoch index to start with
         NUM_EPOCH = 25, # total epoch number (use the firt 1/5 epochs to warm up)
         WEIGHT_DECAY = 5e-4, # do not apply to batch_norm parameters
         MOMENTUM = 0.9,
