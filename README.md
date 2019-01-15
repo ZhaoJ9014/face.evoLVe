@@ -305,9 +305,9 @@ configurations = {
         print("=" * 60)
         if os.path.isfile(BACKBONE_RESUME_ROOT) and os.path.isfile(HEAD_RESUME_ROOT):
             print("Loading Backbone Checkpoint '{}'".format(BACKBONE_RESUME_ROOT))
-            BACKBONE = torch.load(BACKBONE_RESUME_ROOT)
+            BACKBONE.load_state_dict(torch.load(BACKBONE_RESUME_ROOT))
             print("Loading Head Checkpoint '{}'".format(HEAD_RESUME_ROOT))
-            HEAD = torch.load(HEAD_RESUME_ROOT)
+            HEAD.load_state_dict(torch.load(HEAD_RESUME_ROOT))
         else:
             print("No Checkpoint Found at '{}' and '{}'. Please Have a Check or Continue to Train from Scratch".format(BACKBONE_RESUME_ROOT, HEAD_RESUME_ROOT))
         print("=" * 60)
@@ -422,11 +422,11 @@ configurations = {
 
         # save checkpoints per epoch
         if MULTI_GPU:
-            torch.save(BACKBONE.module, os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch, get_time())))
-            torch.save(HEAD.module, os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
+            torch.save(BACKBONE.module.state_dict(), os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch, get_time())))
+            torch.save(HEAD.module.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
         else:
-             torch.save(BACKBONE, os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch, get_time())))
-             torch.save(HEAD, os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
+             torch.save(BACKBONE.state_dict(), os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch, get_time())))
+             torch.save(HEAD.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
     ```
 * Now, you can start to play with [face.evoLVe](#Introduction) and run ```train.py```. User friendly information will popped out on your terminal:
   * About overall configuration:
