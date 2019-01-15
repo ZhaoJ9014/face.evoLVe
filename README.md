@@ -464,7 +464,10 @@ configurations = {
     <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig12.png" width="900px"/>
     
 * Please refer to Sec. [Model Zoo](#Model-Zoo) for specific model weights and corresponding performance.
-* Visualize training \& validation statistics w/ tensorboardX (under Python 2.7): ```tensorboard --logdir /media/pc/6T/jasonjzhao/buffer/log```.
+* Visualize training \& validation statistics w/ tensorboardX (under Python 2.7):
+  ```
+  tensorboard --logdir /media/pc/6T/jasonjzhao/buffer/log
+  ```
   
 ****
 ### Data Zoo 
