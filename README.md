@@ -54,7 +54,7 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 * OpenCV 3.4.5 (install w/ `pip install opencv-python`)
 * bcolz 1.2.0 (install w/ `pip install bcolz`)
 
-While not required, for optimal performance it is **highly** recommended to run the code using a CUDA enabled GPU. We used 4 NVIDIA Tesla P40 in parallel.
+While not required, for optimal performance it is **highly** recommended to run the code using a CUDA enabled GPU. We used 4-8 NVIDIA Tesla P40 in parallel.
 
 ****
 ### Usage 
