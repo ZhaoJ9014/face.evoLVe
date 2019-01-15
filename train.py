@@ -41,7 +41,6 @@ if __name__ == '__main__':
     BATCH_SIZE = cfg['BATCH_SIZE']
     DROP_LAST = cfg['DROP_LAST'] # whether drop the last batch to ensure consistent batch_norm statistics
     LR = cfg['LR'] # initial LR
-    START_EPOCH = cfg['START_EPOCH'] # epoch index to start with
     NUM_EPOCH = cfg['NUM_EPOCH'] # total epoch number (use the firt 1/5 epochs to warm up)
     WEIGHT_DECAY = cfg['WEIGHT_DECAY'] # do not apply to batch_norm parameters
     MOMENTUM = cfg['MOMENTUM']
