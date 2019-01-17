@@ -552,9 +552,10 @@ While not required, for optimal performance it is **highly** recommended to run 
   ```
   INPUT_SIZE: [112, 112]; RGB_MEAN: [0.5, 0.5, 0.5]; RGB_STD: [0.5, 0.5, 0.5]; BATCH_SIZE: 1024 (drop the last batch to ensure consistent batch_norm statistics); Initial LR: 0.1; WEIGHT_DECAY: 5e-4 (do not apply to batch_norm parameters); MOMENTUM: 0.9; Augmentation: Random Crop + Horizontal Flip; Imbalanced Data Processing: Weighted Random Sampling; Solver: SGD; GPUs: 8 NVIDIA Tesla P40 in Parallel
   ```
-* Training \& validation statistics -- stage1 (```LR: 0.1; EPOCH: 1-9```):
+* Training \& validation statistics
+  * Stage1 (```LR: 0.1; EPOCH: 1-9```):
 
-  <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig13.png" width="1000px"/>
+    <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig13.png" width="1000px"/>
 
 |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf) (%)|[CFP_FF](http://www.cfpw.io/paper.pdf) (%)|[CFP_FP](http://www.cfpw.io/paper.pdf) (%)|[AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf) (%)|[CALFW](https://arxiv.org/pdf/1708.08197.pdf) (%)|[CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf) (%)|[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf) (%)|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
