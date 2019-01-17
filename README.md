@@ -502,12 +502,12 @@ configurations = {
 |[YTF](http://www.cs.tau.ac.il/~wolf/ytfaces/WolfHassnerMaoz_CVPR11.pdf)|Align_344x344|1,595|-|3,425|621,127|[Google Drive](https://drive.google.com/file/d/1o_5b7rYcSEFvTmwmEh0eCPsU5kFmKN_Y/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1M43AcijgGrurb0dfFVlDKQ)|
 |[DeepGlint](http://trillionpairs.deepglint.com)|Align_112x112|180,855|6,753,545|-|-|[Google Drive](https://drive.google.com/file/d/1Lqvh24913uquWxa3YS_APluEmbNKQ4Us/view?usp=sharing)|
 * Remark: unzip [CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf) clean version with 
-```
-unzip casia-maxpy-clean.zip    
-cd casia-maxpy-clean    
-zip -F CASIA-maxpy-clean.zip --out CASIA-maxpy-clean_fix.zip    
-unzip CASIA-maxpy-clean_fix.zip
-```
+  ```
+  unzip casia-maxpy-clean.zip    
+  cd casia-maxpy-clean    
+  zip -F CASIA-maxpy-clean.zip --out CASIA-maxpy-clean_fix.zip    
+  unzip CASIA-maxpy-clean_fix.zip
+  ```
 * Remark: after unzip, get image data \& pair ground truths from [AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf), [CFP](http://www.cfpw.io/paper.pdf), [LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf) and [VGGFace2_FP](https://arxiv.org/pdf/1710.08092.pdf) align_112x112 versions with 
   ```python
   import numpy as np
