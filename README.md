@@ -544,9 +544,11 @@ While not required, for optimal performance it is **highly** recommended to run 
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | | | | | | | |
 
-|Backbone|Head|Loss|Training Data|Download Link|
-|:---:|:---:|:---:|:---:|:---:|
-|[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)| |
+* Model
+
+  |Backbone|Head|Loss|Training Data|Download Link|
+  |:---:|:---:|:---:|:---:|:---:|
+  |[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)| |
 
 * Setting
   ```
