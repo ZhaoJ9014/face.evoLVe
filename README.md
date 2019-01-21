@@ -552,7 +552,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
   |Backbone|Head|Loss|Training Data|Download Link|
   |:---:|:---:|:---:|:---:|:---:|
-  |[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)| |
+  |[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)|[Google Drive](https://drive.google.com/file/d/1SKhC-iwZ5yX8kDv9mpLiC94ixLIwGd99/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1RKvDsU9CJNtNJiNk8PjU1Q)|
 
   * Setting
     ```
