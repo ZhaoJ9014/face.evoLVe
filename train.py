@@ -153,7 +153,7 @@ if __name__ == '__main__':
     # ======= train & validation & save checkpoint =======#
     DISP_FREQ = len(train_loader) // 100 # frequency to display training statistics (loss & acc)
 
-    NUM_EPOCH_WARM_UP = NUM_EPOCH // 5 # use the first 1/5 epochs to warm up
+    NUM_EPOCH_WARM_UP = NUM_EPOCH // 25 # use the first 1/25 epochs to warm up
     NUM_BATCH_WARM_UP = len(train_loader) * NUM_EPOCH_WARM_UP # use the first 1/5 epochs to warm up
     batch = 0 # batch index
 
