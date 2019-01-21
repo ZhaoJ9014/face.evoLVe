@@ -149,10 +149,10 @@ While not required, for optimal performance it is **highly** recommended to run 
           BATCH_SIZE = 512,
           DROP_LAST = True, # whether drop the last batch to ensure consistent batch_norm statistics
           LR = 0.1, # initial LR
-          NUM_EPOCH = 25, # total epoch number (use the firt 1/5 epochs to warm up)
+          NUM_EPOCH = 125, # total epoch number (use the firt 1/25 epochs to warm up)
           WEIGHT_DECAY = 5e-4, # do not apply to batch_norm parameters
           MOMENTUM = 0.9,
-          STAGES = [12, 19, 22], # epoch stages to decay learning rate
+          STAGES = [30, 60, 90], # epoch stages to decay learning rate
 
           DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu"),
           MULTI_GPU = True, # flag to use multiple GPUs
@@ -206,7 +206,7 @@ While not required, for optimal performance it is **highly** recommended to run 
     BATCH_SIZE = cfg['BATCH_SIZE']
     DROP_LAST = cfg['DROP_LAST'] # whether drop the last batch to ensure consistent batch_norm statistics
     LR = cfg['LR'] # initial LR
-    NUM_EPOCH = cfg['NUM_EPOCH'] # total epoch number (use the firt 1/5 epochs to warm up)
+    NUM_EPOCH = cfg['NUM_EPOCH'] # total epoch number (use the firt 1/25 epochs to warm up)
     WEIGHT_DECAY = cfg['WEIGHT_DECAY'] # do not apply to batch_norm parameters
     MOMENTUM = cfg['MOMENTUM']
     STAGES = cfg['STAGES'] # epoch stages to decay learning rate
@@ -327,7 +327,7 @@ While not required, for optimal performance it is **highly** recommended to run 
     ```python
     DISP_FREQ = len(train_loader) // 100 # frequency to display training loss & acc
 
-    NUM_EPOCH_WARM_UP = NUM_EPOCH // 5 # use the first 1/5 epochs to warm up
+    NUM_EPOCH_WARM_UP = NUM_EPOCH // 25 # use the first 1/25 epochs to warm up
     NUM_BATCH_WARM_UP = len(train_loader) * NUM_EPOCH_WARM_UP # use the first 1/5 epochs to warm up
     batch = 0 # batch index
     ```
