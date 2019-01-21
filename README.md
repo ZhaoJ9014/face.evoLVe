@@ -328,10 +328,10 @@ While not required, for optimal performance it is **highly** recommended to run 
     DISP_FREQ = len(train_loader) // 100 # frequency to display training loss & acc
 
     NUM_EPOCH_WARM_UP = NUM_EPOCH // 25 # use the first 1/25 epochs to warm up
-    NUM_BATCH_WARM_UP = len(train_loader) * NUM_EPOCH_WARM_UP # use the first 1/5 epochs to warm up
+    NUM_BATCH_WARM_UP = len(train_loader) * NUM_EPOCH_WARM_UP # use the first 1/25 epochs to warm up
     batch = 0 # batch index
     ```
-  * Training \& validation \& save checkpoint (use the first 1/5 epochs to warm up -- gradually increase LR to the initial value to ensure stable convergence):
+  * Training \& validation \& save checkpoint (use the first 1/25 epochs to warm up -- gradually increase LR to the initial value to ensure stable convergence):
     ```python
     for epoch in range(NUM_EPOCH): # start training process
 
