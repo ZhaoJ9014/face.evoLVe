@@ -571,7 +571,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
       <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig16.png" width="1000px"/>
 
-  * Performance (TO DO: can be further improved by training 30 epochs per stage)
+  * Performance (TO DO: can be further improved by training 30 epochs per stage, will release a better model soon)
 
     |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|[CFP_FF](http://www.cfpw.io/paper.pdf)|[CFP_FP](http://www.cfpw.io/paper.pdf)|[AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf)|[CALFW](https://arxiv.org/pdf/1708.08197.pdf)|[CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf)|[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf)|
     |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
