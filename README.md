@@ -544,7 +544,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
   * Performance
 
-    |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf) (%)|[CFP_FF](http://www.cfpw.io/paper.pdf) (%)|[CFP_FP](http://www.cfpw.io/paper.pdf) (%)|[AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf) (%)|[CALFW](https://arxiv.org/pdf/1708.08197.pdf) (%)|[CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf) (%)|[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf) (%)|
+    |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|[CFP_FF](http://www.cfpw.io/paper.pdf)|[CFP_FP](http://www.cfpw.io/paper.pdf)|[AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf)|[CALFW](https://arxiv.org/pdf/1708.08197.pdf)|[CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf)|[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf)|
     |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
     | | | | | | | |
 
@@ -573,7 +573,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
   * Performance
 
-    |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf) (%)|[CFP_FF](http://www.cfpw.io/paper.pdf) (%)|[CFP_FP](http://www.cfpw.io/paper.pdf) (%)|[AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf) (%)|[CALFW](https://arxiv.org/pdf/1708.08197.pdf) (%)|[CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf) (%)|[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf) (%)|
+    |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|[CFP_FF](http://www.cfpw.io/paper.pdf)|[CFP_FP](http://www.cfpw.io/paper.pdf)|[AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf)|[CALFW](https://arxiv.org/pdf/1708.08197.pdf)|[CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf)|[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf)|
     |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
     |99.73|99.71|97.15|97.64|95.81|90.00|94.88|
 
@@ -591,7 +591,7 @@ While not required, for optimal performance it is **highly** recommended to run 
       
   * Performance
   
-    |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf) (%)|[CFP_FF](http://www.cfpw.io/paper.pdf) (%)|[CFP_FP](http://www.cfpw.io/paper.pdf) (%)|[AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf) (%)|[CALFW](https://arxiv.org/pdf/1708.08197.pdf) (%)|[CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf) (%)|[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf) (%)|
+    |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|[CFP_FF](http://www.cfpw.io/paper.pdf)|[CFP_FP](http://www.cfpw.io/paper.pdf)|[AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf)|[CALFW](https://arxiv.org/pdf/1708.08197.pdf)|[CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf)|[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf)|
     |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
     | | | | | | | |
 
