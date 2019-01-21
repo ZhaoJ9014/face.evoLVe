@@ -22,10 +22,10 @@ configurations = {
         BATCH_SIZE = 512,
         DROP_LAST = True, # whether drop the last batch to ensure consistent batch_norm statistics
         LR = 0.1, # initial LR
-        NUM_EPOCH = 25, # total epoch number (use the firt 1/5 epochs to warm up)
+        NUM_EPOCH = 125, # total epoch number (use the firt 1/25 epochs to warm up)
         WEIGHT_DECAY = 5e-4, # do not apply to batch_norm parameters
         MOMENTUM = 0.9,
-        STAGES = [12, 19, 22], # epoch stages to decay learning rate
+        STAGES = [30, 60, 90], # epoch stages to decay learning rate
 
         DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu"),
         MULTI_GPU = True, # flag to use multiple GPUs
