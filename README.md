@@ -562,6 +562,10 @@ While not required, for optimal performance it is **highly** recommended to run 
     * Stage1 (```LR: 0.1; EPOCH: 1-9; TIME: ~1.95s/iter```)
 
       <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig13.png" width="1000px"/>
+      
+    * Stage2 (```LR: 0.01; EPOCH: 10-24; TIME: ~1.95s/iter```)
+
+      <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig15.png" width="1000px"/>
 
   * Performance
 
