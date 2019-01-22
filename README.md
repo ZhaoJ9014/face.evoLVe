@@ -468,6 +468,7 @@ While not required, for optimal performance it is **highly** recommended to run 
   ```
   tensorboard --logdir /media/pc/6T/jasonjzhao/buffer/log
   ```
+* Feature extraction API ```./util/extract_feature.py```.
   
 ****
 ### Data Zoo 
