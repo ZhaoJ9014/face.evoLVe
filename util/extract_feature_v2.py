@@ -20,7 +20,7 @@ def extract_feature(img_root, backbone, model_root, device = torch.device("cuda:
     print('Backbone Model Root:', model_root)
 
     # load image
-    img = cv2.imread('./test/1/111.jpg')
+    img = cv2.imread(img_root)
 
     # resize image to [128, 128]
     resized = cv2.resize(img, (128, 128))
@@ -30,20 +30,20 @@ def extract_feature(img_root, backbone, model_root, device = torch.device("cuda:
     b=int((128-112)/2+112) # x end
     c=int((128-112)/2) # y start
     d=int((128-112)/2+112) # y end
-    ccropped = resized[a:b,c:d] #crop the image
-    ccropped = ccropped[...,::-1]
+    ccropped = resized[a:b, c:d] # center crop the image
+    ccropped = ccropped[...,::-1] # BGR to RGB
 
     # flip image horizontally
     flipped = cv2.flip(ccropped, 1)
 
     # load numpy to tensor
     ccropped = np.reshape(ccropped, [1, 3, 112, 112])
-    ccropped = np.array(ccropped, dtype=np.float32)
+    ccropped = np.array(ccropped, dtype = np.float32)
     ccropped = (ccropped - 128) / 128.0
     ccropped = torch.from_numpy(ccropped)
 
     flipped = np.reshape(flipped, [1, 3, 112, 112])
-    flipped = np.array(flipped, dtype=np.float32)
+    flipped = np.array(flipped, dtype = np.float32)
     flipped = (ccropped - 128) / 128.0
     flipped = torch.from_numpy(flipped)
 
@@ -59,6 +59,6 @@ def extract_feature(img_root, backbone, model_root, device = torch.device("cuda:
             emb_batch = backbone(ccropped.to(device)).cpu() + backbone(flipped.to(device)).cpu()
             features = l2_norm(emb_batch)
         else:
-            features = backbone(ccropped.to(device)).cpu()
+            features = l2_norm(backbone(ccropped.to(device)).cpu())
 
     return features
