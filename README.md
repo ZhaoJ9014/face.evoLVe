@@ -464,7 +464,7 @@ While not required, for optimal performance it is **highly** recommended to run 
     <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig12.png" width="900px"/>
     
 * Please refer to Sec. [Model Zoo](#Model-Zoo) for specific model weights and corresponding performance.
-* Feature extraction API (extract features from pre-trained models) ```./util/extract_feature.py```.
+* Feature extraction API (extract features from pre-trained models) ```./util/extract_feature_v1.py``` (implemented w/ PyTorch build-in functions) and ```./util/extract_feature_v2.py``` (implemented w/ OpenCV).
 * Visualize training \& validation statistics with tensorboardX (see Sec. [Model Zoo](#Model-Zoo)):
   ```
   tensorboard --logdir /media/pc/6T/jasonjzhao/buffer/log
