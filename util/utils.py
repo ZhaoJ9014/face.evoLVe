@@ -140,6 +140,24 @@ def hflip_batch(imgs_tensor):
     return hfliped_imgs
 
 
+ccrop = transforms.Compose([
+            de_preprocess,
+            transforms.ToPILImage(),
+            transforms.Resize([128, 128]),  # smaller side resized
+            transforms.CenterCrop([112, 112]),
+            transforms.ToTensor(),
+            transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+        ])
+
+
+def ccrop_batch(imgs_tensor):
+    ccropped_imgs = torch.empty_like(imgs_tensor)
+    for i, img_ten in enumerate(imgs_tensor):
+        ccropped_imgs[i] = ccrop(img_ten)
+
+    return ccropped_imgs
+
+
 def gen_plot(fpr, tpr):
     """Create a pyplot plot and save to buffer."""
     plt.figure()
@@ -169,20 +187,24 @@ def perform_val(multi_gpu, device, embedding_size, batch_size, backbone, carray,
         while idx + batch_size <= len(carray):
             batch = torch.tensor(carray[idx:idx + batch_size])
             if tta:
-                fliped = hflip_batch(batch)
-                emb_batch = backbone(batch.to(device)).cpu() + backbone(fliped.to(device)).cpu()
+                ccropped = ccrop_batch(batch)
+                fliped = hflip_batch(ccropped)
+                emb_batch = backbone(ccropped.to(device)).cpu() + backbone(fliped.to(device)).cpu()
                 embeddings[idx:idx + batch_size] = l2_norm(emb_batch)
             else:
-                embeddings[idx:idx + batch_size] = backbone(batch.to(device)).cpu()
+                ccropped = ccrop_batch(batch)
+                embeddings[idx:idx + batch_size] = backbone(ccropped.to(device)).cpu()
             idx += batch_size
         if idx < len(carray):
             batch = torch.tensor(carray[idx:])
             if tta:
-                fliped = hflip_batch(batch)
-                emb_batch = backbone(batch.to(device)).cpu() + backbone(fliped.to(device)).cpu()
+                ccropped = ccrop_batch(batch)
+                fliped = hflip_batch(ccropped)
+                emb_batch = backbone(ccropped.to(device)).cpu() + backbone(fliped.to(device)).cpu()
                 embeddings[idx:] = l2_norm(emb_batch)
             else:
-                embeddings[idx:] = backbone(batch.to(device)).cpu()
+                ccropped = ccrop_batch(batch)
+                embeddings[idx:] = backbone(ccropped.to(device)).cpu()
 
     tpr, fpr, accuracy, best_thresholds = evaluate(embeddings, issame, nrof_folds)
     buf = gen_plot(fpr, tpr)
