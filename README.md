@@ -17,7 +17,7 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 ****
 ## News
 
-:triangular_flag_on_post: **`22 Jan 2019`**: We are developing a highly-effective and efficient distributed training schema with multi-GPUs under PyTorch, supporting both the backbone and the head with fully-connected layers, to facilitate large-scale face recognition (huge number of identities, *e.g.*, >100k). We will add such support into our repo soon.
+:triangular_flag_on_post: **`22 Jan 2019`**: We are developing a highly-effective and efficient distributed training schema with multi-GPUs under PyTorch, supporting both the backbone and the head with fully-connected layers, to facilitate high-performance large-scale face recognition (huge number of identities, *e.g.*, >100k). We will add such support into our repo soon.
 
 :triangular_flag_on_post: **`22 Jan 2019`**: We are fine-tuning our released [IR-50](https://arxiv.org/pdf/1602.07261.pdf) model on our private Aisa face data, which will be released soon to facilitate high-performance Asia face recognition.
 
