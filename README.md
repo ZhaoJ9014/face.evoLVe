@@ -1,5 +1,4 @@
 # face.evoLVe: High-Performance Face Recognition Library based on PyTorch
-
 * Evolve to be more comprehensive, effective and efficient for face related analytics \& applications!
 * About the name:
   * "face" means this repo is dedicated for face related analytics \& applications.
@@ -14,6 +13,11 @@
 ## License
 
 The code of [face.evoLVe](#Introduction) is released under the MIT License.
+
+****
+## News
+* ```**22 Jan 2019**```: We are fine-tuning our released [IR-50](https://arxiv.org/pdf/1602.07261.pdf) on our private Aisa face data, and will release the model soon.
+* ```**21 Jan 2019**```: We are training a better-performing [IR-50](https://arxiv.org/pdf/1602.07261.pdf) on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will replace the current model soon.
 
 ****
 ## Contents
@@ -563,8 +567,6 @@ While not required, for optimal performance it is **highly** recommended to run 
     |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|[CFP_FF](http://www.cfpw.io/paper.pdf)|[CFP_FP](http://www.cfpw.io/paper.pdf)|[AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf)|[CALFW](https://arxiv.org/pdf/1708.08197.pdf)|[CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf)|[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf)|
     |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
     |99.73|99.71|97.15|97.64|95.81|90.00|94.88|
-    
-:small_blue_diamond: :small_blue_diamond: :small_blue_diamond: :small_blue_diamond: :small_blue_diamond: :small_blue_diamond:
 
 * Model
 
