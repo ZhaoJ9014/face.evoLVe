@@ -17,9 +17,9 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 ****
 ## News
 
-:triangular_flag_on_post: **`22 Jan 2019`**: We are fine-tuning our released [IR-50](https://arxiv.org/pdf/1602.07261.pdf) on our private Aisa face data, and will release the model soon.
+:triangular_flag_on_post: **`22 Jan 2019`**: We are fine-tuning our released [IR-50](https://arxiv.org/pdf/1602.07261.pdf) model on our private Aisa face data, which will be released to facilitate high-performance Asia face recognition.
 
-:triangular_flag_on_post: **`21 Jan 2019`**: We are training a better-performing [IR-50](https://arxiv.org/pdf/1602.07261.pdf) on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will replace the current model soon.
+:triangular_flag_on_post: **`21 Jan 2019`**: We are training a better-performing [IR-50](https://arxiv.org/pdf/1602.07261.pdf) model on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will replace the current model soon.
   
 ****
 ## Contents
@@ -609,7 +609,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 * This repo is inspired by [InsightFace.MXNet](https://github.com/deepinsight/insightface), [InsightFace.PyTorch](https://github.com/TreB1eN/InsightFace_Pytorch), [ArcFace.PyTorch](https://github.com/ronghuaiyang/arcface-pytorch), [MTCNN.MXNet](https://github.com/pangyupo/mxnet_mtcnn_face_detection) and [PretrainedModels.PyTorch](https://github.com/Cadene/pretrained-models.pytorch).
 * The work of Jian Zhao was partially supported by China Scholarship Council (CSC) grant 201503170248.
-* We would like to thank [Prof. Jiashi Feng](https://sites.google.com/site/jshfeng/), [Dr. Jianshu Li](https://sites.google.com/view/li-js), Mr. Yu Cheng (Learning and Vision group, National University of Singapore), Mr. Yuan Xin, Mr. Di Wu, Mr. Zhenyuan Shen (Tencent FiT DeepSea AI Lab, China), [Prof. Ran He](http://www.nlpr.ia.ac.cn/english/irds/People/rhe.html), [Prof. Junliang Xing](http://people.ucas.ac.cn/~0051452?language=en), [Mr. Xiang Wu](http://alfredxiangwu.github.io/) (Institute of Automation, Chinese Academy of Sciences), [Prof. Guosheng Hu](https://www.linkedin.com/in/guosheng-hu-6801b333/) (AnyVision Inc., U.K.), [Dr. Lin Xiong](https://bruinxiong.github.io/xionglin.github.io/) (JD Digits AI Lab, U.S.), Miss Yi Cheng (Panasonic R\&D Center, Singapore) for helpful discussions.
+* We would like to thank [Prof. Jiashi Feng](https://sites.google.com/site/jshfeng/), [Dr. Jianshu Li](https://sites.google.com/view/li-js), Mr. Yu Cheng (Learning and Vision group, National University of Singapore), Mr. Yuan Xin, Mr. Di Wu, Mr. Zhenyuan Shen, Mr. Jianwei Liu (Tencent FiT DeepSea AI Lab, China), [Prof. Ran He](http://www.nlpr.ia.ac.cn/english/irds/People/rhe.html), [Prof. Junliang Xing](http://people.ucas.ac.cn/~0051452?language=en), [Mr. Xiang Wu](http://alfredxiangwu.github.io/) (Institute of Automation, Chinese Academy of Sciences), [Prof. Guosheng Hu](https://www.linkedin.com/in/guosheng-hu-6801b333/) (AnyVision Inc., U.K.), [Dr. Lin Xiong](https://bruinxiong.github.io/xionglin.github.io/) (JD Digits AI Lab, U.S.), Miss Yi Cheng (Panasonic R\&D Center, Singapore) for helpful discussions.
 
 ****
 ### Citation 
