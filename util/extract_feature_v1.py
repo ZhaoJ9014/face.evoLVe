@@ -80,5 +80,8 @@ def extract_feature(data_root, backbone, model_root, input_size = [112, 112], rg
                 features[idx:] = l2_norm(emb_batch)
             else:
                 features[idx:] = backbone(batch.to(device)).cpu()
+                
+#     np.save("features.npy", features) 
+#     features = np.load("features.npy")
 
     return features
