@@ -60,5 +60,8 @@ def extract_feature(img_root, backbone, model_root, device = torch.device("cuda:
             features = l2_norm(emb_batch)
         else:
             features = l2_norm(backbone(ccropped.to(device)).cpu())
+            
+#     np.save("features.npy", features) 
+#     features = np.load("features.npy")
 
     return features
