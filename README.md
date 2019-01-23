@@ -583,7 +583,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
   |Backbone|Head|Loss|Training Data|Download Link|
   |:---:|:---:|:---:|:---:|:---:|
-  |[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|Own Asia Face Data| |
+  |[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|Private Asia Face Data| |
 
   * Setting
     ```
