@@ -17,9 +17,9 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 ****
 ## News
 
-**`22 Jan 2019`**: We are fine-tuning our released [IR-50](https://arxiv.org/pdf/1602.07261.pdf) on our private Aisa face data, and will release the model soon.
+:triangular_flag_on_post: **`22 Jan 2019`**: We are fine-tuning our released [IR-50](https://arxiv.org/pdf/1602.07261.pdf) on our private Aisa face data, and will release the model soon.
 
-**`21 Jan 2019`**: We are training a better-performing [IR-50](https://arxiv.org/pdf/1602.07261.pdf) on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will replace the current model soon.
+:triangular_flag_on_post: **`21 Jan 2019`**: We are training a better-performing [IR-50](https://arxiv.org/pdf/1602.07261.pdf) on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will replace the current model soon.
   
 ****
 ## Contents
