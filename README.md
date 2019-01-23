@@ -539,20 +539,6 @@ While not required, for optimal performance it is **highly** recommended to run 
 
   |Backbone|Head|Loss|Training Data|Download Link|
   |:---:|:---:|:---:|:---:|:---:|
-  |[ResNet-50](https://arxiv.org/pdf/1512.03385.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)| |
-
-  * Setting
-
-  * Performance
-
-    |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|[CFP_FF](http://www.cfpw.io/paper.pdf)|[CFP_FP](http://www.cfpw.io/paper.pdf)|[AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf)|[CALFW](https://arxiv.org/pdf/1708.08197.pdf)|[CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf)|[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf)|
-    |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-    | | | | | | | |
-
-* Model
-
-  |Backbone|Head|Loss|Training Data|Download Link|
-  |:---:|:---:|:---:|:---:|:---:|
   |[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)|[Google Drive](https://drive.google.com/file/d/1SKhC-iwZ5yX8kDv9mpLiC94ixLIwGd99/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1RKvDsU9CJNtNJiNk8PjU1Q)|
 
   * Setting
@@ -578,6 +564,7 @@ While not required, for optimal performance it is **highly** recommended to run 
     |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
     |99.73|99.71|97.15|97.64|95.81|90.00|94.88|
 
+:wavy_dash: :wavy_dash: :wavy_dash: :wavy_dash: :wavy_dash: :wavy_dash: :wavy_dash:
 
 * Model
 
