@@ -578,23 +578,20 @@ While not required, for optimal performance it is **highly** recommended to run 
     |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
     |99.73|99.71|97.15|97.64|95.81|90.00|94.88|
 
+
 * Model
 
   |Backbone|Head|Loss|Training Data|Download Link|
   |:---:|:---:|:---:|:---:|:---:|
-  |[IR-SE-50](https://arxiv.org/pdf/1709.01507.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)| |
+  |[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|Own Asia Face Data| |
 
   * Setting
     ```
-    INPUT_SIZE: [112, 112]; RGB_MEAN: [0.5, 0.5, 0.5]; RGB_STD: [0.5, 0.5, 0.5]; BATCH_SIZE: 512 (drop the last batch to ensure consistent batch_norm statistics); Initial LR: 0.1; WEIGHT_DECAY: 5e-4 (do not apply to batch_norm parameters); MOMENTUM: 0.9; Augmentation: Random Crop + Horizontal Flip; Imbalanced Data Processing: Weighted Random Sampling; Solver: SGD; GPUs: 4 NVIDIA Tesla P40 in Parallel
+    INPUT_SIZE: [112, 112]; RGB_MEAN: [0.5, 0.5, 0.5]; RGB_STD: [0.5, 0.5, 0.5]; BATCH_SIZE: 1024 (drop the last batch to ensure consistent batch_norm statistics); Initial LR: 0.01 (fine-tuned on the above model pre-trained on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)); NUM_EPOCH: 80; WEIGHT_DECAY: 5e-4 (do not apply to batch_norm parameters); MOMENTUM: 0.9; STAGES: [20, 40, 60]; Augmentation: Random Crop + Horizontal Flip; Imbalanced Data Processing: Weighted Random Sampling; Solver: SGD; GPUs: 8 NVIDIA Tesla P40 in Parallel
     ```
   * Training \& validation statistics
-      
-  * Performance
-  
-    |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|[CFP_FF](http://www.cfpw.io/paper.pdf)|[CFP_FP](http://www.cfpw.io/paper.pdf)|[AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf)|[CALFW](https://arxiv.org/pdf/1708.08197.pdf)|[CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf)|[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf)|
-    |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-    | | | | | | | |
+
+  * Performance (please perform evaluation on your own Asia face dataset)
 
 ****
 ### Achievement 
