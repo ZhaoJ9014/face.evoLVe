@@ -563,8 +563,8 @@ While not required, for optimal performance it is **highly** recommended to run 
     |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|[CFP_FF](http://www.cfpw.io/paper.pdf)|[CFP_FP](http://www.cfpw.io/paper.pdf)|[AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf)|[CALFW](https://arxiv.org/pdf/1708.08197.pdf)|[CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf)|[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf)|
     |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
     |99.73|99.71|97.15|97.64|95.81|90.00|94.88|
-
-:space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::wavy_dash::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader::space_invader:
+    
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign:
 
 * Model
 
@@ -578,7 +578,7 @@ While not required, for optimal performance it is **highly** recommended to run 
     ```
   * Training \& validation statistics
 
-  * Performance (please perform evaluation on your own Asia face dataset)
+  * Performance (please perform evaluation on your own Asia face benchmark dataset)
 
 ****
 ### Achievement 
