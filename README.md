@@ -564,7 +564,7 @@ While not required, for optimal performance it is **highly** recommended to run 
     |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
     |99.73|99.71|97.15|97.64|95.81|90.00|94.88|
     
-:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign:
+:small_blue_diamond: :small_blue_diamond: :small_blue_diamond: :small_blue_diamond: :small_blue_diamond: :small_blue_diamond:
 
 * Model
 
