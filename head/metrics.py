@@ -202,7 +202,7 @@ def l2_norm(input, axis = 1):
 
 
 class Am_softmax(nn.Module):
-    r"""Implement of Am_softmax (https://arxiv.org/pdf/1704.06369.pdf):
+    r"""Implement of Am_softmax (https://arxiv.org/pdf/1801.05599.pdf):
     Args:
         in_features: size of each input sample
         out_features: size of each output sample
