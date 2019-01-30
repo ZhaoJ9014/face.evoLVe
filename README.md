@@ -189,7 +189,7 @@ While not required, for optimal performance it is **highly** recommended to run 
     from backbone.model_irse import IR_50, IR_101, IR_152, IR_SE_50, IR_SE_101, IR_SE_152
     from head.metrics import ArcFace, CosFace, SphereFace, Am_softmax
     from loss.focal import FocalLoss
-    from util.utils import make_weights_for_balanced_classes, get_val_data, separate_irse_bn_paras, separate_resnet_bn_paras, warm_up_lr, schedule_lr, perform_val, get_time, buffer_val, AverageMeter, accuracy
+    from util.utils import make_weights_for_balanced_classes, get_val_data, separate_irse_bn_paras, separate_resnet_bn_paras, warm_up_lr, schedule_lr, perform_val, get_time, buffer_val, AverageMeter, accuracy, save_checkpoint
 
     from tensorboardX import SummaryWriter
     from tqdm import tqdm
@@ -219,8 +219,8 @@ While not required, for optimal performance it is **highly** recommended to run 
     BATCH_SIZE = cfg['BATCH_SIZE']
     DROP_LAST = cfg['DROP_LAST'] # whether drop the last batch to ensure consistent batch_norm statistics
     LR = cfg['LR'] # initial LR
-    NUM_EPOCH = cfg['NUM_EPOCH'] # total epoch number (use the firt 1/25 epochs to warm up)
-    WEIGHT_DECAY = cfg['WEIGHT_DECAY'] # do not apply to batch_norm parameters
+    NUM_EPOCH = cfg['NUM_EPOCH']
+    WEIGHT_DECAY = cfg['WEIGHT_DECAY']
     MOMENTUM = cfg['MOMENTUM']
     STAGES = cfg['STAGES'] # epoch stages to decay learning rate
 
@@ -247,7 +247,7 @@ While not required, for optimal performance it is **highly** recommended to run 
                              std = RGB_STD),
     ])
 
-    dataset_train = datasets.ImageFolder(os.path.join(DATA_ROOT, 'imgs'), train_transform)
+    dataset_train = datasets.ImageFolder(os.path.join(DATA_ROOT, 'images'), train_transform)
 
     # create a weighted random sampler to process imbalanced data
     weights = make_weights_for_balanced_classes(dataset_train.imgs, len(dataset_train.classes))
@@ -261,25 +261,31 @@ While not required, for optimal performance it is **highly** recommended to run 
 
     NUM_CLASS = len(train_loader.dataset.classes)
     print("Number of Training Classes: {}".format(NUM_CLASS))
-    
-    # validate on LFW, CFP_FF, CFP_FP, AgeDB, CALFW, CPLFW and VGGFace2_FP
+
     lfw, cfp_ff, cfp_fp, agedb, calfw, cplfw, vgg2_fp, lfw_issame, cfp_ff_issame, cfp_fp_issame, agedb_issame, calfw_issame, cplfw_issame, vgg2_fp_issame = get_val_data(DATA_ROOT)
     ```
   * Define and initialize model (backbone \& head):
     ```python
-    BACKBONE_DICT = {'ResNet_50': ResNet_50(INPUT_SIZE), 'ResNet_101': ResNet_101(INPUT_SIZE), 'ResNet_152': ResNet_152(INPUT_SIZE),
-                     'IR_50': IR_50(INPUT_SIZE), 'IR_101': IR_101(INPUT_SIZE), 'IR_152': IR_152(INPUT_SIZE),
-                     'IR_SE_50': IR_SE_50(INPUT_SIZE), 'IR_SE_101': IR_SE_101(INPUT_SIZE), 'IR_SE_152': IR_SE_152(INPUT_SIZE)}
+    BACKBONE_DICT = {'ResNet_50': ResNet_50(INPUT_SIZE, EMBEDDING_SIZE), 
+                     'ResNet_101': ResNet_101(INPUT_SIZE, EMBEDDING_SIZE),
+                     'ResNet_152': ResNet_152(INPUT_SIZE, EMBEDDING_SIZE),
+                     'IR_50': IR_50(INPUT_SIZE),
+                     'IR_101': IR_101(INPUT_SIZE),
+                     'IR_152': IR_152(INPUT_SIZE),
+                     'IR_SE_50': IR_SE_50(INPUT_SIZE),
+                     'IR_SE_101': IR_SE_101(INPUT_SIZE),
+                     'IR_SE_152': IR_SE_152(INPUT_SIZE)}
     BACKBONE = BACKBONE_DICT[BACKBONE_NAME]
     print("=" * 60)
     print(BACKBONE)
     print("{} Backbone Generated".format(BACKBONE_NAME))
+    print("{} have {} paramerters in total".format(BACKBONE_NAME, sum(x.numel() for x in BACKBONE.parameters())))
     print("=" * 60)
 
-    HEAD_DICT = {'ArcFace': ArcFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS),
-                 'CosFace': CosFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS),
-                'SphereFace': SphereFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS),
-                'Am_softmax': Am_softmax(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS)}
+    HEAD_DICT = {'ArcFace': ArcFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID),
+                 'CosFace': CosFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID),
+                 'SphereFace': SphereFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID),
+                 'Am_softmax': Am_softmax(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID)}
     HEAD = HEAD_DICT[HEAD_NAME]
     print("=" * 60)
     print(HEAD)
@@ -303,8 +309,7 @@ While not required, for optimal performance it is **highly** recommended to run 
     else:
         backbone_paras_only_bn, backbone_paras_wo_bn = separate_resnet_bn_paras(BACKBONE) # separate batch_norm parameters from others; do not do weight decay for batch_norm parameters to improve the generalizability
         _, head_paras_wo_bn = separate_resnet_bn_paras(HEAD)
-    OPTIMIZER = optim.SGD([{'params': backbone_paras_wo_bn + head_paras_wo_bn,
-                            'weight_decay': WEIGHT_DECAY}, {'params': backbone_paras_only_bn}], lr = LR, momentum = MOMENTUM)
+    OPTIMIZER = optim.SGD([{'params': backbone_paras_wo_bn + head_paras_wo_bn, 'weight_decay': WEIGHT_DECAY}, {'params': backbone_paras_only_bn}], lr = LR, momentum = MOMENTUM)
     print("=" * 60)
     print(OPTIMIZER)
     print("Optimizer Generated")
@@ -326,28 +331,25 @@ While not required, for optimal performance it is **highly** recommended to run 
   * Whether use multi-GPU or not:
     ```python
     if MULTI_GPU:
-        # multi-GPU setting
+        # multi-GPU setting (deploy data parallel for BACKBONE and model parallel for HEAD (implemented in ./head/metrics.py))
         BACKBONE = nn.DataParallel(BACKBONE, device_ids = GPU_ID)
         BACKBONE = BACKBONE.to(DEVICE)
-        HEAD = nn.DataParallel(HEAD, device_ids = GPU_ID)
-        HEAD = HEAD.to(DEVICE)
     else:
         # single-GPU setting
         BACKBONE = BACKBONE.to(DEVICE)
-        HEAD = HEAD.to(DEVICE)
     ```
   * Minor settings prior to training:
     ```python
     DISP_FREQ = len(train_loader) // 100 # frequency to display training loss & acc
 
-    NUM_EPOCH_WARM_UP = NUM_EPOCH // 25 # use the first 1/25 epochs to warm up
-    NUM_BATCH_WARM_UP = len(train_loader) * NUM_EPOCH_WARM_UP # use the first 1/25 epochs to warm up
-    batch = 0 # batch index
+    NUM_EPOCH_WARM_UP = NUM_EPOCH // 25  # use the first 1/25 epochs to warm up
+    NUM_BATCH_WARM_UP = len(train_loader) * NUM_EPOCH_WARM_UP  # use the first 1/25 epochs to warm up
+    batch = 0  # batch index
     ```
   * Training \& validation \& save checkpoint (use the first 1/25 epochs to warm up -- gradually increase LR to the initial value to ensure stable convergence):
     ```python
     for epoch in range(NUM_EPOCH): # start training process
-
+        
         if epoch == STAGES[0]: # adjust LR for each training stage after warm up, you can also choose to adjust LR manually (with slight modification) once plaueau observed
             schedule_lr(OPTIMIZER)
         if epoch == STAGES[1]:
@@ -355,9 +357,9 @@ While not required, for optimal performance it is **highly** recommended to run 
         if epoch == STAGES[2]:
             schedule_lr(OPTIMIZER)
 
-        BACKBONE.train() # set to training mode
+        BACKBONE.train()  # set to training mode
         HEAD.train()
-        
+
         losses = AverageMeter()
         top1 = AverageMeter()
         top5 = AverageMeter()
@@ -384,7 +386,7 @@ While not required, for optimal performance it is **highly** recommended to run 
             OPTIMIZER.zero_grad()
             loss.backward()
             OPTIMIZER.step()
-
+            
             # dispaly training loss & acc every DISP_FREQ
             if ((batch + 1) % DISP_FREQ == 0) and batch != 0:
                 print("=" * 60)
@@ -434,10 +436,10 @@ While not required, for optimal performance it is **highly** recommended to run 
         # save checkpoints per epoch
         if MULTI_GPU:
             torch.save(BACKBONE.module.state_dict(), os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch, get_time())))
-            torch.save(HEAD.module.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
+            torch.save(HEAD.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
         else:
-             torch.save(BACKBONE.state_dict(), os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch, get_time())))
-             torch.save(HEAD.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
+            torch.save(BACKBONE.state_dict(), os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch, get_time())))
+            torch.save(HEAD.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
     ```
 * Now, you can start to play with [face.evoLVe](#Introduction) and run ```train.py```. User friendly information will popped out on your terminal:
   * About overall configuration:
