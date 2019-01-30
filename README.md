@@ -19,8 +19,6 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 
 :triangular_flag_on_post: **`23 Jan 2019`**: The current distributed training schema with multi-GPUs under PyTorch and other mainstream platforms parallels the backbone across multi-GPUs while relying on a single master to compute the final bottleneck (fully-connected/softmax) layer. This is not an issue for conventional face recognition with moderate number of identities. However, it struggles with large-scale face recognition, which requires recognizing millions of identities in the real world. The master can hardly hold the oversized final layer while the slaves still have redundant computation resource, leading to small-batch training or even failed training. To address this problem, we are developing a highly-elegant, effective and efficient distributed training schema with multi-GPUs under PyTorch, supporting not only the backbone, but also the head with the fully-connected/softmax layer, to facilitate high-performance large-scale face recognition. We will add this support into our repo soon.
 
- <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig17.png" width="500px"/>
-
 :triangular_flag_on_post: **`23 Jan 2019`**: We will release [MS-Celeb-1M_Align_224x224](https://arxiv.org/pdf/1607.08221.pdf) soon to facilitate larger-resolution face recongition model training.
 
 :triangular_flag_on_post: **`22 Jan 2019`**: We have released two feature extraction APIs for extracting features from pre-trained models, implemented with PyTorch build-in functions and OpenCV, respectively. Please check ```./util/extract_feature_v1.py``` and ```./util/extract_feature_v2.py```.
@@ -49,7 +47,8 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 ### Introduction 
 :information_desk_person:
 
-<img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig1.png" width="500px"/>
+<img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig1.png" width="400px"/>  
+ <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig17.png" width="400px"/>
 
 * This repo provides a comprehensive face recognition library for face related analytics \& applications, including face alignment (detection, landmark localization, affine transformation, *etc.*), data processing (*e.g.*, augmentation, data balancing, normalization, *etc.*), various backbones (*e.g.*, [ResNet](https://arxiv.org/pdf/1512.03385.pdf), [IR](https://arxiv.org/pdf/1602.07261.pdf), [IR-SE](https://arxiv.org/pdf/1709.01507.pdf), ResNeXt, SE-ResNeXt, DenseNet, [LightCNN](https://arxiv.org/pdf/1511.02683.pdf), MobileNet, ShuffleNet, DPN, *etc.*), various losses (*e.g.*, Softmax, [Focal](https://arxiv.org/pdf/1708.02002.pdf), Center, [SphereFace](https://arxiv.org/pdf/1704.08063.pdf), [CosFace](https://arxiv.org/pdf/1801.09414.pdf), [AmSoftmax](https://arxiv.org/pdf/1704.06369.pdf), [ArcFace](https://arxiv.org/pdf/1801.07698.pdf), Triplet, *etc.*) and bags of tricks for improving performance (*e.g.*, training refinements, model tweaks, knowledge distillation, *etc.*).
 * All data before \& after alignment, source codes and trained models are provided.
