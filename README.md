@@ -26,7 +26,7 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 
 :triangular_flag_on_post: **`OPEN 22 Jan 2019`**: We have released two feature extraction APIs for extracting features from pre-trained models, implemented with PyTorch build-in functions and OpenCV, respectively. Please check ```./util/extract_feature_v1.py``` and ```./util/extract_feature_v2.py```.
 
-:triangular_flag_on_post: **`OPEN 22 Jan 2019`**: We are fine-tuning our released [IR-50](https://arxiv.org/pdf/1602.07261.pdf) model on our private Asia face data, which will be released soon to facilitate high-performance Asia face recognition.
+:white_check_mark: **`CLOSED 22 Jan 2019`**: ~~We are fine-tuning our released [IR-50](https://arxiv.org/pdf/1602.07261.pdf) model on our private Asia face data, which will be released soon to facilitate high-performance Asia face recognition.~~
 
 :triangular_flag_on_post: **`OPEN 21 Jan 2019`**: We are training a better-performing [IR-50](https://arxiv.org/pdf/1602.07261.pdf) model on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will replace the current model soon.
   
