@@ -595,7 +595,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
   * Performance (please perform evaluation on your own Asia face benchmark dataset)
   
-  * Model
+* Model
 
   |Backbone|Head|Loss|Training Data|Download Link|
   |:---:|:---:|:---:|:---:|:---:|
