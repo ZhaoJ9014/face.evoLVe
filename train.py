@@ -86,9 +86,9 @@ if __name__ == '__main__':
 
 
     #======= model & loss & optimizer =======#
-    BACKBONE_DICT = {'ResNet_50': ResNet_50(INPUT_SIZE, EMBEDDING_SIZE), 
-                     'ResNet_101': ResNet_101(INPUT_SIZE, EMBEDDING_SIZE),
-                     'ResNet_152': ResNet_152(INPUT_SIZE, EMBEDDING_SIZE),
+    BACKBONE_DICT = {'ResNet_50': ResNet_50(INPUT_SIZE), 
+                     'ResNet_101': ResNet_101(INPUT_SIZE),
+                     'ResNet_152': ResNet_152(INPUT_SIZE),
                      'IR_50': IR_50(INPUT_SIZE),
                      'IR_101': IR_101(INPUT_SIZE),
                      'IR_152': IR_152(INPUT_SIZE),
