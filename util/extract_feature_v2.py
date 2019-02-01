@@ -4,6 +4,7 @@ import cv2
 import numpy as np
 import os
 
+import matplotlib.pyplot as plt
 
 def l2_norm(input, axis = 1):
     norm = torch.norm(input, 2, axis, True)
@@ -12,7 +13,7 @@ def l2_norm(input, axis = 1):
     return output
 
 
-def extract_feature(img_root, backbone, model_root, device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu"), tta = True):
+def extract_feature_v2(img_root, backbone, model_root, device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu"), tta = False):
     # pre-requisites
     assert(os.path.exists(img_root))
     print('Testing Data Root:', img_root)
@@ -37,20 +38,23 @@ def extract_feature(img_root, backbone, model_root, device = torch.device("cuda:
     flipped = cv2.flip(ccropped, 1)
 
     # load numpy to tensor
+
+    ccropped = ccropped.swapaxes(1, 2).swapaxes(0, 1)
     ccropped = np.reshape(ccropped, [1, 3, 112, 112])
     ccropped = np.array(ccropped, dtype = np.float32)
     ccropped = (ccropped - 128) / 128.0
     ccropped = torch.from_numpy(ccropped)
 
+    flipped = flipped.swapaxes(1, 2).swapaxes(0, 1)
     flipped = np.reshape(flipped, [1, 3, 112, 112])
     flipped = np.array(flipped, dtype = np.float32)
-    flipped = (ccropped - 128) / 128.0
+    flipped = (flipped - 128) / 128.0
     flipped = torch.from_numpy(flipped)
 
 
     # load backbone from a checkpoint
     print("Loading Backbone Checkpoint '{}'".format(model_root))
-    backbone.load_state_dict(torch.load(model_root))
+    backbone.load_state_dict(torch.load(model_root, map_location='cpu'))
 
     # extract features
     backbone.eval() # set to evaluation mode
