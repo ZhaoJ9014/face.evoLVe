@@ -586,7 +586,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
   |Backbone|Head|Loss|Training Data|Download Link|
   |:---:|:---:|:---:|:---:|:---:|
-  |[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|Private Asia Face Data|[Google Drive](https://drive.google.com/file/d/1jYHTOWEejJpSTMAgXD7vanHV8By-BELU/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1rX4dlk8Shs-qOHxiNUwE0A)|
+  |[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|Private Asia Face Data|[Google Drive](https://drive.google.com/file/d/1PdQXjOAIcDDdU_KmMRkSbJtmQiGaO9Fv/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1M-NF77GbeXTxAX_eOTMbuQ)|
 
   * Setting
     ```
