@@ -34,7 +34,7 @@ BACKBONE_DICT = {'ResNet_50': ResNet_50(INPUT_SIZE),
                  'IR_SE_50': IR_SE_50(INPUT_SIZE),
                  'IR_SE_101': IR_SE_101(INPUT_SIZE),
                  'IR_SE_152': IR_SE_152(INPUT_SIZE)}
-BACKBONE = BACKBONE_DICT['IR_50']
+BACKBONE = BACKBONE_DICT['BACKBONE_NAME']
 print("=" * 60)
 print(BACKBONE)
 
