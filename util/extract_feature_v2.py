@@ -54,7 +54,8 @@ def extract_feature_v2(img_root, backbone, model_root, device = torch.device("cu
 
     # load backbone from a checkpoint
     print("Loading Backbone Checkpoint '{}'".format(model_root))
-    backbone.load_state_dict(torch.load(model_root, map_location='cpu'))
+    backbone.load_state_dict(torch.load(model_root))
+    backbone.to(device)
 
     # extract features
     backbone.eval() # set to evaluation mode
