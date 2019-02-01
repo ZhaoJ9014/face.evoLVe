@@ -11,16 +11,6 @@ cfg = configurations[1]
 SEED = cfg['SEED']
 torch.manual_seed(SEED)
 INPUT_SIZE = cfg['INPUT_SIZE']
-
-BACKBONE_DICT = {'ResNet_50': ResNet_50(INPUT_SIZE),
-                 'ResNet_101': ResNet_101(INPUT_SIZE),
-                 'ResNet_152': ResNet_152(INPUT_SIZE),
-                 'IR_50': IR_50(INPUT_SIZE),
-                 'IR_101': IR_101(INPUT_SIZE),
-                 'IR_152': IR_152(INPUT_SIZE),
-                 'IR_SE_50': IR_SE_50(INPUT_SIZE),
-                 'IR_SE_101': IR_SE_101(INPUT_SIZE),
-                 'IR_SE_152': IR_SE_152(INPUT_SIZE)}
 BACKBONE = IR_50(INPUT_SIZE)
 print(BACKBONE)
 
