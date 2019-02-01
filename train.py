@@ -87,25 +87,24 @@ if __name__ == '__main__':
 
     #======= model & loss & optimizer =======#
     BACKBONE_DICT = {'ResNet_50': ResNet_50(INPUT_SIZE), 
-                     'ResNet_101': ResNet_101(INPUT_SIZE),
+                     'ResNet_101': ResNet_101(INPUT_SIZE), 
                      'ResNet_152': ResNet_152(INPUT_SIZE),
-                     'IR_50': IR_50(INPUT_SIZE),
-                     'IR_101': IR_101(INPUT_SIZE),
+                     'IR_50': IR_50(INPUT_SIZE), 
+                     'IR_101': IR_101(INPUT_SIZE), 
                      'IR_152': IR_152(INPUT_SIZE),
-                     'IR_SE_50': IR_SE_50(INPUT_SIZE),
-                     'IR_SE_101': IR_SE_101(INPUT_SIZE),
+                     'IR_SE_50': IR_SE_50(INPUT_SIZE), 
+                     'IR_SE_101': IR_SE_101(INPUT_SIZE), 
                      'IR_SE_152': IR_SE_152(INPUT_SIZE)}
     BACKBONE = BACKBONE_DICT[BACKBONE_NAME]
     print("=" * 60)
     print(BACKBONE)
     print("{} Backbone Generated".format(BACKBONE_NAME))
-    print("{} have {} paramerters in total".format(BACKBONE_NAME, sum(x.numel() for x in BACKBONE.parameters())))
     print("=" * 60)
 
-    HEAD_DICT = {'ArcFace': ArcFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID),
-                 'CosFace': CosFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID),
-                 'SphereFace': SphereFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID),
-                 'Am_softmax': Am_softmax(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID)}
+    HEAD_DICT = {'ArcFace': ArcFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS),
+                 'CosFace': CosFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS),
+                 'SphereFace': SphereFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS),
+                 'Am_softmax': Am_softmax(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS)}
     HEAD = HEAD_DICT[HEAD_NAME]
     print("=" * 60)
     print(HEAD)
@@ -144,12 +143,15 @@ if __name__ == '__main__':
         print("=" * 60)
 
     if MULTI_GPU:
-        # multi-GPU setting (deploy data parallel for BACKBONE and model parallel for HEAD (implemented in ./head/metrics.py))
+        # multi-GPU setting
         BACKBONE = nn.DataParallel(BACKBONE, device_ids = GPU_ID)
         BACKBONE = BACKBONE.to(DEVICE)
+        HEAD = nn.DataParallel(HEAD, device_ids = GPU_ID)
+        HEAD = HEAD.to(DEVICE)
     else:
         # single-GPU setting
         BACKBONE = BACKBONE.to(DEVICE)
+        HEAD = HEAD.to(DEVICE)
 
 
     #======= train & validation & save checkpoint =======#
@@ -244,10 +246,10 @@ if __name__ == '__main__':
         print("Epoch {}/{}, Evaluation: LFW Acc: {}, CFP_FF Acc: {}, CFP_FP Acc: {}, AgeDB Acc: {}, CALFW Acc: {}, CPLFW Acc: {}, VGG2_FP Acc: {}".format(epoch + 1, NUM_EPOCH, accuracy_lfw, accuracy_cfp_ff, accuracy_cfp_fp, accuracy_agedb, accuracy_calfw, accuracy_cplfw, accuracy_vgg2_fp))
         print("=" * 60)
 
-        # save checkpoints per epoch
+       # save checkpoints per epoch
         if MULTI_GPU:
             torch.save(BACKBONE.module.state_dict(), os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch, get_time())))
-            torch.save(HEAD.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
+            torch.save(HEAD.module.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
         else:
             torch.save(BACKBONE.state_dict(), os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch, get_time())))
             torch.save(HEAD.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
