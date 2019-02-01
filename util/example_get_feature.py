@@ -1,3 +1,4 @@
+# please put and run me at the root folder of face.evoLVe.PyTorch-master
 import torch
 from config import configurations
 from backbone.model_resnet import ResNet_50, ResNet_101, ResNet_152
