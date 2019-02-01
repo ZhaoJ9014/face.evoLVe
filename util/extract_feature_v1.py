@@ -55,7 +55,8 @@ def extract_feature(data_root, backbone, model_root, input_size = [112, 112], rg
 
     # load backbone from a checkpoint
     print("Loading Backbone Checkpoint '{}'".format(model_root))
-    backbone.load_state_dict(torch.load(model_root, map_location='cpu'))
+    backbone.load_state_dict(torch.load(model_root))
+    backbone.to(device)
 
     # extract features
     backbone.eval() # set to evaluation mode
@@ -79,7 +80,7 @@ def extract_feature(data_root, backbone, model_root, input_size = [112, 112], rg
                 emb_batch = backbone(batch.to(device)).cpu() + backbone(fliped.to(device)).cpu()
                 features[idx:] = l2_norm(emb_batch)
             else:
-                features[idx:] = backbone(batch.to(device)).cpu()
+                features[idx:] = l2_norm(backbone(batch.to(device)).cpu())
                 
 #     np.save("features.npy", features) 
 #     features = np.load("features.npy")
