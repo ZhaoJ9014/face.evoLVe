@@ -38,7 +38,6 @@ def extract_feature_v2(img_root, backbone, model_root, device = torch.device("cu
     flipped = cv2.flip(ccropped, 1)
 
     # load numpy to tensor
-
     ccropped = ccropped.swapaxes(1, 2).swapaxes(0, 1)
     ccropped = np.reshape(ccropped, [1, 3, 112, 112])
     ccropped = np.array(ccropped, dtype = np.float32)
