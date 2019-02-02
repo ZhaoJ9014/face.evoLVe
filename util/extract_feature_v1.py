@@ -52,6 +52,8 @@ def extract_feature(data_root, backbone, model_root, input_size = [112, 112], rg
         transforms.Normalize(mean = rgb_mean, std = rgb_std)])
     dataset = datasets.ImageFolder(data_root, transform)
     loader = torch.utils.data.DataLoader(dataset, batch_size = batch_size, shuffle = False, pin_memory = True, num_workers = 0)
+    NUM_CLASS = len(loader.dataset.classes)
+    print("Number of Classes: {}".format(NUM_CLASS))
 
     # load backbone from a checkpoint
     print("Loading Backbone Checkpoint '{}'".format(model_root))
