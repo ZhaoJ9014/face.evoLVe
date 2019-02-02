@@ -13,7 +13,7 @@ def l2_norm(input, axis = 1):
     return output
 
 
-def extract_feature_v2(img_root, backbone, model_root, device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu"), tta = False):
+def extract_feature(img_root, backbone, model_root, device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu"), tta = True):
     # pre-requisites
     assert(os.path.exists(img_root))
     print('Testing Data Root:', img_root)
