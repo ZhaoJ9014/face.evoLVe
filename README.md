@@ -287,10 +287,10 @@ While not required, for optimal performance it is **highly** recommended to run 
     print("{} Backbone Generated".format(BACKBONE_NAME))
     print("=" * 60)
 
-    HEAD_DICT = {'ArcFace': ArcFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS),
-                 'CosFace': CosFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS),
-                 'SphereFace': SphereFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS),
-                 'Am_softmax': Am_softmax(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS)}
+    HEAD_DICT = {'ArcFace': ArcFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID),
+                 'CosFace': CosFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID),
+                 'SphereFace': SphereFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID),
+                 'Am_softmax': Am_softmax(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID)}
     HEAD = HEAD_DICT[HEAD_NAME]
     print("=" * 60)
     print(HEAD)
@@ -340,12 +340,9 @@ While not required, for optimal performance it is **highly** recommended to run 
         # multi-GPU setting
         BACKBONE = nn.DataParallel(BACKBONE, device_ids = GPU_ID)
         BACKBONE = BACKBONE.to(DEVICE)
-        HEAD = nn.DataParallel(HEAD, device_ids = GPU_ID)
-        HEAD = HEAD.to(DEVICE)
     else:
         # single-GPU setting
         BACKBONE = BACKBONE.to(DEVICE)
-        HEAD = HEAD.to(DEVICE)
     ```
   * Minor settings prior to training:
     ```python
@@ -445,7 +442,7 @@ While not required, for optimal performance it is **highly** recommended to run 
         # save checkpoints per epoch
         if MULTI_GPU:
             torch.save(BACKBONE.module.state_dict(), os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch, get_time())))
-            torch.save(HEAD.module.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
+            torch.save(HEAD.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
         else:
             torch.save(BACKBONE.state_dict(), os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch, get_time())))
             torch.save(HEAD.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
