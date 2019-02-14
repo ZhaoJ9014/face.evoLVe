@@ -119,10 +119,10 @@ While not required, for optimal performance it is **highly** recommended to run 
   # python face_align.py -source_root './data/test' -dest_root './data/test_Aligned' -crop_size 112
   ```
 * For macOS users, there is no need to worry about ```*.DS_Store``` files which may ruin your data, since they will be automatically removed when you run the scripts.
-* Keynotes for customed use: 1) specify the arguments of ```source_root```, ```dest_root``` and ```crop_size``` to your own values when you run ```face_align.py```; 2) pass your customed ```min_face_size```, ```thresholds``` and ```nms_thresholds``` values to the ```detect_faces``` function of ```detector.py``` to match your practical requirements; 3)if you find the speed using face alignment API is a bit slow, you can call face resize API to resize the image whose smaller size is larger than a threshold (specify the arguments of ```source_root```, ```dest_root``` and ```min_side``` to your own values):
-```
-python face_resize.py
-```
+* Keynotes for customed use: 1) specify the arguments of ```source_root```, ```dest_root``` and ```crop_size``` to your own values when you run ```face_align.py```; 2) pass your customed ```min_face_size```, ```thresholds``` and ```nms_thresholds``` values to the ```detect_faces``` function of ```detector.py``` to match your practical requirements; 3)if you find the speed using face alignment API is a bit slow, you can call face resize API to firstly resize the image whose smaller size is larger than a threshold (specify the arguments of ```source_root```, ```dest_root``` and ```min_side``` to your own values) before calling the face alignment API:
+  ```
+  python face_resize.py
+  ```
 
 ****
 ### Data Processing 
