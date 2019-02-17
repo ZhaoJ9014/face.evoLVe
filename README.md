@@ -28,7 +28,7 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 
 :white_check_mark: **`CLOSED 22 Jan 2019`**: ~~We are fine-tuning our released [IR-50](https://arxiv.org/pdf/1602.07261.pdf) model on our private Asia face data, which will be released soon to facilitate high-performance Asia face recognition.~~
 
-:triangular_flag_on_post: **`OPEN 21 Jan 2019`**: We are training a better-performing [IR-50](https://arxiv.org/pdf/1602.07261.pdf) model on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will replace the current model soon.
+:white_check_mark: **`CLOSED 21 Jan 2019`**: ~~We are training a better-performing [IR-50](https://arxiv.org/pdf/1602.07261.pdf) model on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will replace the current model soon.~~
   
 ****
 ## Contents
@@ -561,30 +561,21 @@ While not required, for optimal performance it is **highly** recommended to run 
 
   |Backbone|Head|Loss|Training Data|Download Link|
   |:---:|:---:|:---:|:---:|:---:|
-  |[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)|[Google Drive](https://drive.google.com/file/d/1SKhC-iwZ5yX8kDv9mpLiC94ixLIwGd99/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1RKvDsU9CJNtNJiNk8PjU1Q)|
+  |[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)|[Google Drive](https://drive.google.com/drive/folders/1omzvXV_djVIW2A7I09DWMe9JR-9o_MYh?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1L8yOF1oZf6JHfeY9iN59Mg)|
 
   * Setting
     ```
-    INPUT_SIZE: [112, 112]; RGB_MEAN: [0.5, 0.5, 0.5]; RGB_STD: [0.5, 0.5, 0.5]; BATCH_SIZE: 1024 (drop the last batch to ensure consistent batch_norm statistics); Initial LR: 0.1; WEIGHT_DECAY: 5e-4 (do not apply to batch_norm parameters); MOMENTUM: 0.9; Augmentation: Random Crop + Horizontal Flip; Imbalanced Data Processing: Weighted Random Sampling; Solver: SGD; GPUs: 8 NVIDIA Tesla P40 in Parallel
+    INPUT_SIZE: [112, 112]; RGB_MEAN: [0.5, 0.5, 0.5]; RGB_STD: [0.5, 0.5, 0.5]; BATCH_SIZE: 512 (drop the last batch to ensure consistent batch_norm statistics); Initial LR: 0.1; NUM_EPOCH: 120; WEIGHT_DECAY: 5e-4 (do not apply to batch_norm parameters); MOMENTUM: 0.9; STAGES: [30, 60, 90]; Augmentation: Random Crop + Horizontal Flip; Imbalanced Data Processing: Weighted Random Sampling; Solver: SGD; GPUs: 4 NVIDIA Tesla P40 in Parallel
     ```
   * Training \& validation statistics
-    * Stage1 (```LR: 0.1; EPOCH: 1-9; TIME: ~1.95s/iter```)
-
-      <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig13.png" width="1000px"/>
+  
+    <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig13.png" width="1000px"/>
       
-    * Stage2 (```LR: 0.01; EPOCH: 10-24; TIME: ~1.95s/iter```)
-
-      <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig15.png" width="1000px"/>
-      
-    * Stage3 (```LR: 0.001; EPOCH: 25-30; TIME: ~1.95s/iter```)
-
-      <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig16.png" width="1000px"/>
-
-  * Performance (havn't converge well yet; can be further improved by training up to 30 epochs per stage; will release a better model soon)
+  * Performance
 
     |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|[CFP_FF](http://www.cfpw.io/paper.pdf)|[CFP_FP](http://www.cfpw.io/paper.pdf)|[AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf)|[CALFW](https://arxiv.org/pdf/1708.08197.pdf)|[CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf)|[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf)|
     |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-    |99.73|99.71|97.15|97.64|95.81|90.00|94.88|
+    |99.81|99.68|97.32|97.50|95.75|91.05|94.88|
 
 * Model
 
