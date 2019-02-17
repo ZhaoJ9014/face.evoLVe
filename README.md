@@ -195,7 +195,7 @@ While not required, for optimal performance it is **highly** recommended to run 
     from backbone.model_irse import IR_50, IR_101, IR_152, IR_SE_50, IR_SE_101, IR_SE_152
     from head.metrics import ArcFace, CosFace, SphereFace, Am_softmax
     from loss.focal import FocalLoss
-    from util.utils import make_weights_for_balanced_classes, get_val_data, separate_irse_bn_paras, separate_resnet_bn_paras, warm_up_lr, schedule_lr, perform_val, get_time, buffer_val, AverageMeter, accuracy, save_checkpoint
+    from util.utils import make_weights_for_balanced_classes, get_val_data, separate_irse_bn_paras, separate_resnet_bn_paras, warm_up_lr, schedule_lr, perform_val, get_time, buffer_val, AverageMeter, accuracy
 
     from tensorboardX import SummaryWriter
     from tqdm import tqdm
