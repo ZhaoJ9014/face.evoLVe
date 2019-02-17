@@ -17,8 +17,9 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 ****
 ## News
 
+:triangular_flag_on_post: **`OPEN 17 Feb 2019`**: We are training [ResNet-50](https://arxiv.org/pdf/1512.03385.pdf), [IR-SE-50](https://arxiv.org/pdf/1709.01507.pdf) and [IR-SE-152](https://arxiv.org/pdf/1709.01507.pdf) models on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will release them soon.
 
-:triangular_flag_on_post: **`OPEN 01 Feb 2019`**: We are training a [IR-152](https://arxiv.org/pdf/1602.07261.pdf) model on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will release it after Chinese New Year.
+:triangular_flag_on_post: **`OPEN 01 Feb 2019`**: We are training a [IR-152](https://arxiv.org/pdf/1512.03385.pdf) model on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will release it after Chinese New Year.
 
 :white_check_mark: **`CLOSED 23 Jan 2019`**: ~~The current distributed training schema with multi-GPUs under PyTorch and other mainstream platforms parallels the backbone across multi-GPUs while relying on a single master to compute the final bottleneck (fully-connected/softmax) layer. This is not an issue for conventional face recognition with moderate number of identities. However, it struggles with large-scale face recognition, which requires recognizing millions of identities in the real world. The master can hardly hold the oversized final layer while the slaves still have redundant computation resource, leading to small-batch training or even failed training. To address this problem, we are developing a highly-elegant, effective and efficient distributed training schema with multi-GPUs under PyTorch, supporting not only the backbone, but also the head with the fully-connected (softmax) layer, to facilitate high-performance large-scale face recognition. We will added this support into our repo.~~
 
@@ -26,9 +27,9 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 
 :white_check_mark: **`CLOSED 22 Jan 2019`**: ~~We have released two feature extraction APIs for extracting features from pre-trained models, implemented with PyTorch build-in functions and OpenCV, respectively. Please check ```./util/extract_feature_v1.py``` and ```./util/extract_feature_v2.py```.~~
 
-:white_check_mark: **`CLOSED 22 Jan 2019`**: ~~We are fine-tuning our released [IR-50](https://arxiv.org/pdf/1602.07261.pdf) model on our private Asia face data, which will be released soon to facilitate high-performance Asia face recognition.~~
+:white_check_mark: **`CLOSED 22 Jan 2019`**: ~~We are fine-tuning our released [IR-50](https://arxiv.org/pdf/1512.03385.pdf) model on our private Asia face data, which will be released soon to facilitate high-performance Asia face recognition.~~
 
-:white_check_mark: **`CLOSED 21 Jan 2019`**: ~~We are training a better-performing [IR-50](https://arxiv.org/pdf/1602.07261.pdf) model on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will replace the current model soon.~~
+:white_check_mark: **`CLOSED 21 Jan 2019`**: ~~We are training a better-performing [IR-50](https://arxiv.org/pdf/1512.03385.pdf) model on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will replace the current model soon.~~
   
 ****
 ## Contents
@@ -52,7 +53,7 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 
 <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig1.png" width="450px"/>  <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig17.png" width="400px"/>
 
-* This repo provides a comprehensive face recognition library for face related analytics \& applications, including face alignment (detection, landmark localization, affine transformation, *etc.*), data processing (*e.g.*, augmentation, data balancing, normalization, *etc.*), various backbones (*e.g.*, [ResNet](https://arxiv.org/pdf/1512.03385.pdf), [IR](https://arxiv.org/pdf/1602.07261.pdf), [IR-SE](https://arxiv.org/pdf/1709.01507.pdf), ResNeXt, SE-ResNeXt, DenseNet, [LightCNN](https://arxiv.org/pdf/1511.02683.pdf), MobileNet, ShuffleNet, DPN, *etc.*), various losses (*e.g.*, Softmax, [Focal](https://arxiv.org/pdf/1708.02002.pdf), Center, [SphereFace](https://arxiv.org/pdf/1704.08063.pdf), [CosFace](https://arxiv.org/pdf/1801.09414.pdf), [AmSoftmax](https://arxiv.org/pdf/1704.06369.pdf), [ArcFace](https://arxiv.org/pdf/1801.07698.pdf), Triplet, *etc.*) and bags of tricks for improving performance (*e.g.*, training refinements, model tweaks, knowledge distillation, *etc.*).
+* This repo provides a comprehensive face recognition library for face related analytics \& applications, including face alignment (detection, landmark localization, affine transformation, *etc.*), data processing (*e.g.*, augmentation, data balancing, normalization, *etc.*), various backbones (*e.g.*, [ResNet](https://arxiv.org/pdf/1512.03385.pdf), [IR](https://arxiv.org/pdf/1512.03385.pdf), [IR-SE](https://arxiv.org/pdf/1709.01507.pdf), ResNeXt, SE-ResNeXt, DenseNet, [LightCNN](https://arxiv.org/pdf/1511.02683.pdf), MobileNet, ShuffleNet, DPN, *etc.*), various losses (*e.g.*, Softmax, [Focal](https://arxiv.org/pdf/1708.02002.pdf), Center, [SphereFace](https://arxiv.org/pdf/1704.08063.pdf), [CosFace](https://arxiv.org/pdf/1801.09414.pdf), [AmSoftmax](https://arxiv.org/pdf/1704.06369.pdf), [ArcFace](https://arxiv.org/pdf/1801.07698.pdf), Triplet, *etc.*) and bags of tricks for improving performance (*e.g.*, training refinements, model tweaks, knowledge distillation, *etc.*).
 * The current distributed training schema with multi-GPUs under PyTorch and other mainstream platforms parallels the backbone across multi-GPUs while relying on a single master to compute the final bottleneck (fully-connected/softmax) layer. This is not an issue for conventional face recognition with moderate number of identities. However, it struggles with large-scale face recognition, which requires recognizing millions of identities in the real world. The master can hardly hold the oversized final layer while the slaves still have redundant computation resource, leading to small-batch training or even failed training. To address this problem, this repo provides a highly-elegant, effective and efficient distributed training schema with multi-GPUs under PyTorch, supporting not only the backbone, but also the head with the fully-connected (softmax) layer, to facilitate high-performance large-scale face recognition.
 * All data before \& after alignment, source codes and trained models are provided.
 * This repo can help researchers/engineers develop high-performance deep face recognition models and algorithms quickly for practical use and deployment.
@@ -561,7 +562,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
   |Backbone|Head|Loss|Training Data|Download Link|
   |:---:|:---:|:---:|:---:|:---:|
-  |[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)|[Google Drive](https://drive.google.com/drive/folders/1omzvXV_djVIW2A7I09DWMe9JR-9o_MYh?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1L8yOF1oZf6JHfeY9iN59Mg)|
+  |[IR-50](https://arxiv.org/pdf/1512.03385.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)|[Google Drive](https://drive.google.com/drive/folders/1omzvXV_djVIW2A7I09DWMe9JR-9o_MYh?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1L8yOF1oZf6JHfeY9iN59Mg)|
 
   * Setting
     ```
@@ -581,7 +582,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
   |Backbone|Head|Loss|Training Data|Download Link|
   |:---:|:---:|:---:|:---:|:---:|
-  |[IR-50](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|Private Asia Face Data|[Google Drive](https://drive.google.com/file/d/1PdQXjOAIcDDdU_KmMRkSbJtmQiGaO9Fv/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1sPMW6-U6o6tfHeKmPL6yew)|
+  |[IR-50](https://arxiv.org/pdf/1512.03385.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|Private Asia Face Data|[Google Drive](https://drive.google.com/file/d/1PdQXjOAIcDDdU_KmMRkSbJtmQiGaO9Fv/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1sPMW6-U6o6tfHeKmPL6yew)|
 
   * Setting
     ```
@@ -589,24 +590,6 @@ While not required, for optimal performance it is **highly** recommended to run 
     ```
 
   * Performance (please perform evaluation on your own Asia face benchmark dataset)
-  
-* Model
-
-  |Backbone|Head|Loss|Training Data|Download Link|
-  |:---:|:---:|:---:|:---:|:---:|
-  |[IR-152](https://arxiv.org/pdf/1602.07261.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)| |
-
-  * Setting
-    ```
-    INPUT_SIZE: [112, 112]; RGB_MEAN: [0.5, 0.5, 0.5]; RGB_STD: [0.5, 0.5, 0.5]; BATCH_SIZE: 1024 (drop the last batch to ensure consistent batch_norm statistics); Initial LR: 0.1; NUM_EPOCH: 120; WEIGHT_DECAY: 5e-4 (do not apply to batch_norm parameters); MOMENTUM: 0.9; STAGES: [30, 60, 90]; Augmentation: Random Crop + Horizontal Flip; Imbalanced Data Processing: Weighted Random Sampling; Solver: SGD; GPUs: 8 NVIDIA Tesla P40 in Parallel
-    ```
-  * Training \& validation statistics
-
-  * Performance
-
-    |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|[CFP_FF](http://www.cfpw.io/paper.pdf)|[CFP_FP](http://www.cfpw.io/paper.pdf)|[AgeDB](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/Moschoglou_AgeDB_The_First_CVPR_2017_paper.pdf)|[CALFW](https://arxiv.org/pdf/1708.08197.pdf)|[CPLFW](http://www.whdeng.cn/CPLFW/Cross-Pose-LFW.pdf)|[Vggface2_FP](https://arxiv.org/pdf/1710.08092.pdf)|
-    |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-    | | | | | | | |
 
 ****
 ### Achievement 
