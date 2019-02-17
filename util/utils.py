@@ -193,7 +193,7 @@ def perform_val(multi_gpu, device, embedding_size, batch_size, backbone, carray,
                 embeddings[idx:idx + batch_size] = l2_norm(emb_batch)
             else:
                 ccropped = ccrop_batch(batch)
-                embeddings[idx:idx + batch_size] = backbone(ccropped.to(device)).cpu()
+                embeddings[idx:idx + batch_size] = l2_normbackbone(ccropped.to(device))).cpu()
             idx += batch_size
         if idx < len(carray):
             batch = torch.tensor(carray[idx:])
@@ -204,7 +204,7 @@ def perform_val(multi_gpu, device, embedding_size, batch_size, backbone, carray,
                 embeddings[idx:] = l2_norm(emb_batch)
             else:
                 ccropped = ccrop_batch(batch)
-                embeddings[idx:] = backbone(ccropped.to(device)).cpu()
+                embeddings[idx:] = l2_normbackbone(ccropped.to(device))).cpu()
 
     tpr, fpr, accuracy, best_thresholds = evaluate(embeddings, issame, nrof_folds)
     buf = gen_plot(fpr, tpr)
