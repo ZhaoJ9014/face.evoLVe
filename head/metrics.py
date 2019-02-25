@@ -144,7 +144,7 @@ class CosFace(nn.Module):
         self.m = m
 
         self.weight = Parameter(torch.FloatTensor(out_features, in_features))
-            nn.init.xavier_uniform_(self.weight)
+        nn.init.xavier_uniform_(self.weight)
 
     def forward(self, input, label):
         # --------------------------- cos(theta) & phi(theta) ---------------------------
