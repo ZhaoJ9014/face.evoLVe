@@ -203,7 +203,7 @@ class SphereFace(nn.Module):
         self.device_id = device_id
 
         self.weight = Parameter(torch.FloatTensor(out_features, in_features))
-            nn.init.xavier_uniform_(self.weight)
+        nn.init.xavier_uniform_(self.weight)
 
         # duplication formula
         self.mlambda = [
