@@ -286,7 +286,7 @@ class Am_softmax(nn.Module):
         self.device_id = device_id
 
         self.kernel = Parameter(torch.Tensor(in_features, out_features))
-            self.kernel.data.uniform_(-1, 1).renorm_(2, 1, 1e-5).mul_(1e5)  # initialize kernel
+        self.kernel.data.uniform_(-1, 1).renorm_(2, 1, 1e-5).mul_(1e5)  # initialize kernel
  
     def forward(self, embbedings, label):
         if self.device_id == None:
