@@ -72,7 +72,7 @@ def extract_feature(data_root, backbone, model_root, input_size = [112, 112], rg
                 emb_batch = backbone(batch.to(device)).cpu() + backbone(fliped.to(device)).cpu()
                 features[idx:idx + batch_size] = l2_norm(emb_batch)
             else:
-                features[idx:idx + batch_size] = backbone(batch.to(device)).cpu()
+                features[idx:idx + batch_size] = l2_norm(backbone(batch.to(device))).cpu()
             idx += batch_size
 
         if idx < len(loader.dataset):
