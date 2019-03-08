@@ -74,7 +74,7 @@ class ArcFace(nn.Module):
             m: margin
             cos(theta+m)
         """
-    def __init__(self, in_features, out_features, device_id, s = 30.0, m = 0.50, easy_margin = False):
+    def __init__(self, in_features, out_features, device_id, s = 64.0, m = 0.50, easy_margin = False): # s = 30.0
         super(ArcFace, self).__init__()
         self.in_features = in_features
         self.out_features = out_features
@@ -135,7 +135,7 @@ class CosFace(nn.Module):
         m: margin
         cos(theta)-m
     """
-    def __init__(self, in_features, out_features, device_id, s = 30.0, m = 0.40):
+    def __init__(self, in_features, out_features, device_id, s = 64.0, m = 0.35): # s = 30.0, m = 0.40
         super(CosFace, self).__init__()
         self.in_features = in_features
         self.out_features = out_features
@@ -268,7 +268,7 @@ def l2_norm(input, axis = 1):
 
 
 class Am_softmax(nn.Module):
-    r"""Implement of Am_softmax (https://arxiv.org/pdf/1704.06369.pdf):
+    r"""Implement of Am_softmax (https://arxiv.org/pdf/1801.05599.pdf):
     Args:
         in_features: size of each input sample
         out_features: size of each output sample
