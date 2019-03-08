@@ -17,9 +17,7 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 ****
 ## News
 
-:triangular_flag_on_post: **`OPEN 17 Feb 2019`**: We are training [ResNet-50](https://arxiv.org/pdf/1512.03385.pdf), [IR-SE-50](https://arxiv.org/pdf/1709.01507.pdf) and [IR-SE-152](https://arxiv.org/pdf/1709.01507.pdf) models on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will release them soon.
-
-:triangular_flag_on_post: **`OPEN 01 Feb 2019`**: We are training a [IR-152](https://arxiv.org/pdf/1512.03385.pdf) model on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will release it soon.
+:triangular_flag_on_post: **`OPEN 08 Mar 2019`**: We are training [IR-50 v2.0](https://arxiv.org/pdf/1512.03385.pdf), [IR-SE-50](https://arxiv.org/pdf/1512.03385.pdf), [ResNet-50](https://arxiv.org/pdf/1512.03385.pdf), [IR-SE-50](https://arxiv.org/pdf/1709.01507.pdf) and [IR-152](https://arxiv.org/pdf/1512.03385.pdf) models on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will release them soon.
 
 :white_check_mark: **`CLOSED 23 Jan 2019`**: ~~The current distributed training schema with multi-GPUs under PyTorch and other mainstream platforms parallels the backbone across multi-GPUs while relying on a single master to compute the final bottleneck (fully-connected/softmax) layer. This is not an issue for conventional face recognition with moderate number of identities. However, it struggles with large-scale face recognition, which requires recognizing millions of identities in the real world. The master can hardly hold the oversized final layer while the slaves still have redundant computation resource, leading to small-batch training or even failed training. To address this problem, we are developing a highly-elegant, effective and efficient distributed training schema with multi-GPUs under PyTorch, supporting not only the backbone, but also the head with the fully-connected (softmax) layer, to facilitate high-performance large-scale face recognition. We will added this support into our repo.~~
 
