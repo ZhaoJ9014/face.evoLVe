@@ -147,9 +147,12 @@ if __name__ == '__main__':
         # multi-GPU setting
         BACKBONE = nn.DataParallel(BACKBONE, device_ids = GPU_ID)
         BACKBONE = BACKBONE.to(DEVICE)
+        HEAD = nn.DataParallel(HEAD, device_ids = GPU_ID)
+        HEAD = HEAD.to(DEVICE)
     else:
         # single-GPU setting
         BACKBONE = BACKBONE.to(DEVICE)
+        HEAD = HEAD.to(DEVICE)
 
 
     #======= train & validation & save checkpoint =======#
@@ -247,7 +250,7 @@ if __name__ == '__main__':
         # save checkpoints per epoch
         if MULTI_GPU:
             torch.save(BACKBONE.module.state_dict(), os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch, get_time())))
-            torch.save(HEAD.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
+            torch.save(HEAD.module.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
         else:
             torch.save(BACKBONE.state_dict(), os.path.join(MODEL_ROOT, "Backbone_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(BACKBONE_NAME, epoch + 1, batch, get_time())))
             torch.save(HEAD.state_dict(), os.path.join(MODEL_ROOT, "Head_{}_Epoch_{}_Batch_{}_Time_{}_checkpoint.pth".format(HEAD_NAME, epoch + 1, batch, get_time())))
