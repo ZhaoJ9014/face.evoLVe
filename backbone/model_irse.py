@@ -49,14 +49,14 @@ class SEModule(Module):
 class bottleneck_IR(Module):
     def __init__(self, in_channel, depth, stride):
         super(bottleneck_IR, self).__init__()
-        if in_channel == depth:
+        if stride == 1:
             self.shortcut_layer = MaxPool2d(1, stride)
         else:
             self.shortcut_layer = Sequential(
                 Conv2d(in_channel, depth, (1, 1), stride, bias=False), BatchNorm2d(depth))
         self.res_layer = Sequential(
             BatchNorm2d(in_channel),
-            Conv2d(in_channel, depth, (3, 3), (1, 1), 1, bias=False), PReLU(depth),
+            Conv2d(in_channel, depth, (3, 3), (1, 1), 1, bias=False), BatchNorm2d(depth),PReLU(depth),
             Conv2d(depth, depth, (3, 3), stride, 1, bias=False), BatchNorm2d(depth))
 
     def forward(self, x):
@@ -142,13 +142,13 @@ class Backbone(Module):
                                       PReLU(64))
         if input_size[0] == 112:
             self.output_layer = Sequential(BatchNorm2d(512),
-                                           Dropout(),
+                                           Dropout(0.4),
                                            Flatten(),
                                            Linear(512 * 7 * 7, 512),
                                            BatchNorm1d(512))
         else:
             self.output_layer = Sequential(BatchNorm2d(512),
-                                           Dropout(),
+                                           Dropout(0.4),
                                            Flatten(),
                                            Linear(512 * 14 * 14, 512),
                                            BatchNorm1d(512))
