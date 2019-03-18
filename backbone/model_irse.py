@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
-from torch.nn import Linear, Conv2d, BatchNorm1d, BatchNorm2d, PReLU, ReLU, Sigmoid, Dropout, MaxPool2d, \
-    AdaptiveAvgPool2d, Sequential, Module
+from torch.nn import Linear, Conv2d, BatchNorm1d, BatchNorm2d, PReLU, ReLU, Sigmoid, Dropout, MaxPool2d, AdaptiveAvgPool2d, Sequential, Module
 from collections import namedtuple
 
 
@@ -27,7 +26,7 @@ class SEModule(Module):
         self.fc1 = Conv2d(
             channels, channels // reduction, kernel_size=1, padding=0, bias=False)
 
-        nn.init.xavier_uniform_(self.fc1.weight.data)
+        nn.init.xavier_normal_(self.fc1.weight.data)
 
         self.relu = ReLU(inplace=True)
         self.fc2 = Conv2d(
@@ -174,7 +173,7 @@ class Backbone(Module):
     def _initialize_weights(self):
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
-                nn.init.xavier_uniform_(m.weight.data)
+                nn.init.xavier_normal_(m.weight.data)
                 if m.bias is not None:
                     m.bias.data.zero_()
             elif isinstance(m, nn.BatchNorm2d):
@@ -184,7 +183,7 @@ class Backbone(Module):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
             elif isinstance(m, nn.Linear):
-                nn.init.xavier_uniform_(m.weight.data)
+                nn.init.xavier_normal_(m.weight.data)
                 if m.bias is not None:
                     m.bias.data.zero_()
 
