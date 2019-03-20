@@ -185,7 +185,7 @@ def perform_val(multi_gpu, device, embedding_size, batch_size, backbone, carray,
     embeddings = np.zeros([len(carray), embedding_size])
     with torch.no_grad():
         while idx + batch_size <= len(carray):
-            batch = torch.tensor(carray[idx:idx + batch_size])
+            batch = torch.tensor(carray[idx:idx + batch_size][:, [2, 1, 0], :, :])
             if tta:
                 ccropped = ccrop_batch(batch)
                 fliped = hflip_batch(ccropped)
