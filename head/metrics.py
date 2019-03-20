@@ -74,7 +74,7 @@ class ArcFace(nn.Module):
             m: margin
             cos(theta+m)
         """
-    def __init__(self, in_features, out_features, device_id, s = 64.0, m = 0.50, easy_margin = False): # s = 30.0
+    def __init__(self, in_features, out_features, device_id, s = 64.0, m = 0.50, easy_margin = False):
         super(ArcFace, self).__init__()
         self.in_features = in_features
         self.out_features = out_features
@@ -135,7 +135,7 @@ class CosFace(nn.Module):
         m: margin
         cos(theta)-m
     """
-    def __init__(self, in_features, out_features, device_id, s = 64.0, m = 0.35): # s = 30.0, m = 0.40
+    def __init__(self, in_features, out_features, device_id, s = 64.0, m = 0.35):
         super(CosFace, self).__init__()
         self.in_features = in_features
         self.out_features = out_features
