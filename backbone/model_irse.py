@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
-from torch.nn import Linear, Conv2d, BatchNorm1d, BatchNorm2d, PReLU, ReLU, Sigmoid, Dropout, MaxPool2d, AdaptiveAvgPool2d, Sequential, Module
+from torch.nn import Linear, Conv2d, BatchNorm1d, BatchNorm2d, PReLU, ReLU, Sigmoid, Dropout, MaxPool2d, \
+    AdaptiveAvgPool2d, Sequential, Module
 from collections import namedtuple
 
 
@@ -26,7 +27,7 @@ class SEModule(Module):
         self.fc1 = Conv2d(
             channels, channels // reduction, kernel_size=1, padding=0, bias=False)
 
-        nn.init.xavier_normal_(self.fc1.weight.data)
+        nn.init.xavier_uniform_(self.fc1.weight.data)
 
         self.relu = ReLU(inplace=True)
         self.fc2 = Conv2d(
@@ -48,14 +49,14 @@ class SEModule(Module):
 class bottleneck_IR(Module):
     def __init__(self, in_channel, depth, stride):
         super(bottleneck_IR, self).__init__()
-        if stride == 1:
+        if in_channel == depth:
             self.shortcut_layer = MaxPool2d(1, stride)
         else:
             self.shortcut_layer = Sequential(
                 Conv2d(in_channel, depth, (1, 1), stride, bias=False), BatchNorm2d(depth))
         self.res_layer = Sequential(
             BatchNorm2d(in_channel),
-            Conv2d(in_channel, depth, (3, 3), (1, 1), 1, bias=False), BatchNorm2d(depth),PReLU(depth),
+            Conv2d(in_channel, depth, (3, 3), (1, 1), 1, bias=False), PReLU(depth),
             Conv2d(depth, depth, (3, 3), stride, 1, bias=False), BatchNorm2d(depth))
 
     def forward(self, x):
@@ -141,13 +142,13 @@ class Backbone(Module):
                                       PReLU(64))
         if input_size[0] == 112:
             self.output_layer = Sequential(BatchNorm2d(512),
-                                           Dropout(0.4),
+                                           Dropout(),
                                            Flatten(),
                                            Linear(512 * 7 * 7, 512),
                                            BatchNorm1d(512))
         else:
             self.output_layer = Sequential(BatchNorm2d(512),
-                                           Dropout(0.4),
+                                           Dropout(),
                                            Flatten(),
                                            Linear(512 * 14 * 14, 512),
                                            BatchNorm1d(512))
@@ -173,7 +174,7 @@ class Backbone(Module):
     def _initialize_weights(self):
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
-                nn.init.xavier_normal_(m.weight.data)
+                nn.init.xavier_uniform_(m.weight.data)
                 if m.bias is not None:
                     m.bias.data.zero_()
             elif isinstance(m, nn.BatchNorm2d):
@@ -183,7 +184,7 @@ class Backbone(Module):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
             elif isinstance(m, nn.Linear):
-                nn.init.xavier_normal_(m.weight.data)
+                nn.init.xavier_uniform_(m.weight.data)
                 if m.bias is not None:
                     m.bias.data.zero_()
 
