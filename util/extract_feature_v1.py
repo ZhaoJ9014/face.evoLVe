@@ -65,8 +65,9 @@ def extract_feature(data_root, backbone, model_root, input_size = [112, 112], rg
     idx = 0
     features = np.zeros([len(loader.dataset), embedding_size])
     with torch.no_grad():
+        iter_loader = iter(loader)
         while idx + batch_size <= len(loader.dataset):
-            batch, _ = iter(loader).next()
+            batch, _ = iter_loader.next()
             if tta:
                 fliped = hflip_batch(batch)
                 emb_batch = backbone(batch.to(device)).cpu() + backbone(fliped.to(device)).cpu()
@@ -76,7 +77,7 @@ def extract_feature(data_root, backbone, model_root, input_size = [112, 112], rg
             idx += batch_size
 
         if idx < len(loader.dataset):
-            batch, _ = iter(loader).next()
+            batch, _ = iter_loader.next()
             if tta:
                 fliped = hflip_batch(batch)
                 emb_batch = backbone(batch.to(device)).cpu() + backbone(fliped.to(device)).cpu()
