@@ -626,6 +626,13 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 - Please consult and consider citing the following papers:
 
+      @article{zhao2019multi,
+      title={Multi-Prototype Networks for Unconstrained Set-based Face Recognition},
+      author={Zhao, Jian and Li, Jianshu and Tu, Xiaoguang and Zhao, Fang and Xin, Yuan and Xing, Junliang and Liu, Hengzhu and Yan, Shuicheng and Feng, Jiashi},
+      journal={arXiv preprint arXiv:1902.04755},
+      year={2019}
+      }
+
 
       @article{zhao2018look,
       title={Look Across Elapse: Disentangled Representation Learning and Photorealistic Cross-Age Face Synthesis for Age-Invariant Face Recognition},
