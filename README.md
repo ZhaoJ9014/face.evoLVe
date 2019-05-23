@@ -522,6 +522,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 |[DeepGlint](http://trillionpairs.deepglint.com)|Align_112x112|180,855|6,753,545|-|-|[Google Drive](https://drive.google.com/file/d/1Lqvh24913uquWxa3YS_APluEmbNKQ4Us/view?usp=sharing)|
 |[UTKFace](https://susanqq.github.io/UTKFace/)|Align_200x200|-|23,708|-|-|[Google Drive](https://drive.google.com/file/d/1T5KH-DWXu048im0xBuRK0WEi820T28B-/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/12Qp5pdZvitqBYSJHm4ouOw)|
 |[BUAA-VisNir](http://irip.buaa.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1240132834&wbfileid=1277824)|Align_287x287|150|5,952|-|-|[Baidu Drive](https://pan.baidu.com/s/1MWiqNhHQmSKHmWY7oLsFbw), PW: vt68|
+|[CASIA NIR-VIS 2.0](https://www.cv-foundation.org/openaccess/content_cvpr_workshops_2013/W13/papers/Li_The_CASIA_NIR-VIS_2013_CVPR_paper.pdf)|Align_287x287|725|17,580|-|-|[Baidu Drive](https://pan.baidu.com/s/1fNJT8_UE4ZwTWAOxPT7h8Q), PW: 7qy6|
 * Remark: unzip [CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf) clean version with 
   ```
   unzip casia-maxpy-clean.zip    
