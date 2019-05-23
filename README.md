@@ -521,7 +521,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 |[YTF](http://www.cs.tau.ac.il/~wolf/ytfaces/WolfHassnerMaoz_CVPR11.pdf)|Align_344x344|1,595|-|3,425|621,127|[Google Drive](https://drive.google.com/file/d/1o_5b7rYcSEFvTmwmEh0eCPsU5kFmKN_Y/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1M43AcijgGrurb0dfFVlDKQ)|
 |[DeepGlint](http://trillionpairs.deepglint.com)|Align_112x112|180,855|6,753,545|-|-|[Google Drive](https://drive.google.com/file/d/1Lqvh24913uquWxa3YS_APluEmbNKQ4Us/view?usp=sharing)|
 |[UTKFace](https://susanqq.github.io/UTKFace/)|Align_200x200|-|23,708|-|-|[Google Drive](https://drive.google.com/file/d/1T5KH-DWXu048im0xBuRK0WEi820T28B-/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/12Qp5pdZvitqBYSJHm4ouOw)|
-|[BUAA-VisNir](http://irip.buaa.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1240132834&wbfileid=1277824)|Align_287x287|150|5,952|-|-|[Baidu Drive](链接: https://pan.baidu.com/s/1MWiqNhHQmSKHmWY7oLsFbw), PW: vt68|
+|[BUAA-VisNir](http://irip.buaa.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1240132834&wbfileid=1277824)|Align_287x287|150|5,952|-|-|[Baidu Drive](https://pan.baidu.com/s/1MWiqNhHQmSKHmWY7oLsFbw), PW: vt68|
 * Remark: unzip [CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf) clean version with 
   ```
   unzip casia-maxpy-clean.zip    
