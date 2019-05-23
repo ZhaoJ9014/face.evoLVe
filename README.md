@@ -675,12 +675,3 @@ While not required, for optimal performance it is **highly** recommended to run 
       pages={1184--1190},
       year={2018}
       }
-
-
-      @inproceedings{cheng2017know,
-      title={Know you at one glance: A compact vector representation for low-shot learning},
-      author={Cheng, Yu and Zhao, Jian and Wang, Zhecan and Xu, Yan and Jayashree, Karlekar and Shen, Shengmei and Feng, Jiashi},
-      booktitle={ICCVW},
-      pages={1924--1932},
-      year={2017}
-      }
