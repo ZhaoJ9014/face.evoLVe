@@ -45,4 +45,6 @@ if __name__ == '__main__':
             facial5points = [[landmarks[0][j], landmarks[0][j + 5]] for j in range(5)]
             warped_face = warp_and_crop_face(np.array(img), facial5points, reference, crop_size=(crop_size, crop_size))
             img_warped = Image.fromarray(warped_face)
-            img_warped.save(os.path.join(dest_root, subfolder, image_name.split('.')[0] + '.jpg'))
+            if image_name.split('.')[-1].lower() not in ['jpg', 'jpeg']: #not from jpg
+                image_name = '.'.join(image_name.split('.')[:-1]) + '.jpg'
+            img_warped.save(os.path.join(dest_root, subfolder, image_name))
