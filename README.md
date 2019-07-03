@@ -17,6 +17,8 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 ****
 ## News
 
+:triangular_flag_on_post: **`OPEN 07 June 2019`**: We are training a better-performing [IR-152](https://arxiv.org/pdf/1512.03385.pdf) model on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will release the model soon.
+
 :white_check_mark: **`CLOSED 23 May 2019`**: ~~We share three publicly available datasets to facilitate research on heterogeneous face recognition and analytics. Please refer to Sec. [Data Zoo](#Data-Zoo) for details.~~
 
 :white_check_mark: **`CLOSED 23 Jan 2019`**: ~~We share the name lists and pair-wise overlapping lists of several widely-used face recognition datasets to help researchers/engineers quickly remove the overlapping parts between their own private datasets and the public datasets. Please refer to Sec. [Data Zoo](#Data-Zoo) for details.~~
