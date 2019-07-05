@@ -17,6 +17,8 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 ****
 ## News
 
+:triangular_flag_on_post: **`OPEN 04 July 2019`**: We will share several publicly available datasets on face anti-spoofing/liveness detection to facilitate related research and analytics.
+
 :triangular_flag_on_post: **`OPEN 07 June 2019`**: We are training a better-performing [IR-152](https://arxiv.org/pdf/1512.03385.pdf) model on [MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf), and will release the model soon.
 
 :white_check_mark: **`CLOSED 23 May 2019`**: ~~We share three publicly available datasets to facilitate research on heterogeneous face recognition and analytics. Please refer to Sec. [Data Zoo](#Data-Zoo) for details.~~
