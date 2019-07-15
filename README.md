@@ -630,18 +630,34 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 - Please consult and consider citing the following papers:
 
-      @article{zhao2019multi,
+      @inproceedings{zhao2019multi,
       title={Multi-Prototype Networks for Unconstrained Set-based Face Recognition},
       author={Zhao, Jian and Li, Jianshu and Tu, Xiaoguang and Zhao, Fang and Xin, Yuan and Xing, Junliang and Liu, Hengzhu and Yan, Shuicheng and Feng, Jiashi},
-      journal={arXiv preprint arXiv:1902.04755},
+      booktitle={IJCAI},
       year={2019}
       }
 
 
-      @article{zhao2018look,
+      @inproceedings{zhao2019look,
       title={Look Across Elapse: Disentangled Representation Learning and Photorealistic Cross-Age Face Synthesis for Age-Invariant Face Recognition},
       author={Zhao, Jian and Cheng, Yu and Cheng, Yi and Yang, Yang and Lan, Haochong and Zhao, Fang and Xiong, Lin and Xu, Yan and Li, Jianshu and Pranata, Sugiri and others},
-      journal={AAAI},
+      booktitle={AAAI},
+      year={2019}
+      }
+      
+      
+      @article{tu2019joint,
+      title={Joint 3D Face Reconstruction and Dense Face Alignment from A Single Image with 2D-Assisted Self-Supervised Learning},
+      author={Tu, Xiaoguang and Zhao, Jian and Jiang, Zihang and Luo, Yao and Xie, Mei and Zhao, Yang and He, Linxiao and Ma, Zheng and Feng, Jiashi},
+      journal={arXiv preprint arXiv:1903.09359},
+      year={2019}
+      }
+      
+      
+      @article{tu2019learning,
+      title={Learning Generalizable and Identity-Discriminative Representations for Face Anti-Spoofing},
+      author={Tu, Xiaoguang and Zhao, Jian and Xie, Mei and Du, Guodong and Zhang, Hengsheng and Li, Jianshu and Ma, Zheng and Feng, Jiashi},
+      journal={arXiv preprint arXiv:1901.05602},
       year={2019}
       }
       
@@ -663,19 +679,98 @@ While not required, for optimal performance it is **highly** recommended to run 
       }
       
       
-      @inproceedings{zhao2017dual,
-      title={Dual-agent gans for photorealistic and identity preserving profile face synthesis},
-      author={Zhao, Jian and Xiong, Lin and Jayashree, Panasonic Karlekar and Li, Jianshu and Zhao, Fang and Wang, Zhecan and Pranata,           Panasonic Sugiri and Shen, Panasonic Shengmei and Yan, Shuicheng and Feng, Jiashi},
-      booktitle={NIPS},
-      pages={66--76},
-      year={2017}
-      }
-      
-      
       @inproceedings{zhao3d,
       title={3D-Aided Deep Pose-Invariant Face Recognition},
       author={Zhao, Jian and Xiong, Lin and Cheng, Yu and Cheng, Yi and Li, Jianshu and Zhou, Li and Xu, Yan and Karlekar, Jayashree and       Pranata, Sugiri and Shen, Shengmei and others},
       booktitle={IJCAI},
       pages={1184--1190},
       year={2018}
+      }
+      
+      
+      @inproceedings{zhao2018dynamic,
+      title={Dynamic Conditional Networks for Few-Shot Learning},
+      author={Zhao, Fang and Zhao, Jian and Yan, Shuicheng and Feng, Jiashi},
+      booktitle={ECCV},
+      pages={19--35},
+      year={2018}
+      }
+      
+      
+      @inproceedings{zhao2017dual,
+      title={Dual-agent gans for photorealistic and identity preserving profile face synthesis},
+      author={Zhao, Jian and Xiong, Lin and Jayashree, Panasonic Karlekar and Li, Jianshu and Zhao, Fang and Wang, Zhecan and Pranata,           Panasonic Sugiri and Shen, Panasonic Shengmei and Yan, Shuicheng and Feng, Jiashi},
+      booktitle={NeurIPS},
+      pages={66--76},
+      year={2017}
+      }
+      
+      
+      @inproceedings{zhao122017marginalized,
+      title={Marginalized cnn: Learning deep invariant representations},
+      author={Zhao12, Jian and Li, Jianshu and Zhao, Fang and Yan13, Shuicheng and Feng, Jiashi},
+      booktitle={BMVC},
+      year={2017}
+      }
+      
+      
+      @inproceedings{cheng2017know,
+      title={Know you at one glance: A compact vector representation for low-shot learning},
+      author={Cheng, Yu and Zhao, Jian and Wang, Zhecan and Xu, Yan and Jayashree, Karlekar and Shen, Shengmei and Feng, Jiashi},
+      booktitle={ICCVW},
+      pages={1924--1932},
+      year={2017}
+      }
+      
+      
+      @inproceedings{xu2017high,
+      title={High performance large scale face recognition with multi-cognition softmax and feature retrieval},
+      author={Xu, Yan and Cheng, Yu and Zhao, Jian and Wang, Zhecan and Xiong, Lin and Jayashree, Karlekar and Tamura, Hajime and Kagaya, Tomoyuki and Shen, Shengmei and Pranata, Sugiri and others},
+      booktitle={ICCVW},
+      pages={1898--1906},
+      year={2017}
+      }
+      
+      
+      @inproceedings{wangconditional,
+      title={Conditional Dual-Agent GANs for Photorealistic and Annotation Preserving Image Synthesis},
+      author={Wang, Zhecan and Zhao, Jian and Cheng, Yu and Xiao, Shengtao and Li, Jianshu and Zhao, Fang and Feng, Jiashi and Kassim, Ashraf},
+      booktitle={BMVCW},
+      }
+      
+      
+      @inproceedings{li2017integrated,
+      title={Integrated face analytics networks through cross-dataset hybrid training},
+      author={Li, Jianshu and Xiao, Shengtao and Zhao, Fang and Zhao, Jian and Li, Jianan and Feng, Jiashi and Yan, Shuicheng and Sim, Terence},
+      booktitle={ACM MM},
+      pages={1531--1539},
+      year={2017}
+      }
+      
+      
+      @article{xiong2017good,
+      title={A good practice towards top performance of face recognition: Transferred deep feature fusion},
+      author={Xiong, Lin and Karlekar, Jayashree and Zhao, Jian and Cheng, Yi and Xu, Yan and Feng, Jiashi and Pranata, Sugiri and Shen, Shengmei},
+      journal={arXiv preprint arXiv:1704.00438},
+      year={2017}
+      }
+      
+      
+      @article{zhao2017robust,
+      title={Robust lstm-autoencoders for face de-occlusion in the wild},
+      author={Zhao, Fang and Feng, Jiashi and Zhao, Jian and Yang, Wenhan and Yan, Shuicheng},
+      journal={T-IP},
+      volume={27},
+      number={2},
+      pages={778--790},
+      year={2017}
+      }
+ 
+ 
+      @inproceedings{li2016robust,
+      title={Robust face recognition with deep multi-view representation learning},
+      author={Li, Jianshu and Zhao, Jian and Zhao, Fang and Liu, Hao and Li, Jing and Shen, Shengmei and Feng, Jiashi and Sim, Terence},
+      booktitle={ACM MM},
+      pages={1068--1072},
+      year={2016}
       }
