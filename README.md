@@ -610,7 +610,7 @@ While not required, for optimal performance it is **highly** recommended to run 
     ```
   * Training \& validation statistics
   
-    <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig13.png" width="1000px"/>
+    <img src="https://github.com/ZhaoJ9014/face.evoLVe.PyTorch/blob/master/disp/Fig14.png" width="1000px"/>
       
   * Performance
 
