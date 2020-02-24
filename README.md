@@ -655,6 +655,31 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 - Please consult and consider citing the following papers:
 
+      @article{zhao2019recognizing,
+      title={Recognizing Profile Faces by Imagining Frontal View},
+      author={Zhao, Jian and Xing, Junliang and Xiong, Lin and Yan, Shuicheng and Feng, Jiashi},
+      journal={IJCV},
+      pages={1--19},
+      year={2019}
+      }
+
+
+      @article{kong2019cross,
+      title={Cross-Resolution Face Recognition via Prior-Aided Face Hallucination and Residual Knowledge Distillation},
+      author={Kong, Hanyang and Zhao, Jian and Tu, Xiaoguang and Xing, Junliang and Shen, Shengmei and Feng, Jiashi},
+      journal={arXiv preprint arXiv:1905.10777},
+      year={2019}
+      }
+
+
+      @article{tu2019joint,
+      title={Joint 3D face reconstruction and dense face alignment from a single image with 2D-assisted self-supervised learning},
+      author={Tu, Xiaoguang and Zhao, Jian and Jiang, Zihang and Luo, Yao and Xie, Mei and Zhao, Yang and He, Linxiao and Ma, Zheng and Feng, Jiashi},
+      journal={arXiv preprint arXiv:1903.09359},
+      year={2019}
+      }     
+
+
       @inproceedings{zhao2019multi,
       title={Multi-Prototype Networks for Unconstrained Set-based Face Recognition},
       author={Zhao, Jian and Li, Jianshu and Tu, Xiaoguang and Zhao, Fang and Xin, Yuan and Xing, Junliang and Liu, Hengzhu and Yan, Shuicheng and Feng, Jiashi},
