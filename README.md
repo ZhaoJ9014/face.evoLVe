@@ -527,12 +527,12 @@ While not required, for optimal performance it is **highly** recommended to run 
 |[YTF](http://www.cs.tau.ac.il/~wolf/ytfaces/WolfHassnerMaoz_CVPR11.pdf)|Align_344x344|1,595|-|3,425|621,127|[Google Drive](https://drive.google.com/file/d/1o_5b7rYcSEFvTmwmEh0eCPsU5kFmKN_Y/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1M43AcijgGrurb0dfFVlDKQ)|
 |[DeepGlint](http://trillionpairs.deepglint.com)|Align_112x112|180,855|6,753,545|-|-|[Google Drive](https://drive.google.com/file/d/1Lqvh24913uquWxa3YS_APluEmbNKQ4Us/view?usp=sharing)|
 |[UTKFace](https://susanqq.github.io/UTKFace/)|Align_200x200|-|23,708|-|-|[Google Drive](https://drive.google.com/file/d/1T5KH-DWXu048im0xBuRK0WEi820T28B-/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/12Qp5pdZvitqBYSJHm4ouOw)|
-|[BUAA-VisNir](http://irip.buaa.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1240132834&wbfileid=1277824)|Align_287x287|150|5,952|-|-|[Baidu Drive](https://pan.baidu.com/s/1MWiqNhHQmSKHmWY7oLsFbw), PW: vt68|
-|[CASIA NIR-VIS 2.0](https://www.cv-foundation.org/openaccess/content_cvpr_workshops_2013/W13/papers/Li_The_CASIA_NIR-VIS_2013_CVPR_paper.pdf)|Align_128x128|725|17,580|-|-|[Baidu Drive](https://pan.baidu.com/s/1fNJT8_UE4ZwTWAOxPT7h8Q), PW: 7qy6|
-|[Oulu-CASIA](http://www.ee.oulu.fi/~gyzhao/Download/Databases/NIR_VL_FED/Description.pdf)|Raw|80|65,000|-|-|[Baidu Drive](https://pan.baidu.com/s/1qmNVAkQ_nHFnkGbFcRw1zQ), PW: qc9i|
-|[NUAA-ImposterDB](http://parnec.nuaa.edu.cn/xtan/paper/eccv10r1.pdf)|Raw|15|12,614|-|-|[Baidu Drive](https://pan.baidu.com/s/1dGaMpBzwRiJYvFapmWOUkw), PW: tqfh|
-|[CASIA-SURF](https://arxiv.org/pdf/1812.00408.pdf)|Raw|1,000|-|-|21,000|[Baidu Drive](https://pan.baidu.com/s/1ZQVS-DBLqrGKQTd_JQ0lXg), PW: j41h|
-|[CASIA-FASD](http://www.cbsr.ia.ac.cn/users/zlei/papers/ICB2012/ZHANG-ICB2012.pdf)|Raw|50|-|-|600|[Baidu Drive](https://pan.baidu.com/s/1tGCCKNmSEG8yIZE6_FFDew), PW: zx7k|
+|[BUAA-VisNir](http://irip.buaa.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1240132834&wbfileid=1277824)|Align_287x287|150|5,952|-|-|[Baidu Drive](https://pan.baidu.com/s/1XcqgcOzYsFZ8THEXg4nwVw), PW: xmbc|
+|[CASIA NIR-VIS 2.0](https://www.cv-foundation.org/openaccess/content_cvpr_workshops_2013/W13/papers/Li_The_CASIA_NIR-VIS_2013_CVPR_paper.pdf)|Align_128x128|725|17,580|-|-|[Baidu Drive](https://pan.baidu.com/s/1MZwONRsPmKTcE1xq6bdDFA), PW: 883b|
+|[Oulu-CASIA](http://www.ee.oulu.fi/~gyzhao/Download/Databases/NIR_VL_FED/Description.pdf)|Raw|80|65,000|-|-|[Baidu Drive](https://pan.baidu.com/s/1HzsmNvA2xvJA-XW8nGKK1A), PW: xxp5|
+|[NUAA-ImposterDB](http://parnec.nuaa.edu.cn/xtan/paper/eccv10r1.pdf)|Raw|15|12,614|-|-|[Baidu Drive](https://pan.baidu.com/s/1WeSvoencoyGIi7SKygnEWw), PW: if3n|
+|[CASIA-SURF](https://arxiv.org/pdf/1812.00408.pdf)|Raw|1,000|-|-|21,000|[Baidu Drive](https://pan.baidu.com/s/1dTGo9xcdTuK54RBgBWJNQg), PW: izb3|
+|[CASIA-FASD](http://www.cbsr.ia.ac.cn/users/zlei/papers/ICB2012/ZHANG-ICB2012.pdf)|Raw|50|-|-|600|[Baidu Drive](https://pan.baidu.com/s/15HyX7tizCCuwN9BKiV9_zA), PW: h5un|
 |[CASIA-MFSD](http://biometrics.cse.msu.edu/Publications/Databases/MSUMobileFaceSpoofing/index.htm)|Raw|50|-|-|600| |
 |[Replay-Attack](https://publications.idiap.ch/downloads/papers/2012/Chingovska_IEEEBIOSIG2012_2012.pdf)|Raw|50|-|-|1,200| |
 * Remark: unzip [CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf) clean version with 
@@ -606,7 +606,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
   |Backbone|Head|Loss|Training Data|Download Link|
   |:---:|:---:|:---:|:---:|:---:|
-  |[IR-152](https://arxiv.org/pdf/1512.03385.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)|[Baidu Drive](https://pan.baidu.com/s/19c2_qdGeLo3CEiSSQztUeA), PW: y6ya|
+  |[IR-152](https://arxiv.org/pdf/1512.03385.pdf)|[ArcFace](https://arxiv.org/pdf/1801.07698.pdf)|[Focal](https://arxiv.org/pdf/1708.02002.pdf)|[MS-Celeb-1M_Align_112x112](https://arxiv.org/pdf/1607.08221.pdf)|[Baidu Drive](https://pan.baidu.com/s/1-9sFB3H1mL8bt2jH7EagtA), PW: b197|
 
   * Setting
     ```
