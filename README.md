@@ -655,6 +655,16 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 - Please consult and consider citing the following papers:
 
+
+      @inproceedings{wang2020learning,
+      title={Learning to Detect Head Movement in Unconstrained Remote Gaze Estimation in the Wild},
+      author={Wang, Zhecan and Zhao, Jian and Lu, Cheng and Yang, Fan and Huang, Han and Guo, Yandong and others},
+      booktitle={WACV},
+      pages={3443--3452},
+      year={2020}
+      }
+
+
       @article{zhao2019recognizing,
       title={Recognizing Profile Faces by Imagining Frontal View},
       author={Zhao, Jian and Xing, Junliang and Xiong, Lin and Yan, Shuicheng and Feng, Jiashi},
