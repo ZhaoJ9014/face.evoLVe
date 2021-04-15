@@ -656,6 +656,40 @@ While not required, for optimal performance it is **highly** recommended to run 
 - Please consult and consider citing the following papers:
 
 
+      @article{zhao2020towards,
+      title={Towards age-invariant face recognition},
+      author={Zhao, Jian and Yan, Shuicheng and Feng, Jiashi},
+      journal={T-PAMI},
+      year={2020}
+      }
+
+
+      @article{liang2020fine,
+      title={Fine-grained facial expression recognition in the wild},
+      author={Liang, Liqian and Lang, Congyan and Li, Yidong and Feng, Songhe and Zhao, Jian},
+      journal={T-IFS},
+      pages={482--494},
+      year={2020}
+      }
+
+
+      @article{tu2020learning,
+      title={Learning generalizable and identity-discriminative representations for face anti-spoofing},
+      author={Tu, Xiaoguang and Ma, Zheng and Zhao, Jian and Du, Guodong and Xie, Mei and Feng, Jiashi},
+      journal={T-IST},
+      pages={1--19},
+      year={2020}
+      }
+
+
+      @article{tu20203d,
+      title={3D face reconstruction from a single image assisted by 2D face images in the wild},
+      author={Tu, Xiaoguang and Zhao, Jian and Xie, Mei and Jiang, Zihang and Balamurugan, Akshaya and Luo, Yao and Zhao, Yang and He, Lingxiao and Ma, Zheng and Feng, Jiashi},
+      journal={T-MM},
+      year={2020}
+      }
+
+
       @inproceedings{wang2020learning,
       title={Learning to Detect Head Movement in Unconstrained Remote Gaze Estimation in the Wild},
       author={Wang, Zhecan and Zhao, Jian and Lu, Cheng and Yang, Fan and Huang, Han and Guo, Yandong and others},
