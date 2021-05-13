@@ -3,10 +3,9 @@ import torch.nn as nn
 import torch.optim as optim
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
-from loss import AdaCos,AdaM_Softmax,AM_Softmax,ArcFace,ArcNegFace,CircleLoss,CurricularFace,MagFace,MV_Softmax,NPCFace,SST_Prototype
-from config import configurations
+
+from config_f import configurations
 from backbone.model_resnet import ResNet_50, ResNet_101, ResNet_152
-from backbone.model_irse import IR_50, IR_101, IR_152, IR_SE_50, IR_SE_101, IR_SE_152
 from head.metrics import ArcFace, CosFace, SphereFace, Am_softmax
 from loss.focal import FocalLoss
 from util.utils import make_weights_for_balanced_classes, get_val_data, separate_irse_bn_paras, separate_resnet_bn_paras, warm_up_lr, schedule_lr, perform_val, get_time, buffer_val, AverageMeter, accuracy
@@ -82,29 +81,18 @@ if __name__ == '__main__':
     NUM_CLASS = len(train_loader.dataset.classes)
     print("Number of Training Classes: {}".format(NUM_CLASS))
 
-    lfw, cfp_ff, cfp_fp, agedb, calfw, cplfw, vgg2_fp, lfw_issame, cfp_ff_issame, cfp_fp_issame, agedb_issame, calfw_issame, cplfw_issame, vgg2_fp_issame = get_val_data(DATA_ROOT)
+    lfw = get_val_data(DATA_ROOT)
 
 
     #======= model & loss & optimizer =======#
-    BACKBONE_DICT = {'ResNet_50': ResNet_50(INPUT_SIZE), 
-                     'ResNet_101': ResNet_101(INPUT_SIZE), 
-                     'ResNet_152': ResNet_152(INPUT_SIZE),
-                     'IR_50': IR_50(INPUT_SIZE), 
-                     'IR_101': IR_101(INPUT_SIZE), 
-                     'IR_152': IR_152(INPUT_SIZE),
-                     'IR_SE_50': IR_SE_50(INPUT_SIZE), 
-                     'IR_SE_101': IR_SE_101(INPUT_SIZE), 
-                     'IR_SE_152': IR_SE_152(INPUT_SIZE)}
+    BACKBONE_DICT = {'ResNet_50': ResNet_50(INPUT_SIZE)}
     BACKBONE = BACKBONE_DICT[BACKBONE_NAME]
     print("=" * 60)
     print(BACKBONE)
     print("{} Backbone Generated".format(BACKBONE_NAME))
     print("=" * 60)
 
-    HEAD_DICT = {'ArcFace': ArcFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID),
-                 'CosFace': CosFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID),
-                 'SphereFace': SphereFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID),
-                 'Am_softmax': Am_softmax(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID)}
+    HEAD_DICT = {'ArcFace': ArcFace(in_features = EMBEDDING_SIZE, out_features = NUM_CLASS, device_id = GPU_ID)}
     HEAD = HEAD_DICT[HEAD_NAME]
     print("=" * 60)
     print(HEAD)
@@ -112,18 +100,7 @@ if __name__ == '__main__':
     print("=" * 60)
 
     LOSS_DICT = {'Focal': FocalLoss(), 
-                 'Softmax': nn.CrossEntropyLoss()
-                 'AdaCos' : AdaCos(),
-                 'AdaM_Softmax': AdaM_Softmax() ,
-                 'ArcFace' : ArcFace() ,
-                 'ArcNegFace': ArcNegFace(),
-                 'CircleLoss': Circleloss(),
-                 'CurricularFace': CurricularFace(),
-                 'MagFace' :  MagFace(),
-                 'NPCFace' :  MV_Softmax.py(),
-                 'SST_Prototype' SST_Prototype(),
-                 
-                 }
+                 'Softmax': nn.CrossEntropyLoss()}
     LOSS = LOSS_DICT[LOSS_NAME]
     print("=" * 60)
     print(LOSS)
