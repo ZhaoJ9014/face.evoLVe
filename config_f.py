@@ -29,7 +29,7 @@ configurations = {
 
         DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu"),
         MULTI_GPU = True, # flag to use multiple GPUs; if you choose to train with single GPU, you should first run "export CUDA_VISILE_DEVICES=device_id" to specify the GPU card you want to use
-        GPU_ID = [0, 1, 2, 3], # specify your GPU ids
+        GPU_ID = [0], # specify your GPU ids
         PIN_MEMORY = True,
         NUM_WORKERS = 0,
 ),
