@@ -3,7 +3,6 @@ import torch.nn as nn
 import torch.optim as optim
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
-
 from config import configurations
 from backbone.model_resnet import ResNet_50, ResNet_101, ResNet_152
 from backbone.model_irse import IR_50, IR_101, IR_152, IR_SE_50, IR_SE_101, IR_SE_152
@@ -112,7 +111,18 @@ if __name__ == '__main__':
     print("=" * 60)
 
     LOSS_DICT = {'Focal': FocalLoss(), 
-                 'Softmax': nn.CrossEntropyLoss()}
+                 'Softmax': nn.CrossEntropyLoss()
+                 'AdaCos' : AdaCos(),
+                 'AdaM_Softmax': AdaM_Softmax() ,
+                 'ArcFace' : ArcFace() ,
+                 'ArcNegFace': ArcNegFace(),
+                 'CircleLoss': Circleloss(),
+                 'CurricularFace': CurricularFace(),
+                 'MagFace' :  MagFace(),
+                 'NPCFace' :  MV_Softmax.py(),
+                 'SST_Prototype' SST_Prototype(),
+                 
+                 }
     LOSS = LOSS_DICT[LOSS_NAME]
     print("=" * 60)
     print(LOSS)

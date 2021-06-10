@@ -5,9 +5,9 @@ configurations = {
     1: dict(
         SEED = 1337, # random seed for reproduce results
 
-        DATA_ROOT = '/media/pc/6T/jasonjzhao/data/faces_emore', # the parent root where your train/val/test data are stored
-        MODEL_ROOT = '/media/pc/6T/jasonjzhao/buffer/model', # the root to buffer your checkpoints
-        LOG_ROOT = '/media/pc/6T/jasonjzhao/buffer/log', # the root to log your train/val status
+        DATA_ROOT = '/home/peter/Project/face.evoLVe.PyTorch/data', # the parent root where your train/val/test data are stored
+        MODEL_ROOT = '/home/peter/Project/face.evoLVe.PyTorch/model', # the root to buffer your checkpoints
+        LOG_ROOT = '/home/peter/Project/face.evoLVe.PyTorch/log', # the root to log your train/val status
         BACKBONE_RESUME_ROOT = './', # the root to resume training from a saved checkpoint
         HEAD_RESUME_ROOT = './', # the root to resume training from a saved checkpoint
 

@@ -535,6 +535,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 |[CASIA-FASD](http://www.cbsr.ia.ac.cn/users/zlei/papers/ICB2012/ZHANG-ICB2012.pdf)|Raw|50|-|-|600|[Baidu Drive](https://pan.baidu.com/s/15HyX7tizCCuwN9BKiV9_zA), PW: h5un|
 |[CASIA-MFSD](http://biometrics.cse.msu.edu/Publications/Databases/MSUMobileFaceSpoofing/index.htm)|Raw|50|-|-|600| |
 |[Replay-Attack](https://publications.idiap.ch/downloads/papers/2012/Chingovska_IEEEBIOSIG2012_2012.pdf)|Raw|50|-|-|1,200| |
+|[WebFace260M](https://arxiv.org/abs/2103.04098)|Raw|24M|2M|-||https://www.face-benchmark.org/|
 * Remark: unzip [CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf) clean version with 
   ```
   unzip casia-maxpy-clean.zip    
