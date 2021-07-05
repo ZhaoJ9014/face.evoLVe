@@ -9,7 +9,7 @@ import math
 # Support: ['Softmax', 'ArcFace', 'CosFace', 'SphereFace', 'Am_softmax']
 
 class Softmax(nn.Layer):
-    r"""Implement of Softmax (normal classification head):
+    """Implement of Softmax (normal classification head):
         Args:
             in_features: size of each input sample
             out_features: size of each output sample
@@ -21,7 +21,7 @@ class Softmax(nn.Layer):
         self.out_features = out_features
         weight_arr = paddle.ParamAttr(initializer=paddle.nn.initializer.XavierUniform())
         bias_attr = paddle.ParamAttr(initializer=paddle.nn.initializer.Constant())
-        self.linear = paddle.nn.Linear(in_features,out_features,weight_attr=weight_arr, bias_attr=bias_attr)
+        self.linear = paddle.nn.Linear(in_features, out_features, weight_attr=weight_arr, bias_attr=bias_attr)
 
     def forward(self, x):
         out = self.linear(x)
@@ -29,7 +29,7 @@ class Softmax(nn.Layer):
 
 
 class ArcFace(nn.Layer):
-    r"""Implement of ArcFace (https://arxiv.org/pdf/1801.07698v1.pdf):
+    """Implement of ArcFace (https://arxiv.org/pdf/1801.07698v1.pdf):
         Args:
             in_features: size of each input sample
             out_features: size of each output sample
@@ -37,47 +37,58 @@ class ArcFace(nn.Layer):
             m: margin
             cos(theta+m)
         """
-
-    def __init__(self, in_features, out_features, s=64.0, m=0.50, easy_margin=False):
+    def __init__(self,embedding_size,class_dim,margin=0.50,scale=64.0,easy_margin=False):
         super(ArcFace, self).__init__()
-        self.in_features = in_features
-        self.out_features = out_features
-
-        self.s = s
-        self.m = m
-        weight_arr = paddle.ParamAttr(initializer=paddle.nn.initializer.XavierUniform())
-        self.linear = paddle.nn.Linear(in_features, out_features, weight_attr=weight_arr)
-
+        self.embedding_size = embedding_size
+        self.class_dim = class_dim
+        self.margin = margin
+        self.scale = scale
         self.easy_margin = easy_margin
-        self.cos_m = math.cos(m)
-        self.sin_m = math.sin(m)
-        self.th = math.cos(math.pi - m)
-        self.mm = math.sin(math.pi - m) * m
+        weight_attr = paddle.ParamAttr(
+            initializer=paddle.nn.initializer.XavierNormal())
+        self.fc0 = paddle.nn.Linear(self.embedding_size,
+                                    self.class_dim,
+                                    weight_attr=weight_attr)
 
     def forward(self, input, label):
-        # --------------------------- cos(theta) & phi(theta) ---------------------------
-        self.linear.weight.Tensor = F.normalize(self.linear.weight)
-        x = F.normalize(input)
-        cosine = self.linear(x)
-        sine = paddle.sqrt(1.0 - paddle.pow(cosine, 2))
-        phi = cosine * self.cos_m - sine * self.sin_m
+        # norm input
+        input_norm = paddle.sqrt(
+            paddle.sum(paddle.square(input), axis=1, keepdim=True))
+        input = paddle.divide(input, input_norm)  # support broadcast
+        # norm weight
+        weight = self.fc0.weight
+        weight_norm = paddle.sqrt(
+            paddle.sum(paddle.square(weight), axis=0, keepdim=True))
+        weight = paddle.divide(weight, weight_norm)
+        # get cos(sita)
+        cos = paddle.matmul(input, weight)
+        sin = paddle.sqrt(1.0 - paddle.square(cos) + 1e-6)
+        cos_m = math.cos(self.margin)
+        sin_m = math.sin(self.margin)
+        phi = cos * cos_m - sin * sin_m
+        # if use easy_margin
+        th = math.cos(self.margin) * (-1)
+        mm = math.sin(self.margin) * self.margin
         if self.easy_margin:
-            phi = paddle.where(cosine > 0, phi, cosine)
+            phi = self._paddle_where_more_than(cos, 0, phi, cos)
         else:
-            phi = paddle.where(cosine > self.th, phi, cosine - self.mm)
-        # --------------------------- convert label to one-hot ---------------------------
-        label = label.astype(dtype='int64').flatten()
-        one_hot = F.one_hot(label, num_classes=phi.shape[1])
-        assert one_hot.shape == cosine.shape , 'shape error'
-        # -------------torch.where(out_i = {x_i if condition_i else y_i) -------------
-        output = (one_hot * phi) + ((1.0 - one_hot) * cosine)  # you can use torch.where if your torch.__version__ is 0.4
-        output *= self.s
+            phi = self._paddle_where_more_than(cos, th, phi, cos - mm)
+        # use label
+        one_hot = paddle.nn.functional.one_hot(label, self.class_dim)
+        one_hot = paddle.squeeze(one_hot, axis=[1])
+        output = paddle.multiply(one_hot, phi) + paddle.multiply(
+            (1.0 - one_hot), cos)
+        output = output * self.scale
+        return output
 
+    def _paddle_where_more_than(self, target, limit, x, y):
+        mask = paddle.cast(x=(target > limit), dtype='float32')
+        output = paddle.multiply(mask, x) + paddle.multiply((1.0 - mask), y)
         return output
 
 
 class CosFace(nn.Layer):
-    r"""Implement of CosFace (https://arxiv.org/pdf/1801.09414.pdf):
+    """Implement of CosFace (https://arxiv.org/pdf/1801.09414.pdf):
     Args:
         in_features: size of each input sample
         out_features: size of each output sample
@@ -93,7 +104,7 @@ class CosFace(nn.Layer):
         self.s = s
         self.m = m
         weight_arr = paddle.ParamAttr(initializer=paddle.nn.initializer.XavierUniform())
-        self.linear = paddle.nn.Linear(in_features,out_features, weight_attr=weight_arr)
+        self.linear = paddle.nn.Linear(in_features, out_features, weight_attr=weight_arr)
 
     def forward(self, input, label):
         # --------------------------- cos(theta) & phi(theta) ---------------------------
@@ -106,7 +117,7 @@ class CosFace(nn.Layer):
         one_hot = F.one_hot(label, num_classes=phi.shape[1])
         # -------------torch.where(out_i = {x_i if condition_i else y_i) -------------
         output = (one_hot * phi) + (
-                    (1.0 - one_hot) * cosine)  # you can use torch.where if your torch.__version__ is 0.4
+                (1.0 - one_hot) * cosine)  # you can use torch.where if your torch.__version__ is 0.4
         output *= self.s
 
         return output
@@ -120,7 +131,7 @@ class CosFace(nn.Layer):
 
 
 class SphereFace(nn.Layer):
-    r"""Implement of SphereFace (https://arxiv.org/pdf/1704.08063.pdf):
+    """Implement of SphereFace (https://arxiv.org/pdf/1704.08063.pdf):
     Args:
         in_features: size of each input sample
         out_features: size of each output sample
@@ -140,7 +151,7 @@ class SphereFace(nn.Layer):
         self.iter = 0
 
         weight_arr = paddle.ParamAttr(initializer=paddle.nn.initializer.XavierUniform())
-        self.linear = paddle.nn.Linear(in_features,out_features, weight_attr=weight_arr)
+        self.linear = paddle.nn.Linear(in_features, out_features, weight_attr=weight_arr)
 
         # duplication formula
         self.mlambda = [
@@ -161,7 +172,7 @@ class SphereFace(nn.Layer):
         self.linear.weight.Tensor = F.normalize(self.linear.weight)
         x = F.normalize(input)
         cos_theta = self.linear(x)
-        cos_theta = cos_theta.clip(min=-1,max=1)
+        cos_theta = cos_theta.clip(min=-1, max=1)
         cos_m_theta = self.mlambda[self.m](cos_theta)
         theta = cos_theta.acos()
         k = paddle.floor(self.m * theta / 3.14159265)
@@ -170,7 +181,7 @@ class SphereFace(nn.Layer):
 
         # --------------------------- convert label to one-hot ---------------------------
         one_hot = F.one_hot(label, num_classes=phi_theta.shape[1])
-        one_hot = paddle.reshape(one_hot,(phi_theta.shape[0], phi_theta.shape[1]))
+        one_hot = paddle.reshape(one_hot, (phi_theta.shape[0], phi_theta.shape[1]))
         # --------------------------- Calculate output ---------------------------
         output = (one_hot * (phi_theta - cos_theta) / (1 + self.lamb)) + cos_theta
         output *= NormOfFeature.reshape((-1, 1))
@@ -192,7 +203,7 @@ def l2_norm(input, axis=1):
 
 
 class Am_softmax(nn.Layer):
-    r"""Implement of Am_softmax (https://arxiv.org/pdf/1801.05599.pdf):
+    """Implement of Am_softmax (https://arxiv.org/pdf/1801.05599.pdf):
     Args:
         in_features: size of each input sample
         out_features: size of each output sample
@@ -207,17 +218,17 @@ class Am_softmax(nn.Layer):
         self.m = m
         self.s = s
         weight_arr = paddle.ParamAttr(initializer=paddle.nn.initializer.XavierUniform())
-        self.linear = paddle.nn.Linear(in_features,out_features, weight_attr=weight_arr)
-        self.linear.weight.Tensor = paddle.norm(self.linear.weight, p=2, axis=1).clip(max=1e-5)*1e5
+        self.linear = paddle.nn.Linear(in_features, out_features, weight_attr=weight_arr)
+        self.linear.weight.Tensor = paddle.norm(self.linear.weight, p=2, axis=1).clip(max=1e-5) * 1e5
         # ###self.kernel.data.uniform_(-1, 1).renorm_(2, 1, 1e-5).mul_(1e5)  # initialize kernel
 
     def forward(self, embbedings, label):
         self.linear.weight.Tensor = l2_norm(self.linear.weight, axis=0)
         cos_theta = self.linear(embbedings)
-        cos_theta = paddle.clip(cos_theta,min=-1,max=1) # for numerical stability
+        cos_theta = paddle.clip(cos_theta, min=-1, max=1)  # for numerical stability
         phi = cos_theta - self.m
         label = label.reshape((-1, 1))  # size=(B,1)
-        index = paddle.to_tensor(cos_theta.numpy()[0] * 0.0 ) # size=(B,Classnum)
+        index = paddle.to_tensor(cos_theta.numpy()[0] * 0.0)  # size=(B,Classnum)
         index.scatter_(1, label.reshape((-1, 1)), 1)
         # ###index = index.byte()
         index = index.astpye(dtype='uint8')

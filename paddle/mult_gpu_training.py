@@ -14,6 +14,7 @@ from head.metrics import Softmax,ArcFace, CosFace, SphereFace, Am_softmax
 import os
 from tqdm import tqdm
 import logging
+from paddle.distributed import fleet
 
 FORMAT = '%(asctime)s-%(levelname)s: %(message)s'
 logging.basicConfig(level=logging.INFO, format=FORMAT)
@@ -59,6 +60,7 @@ if __name__ == '__main__':
         logger.info(cfg_ + ":" + str(value))
     logger.info("=" * 60)
 
+    fleet.init(is_collective=True)
 
     train_transform = transforms.Compose([
         # refer to https://pytorch.org/docs/stable/torchvision/transforms.html for more build-in online data augmentation
@@ -140,11 +142,16 @@ if __name__ == '__main__':
     scheduler = paddle.optimizer.lr.LinearWarmup(
         learning_rate=LR, warmup_steps=NUM_BATCH_WARM_UP, start_lr=LR / 2, end_lr=LR, verbose=True)
     clip = paddle.nn.ClipGradByValue(min=-CLIP, max=CLIP)
+    strategy = fleet.DistributedStrategy()
     OPTIMIZER_decay = optim.Momentum(parameters=backbone_paras_wo_bn + head_paras_wo_bn,
-                                     learning_rate=scheduler, weight_decay=WEIGHT_DECAY,
-                                     momentum=MOMENTUM)
+                                       learning_rate=scheduler, weight_decay=WEIGHT_DECAY,
+                                       momentum=MOMENTUM)
+    OPTIMIZER_decay = fleet.distributed_optimizer(optimizer=OPTIMIZER_decay,strategy=strategy)
     OPTIMIZER = optim.Momentum(parameters=backbone_paras_only_bn,
-                               learning_rate=scheduler, momentum=MOMENTUM)
+                       learning_rate=scheduler, momentum=MOMENTUM)
+    OPTIMIZER = fleet.distributed_optimizer(optimizer=OPTIMIZER,strategy=strategy)
+    BACKBONE = fleet.distributed_model(BACKBONE)
+    HEAD = fleet.distributed_model(HEAD)
     logger.info("=" * 60)
     logger.info(OPTIMIZER)
     logger.info("Optimizer Generated")
@@ -167,8 +174,6 @@ if __name__ == '__main__':
 
     # ======= train & validation & save checkpoint =======#
     batch = 0  # batch index
-    best_prec1 = 0
-    best_prec5 = 0
     for epoch in range(NUM_EPOCH):  # start training process
 
         if epoch == STAGES[
@@ -201,20 +206,7 @@ if __name__ == '__main__':
             losses.update(loss.numpy().item(), inputs.shape[0])
             top1.update(prec1.item(), inputs.shape[0])
             top5.update(prec5.item(), inputs.shape[0])
-            if prec1 > best_prec1:
-                best_prec1 = prec1
-                print('='*40)
-                logger.info('Epoch {}/{} Batch {}/{}  Training Loss:{}  Training Prec@1 {}  Training Prec@5 {}'.format(
-                                epoch + 1, NUM_EPOCH, batch + 1, len(train_loader) * NUM_EPOCH, loss.numpy(), best_prec1,
-                                best_prec5))
-
-            if prec5 > best_prec5:
-                best_prec5 = prec5
-                print('=' * 40)
-                logger.info(
-                    'Epoch {}/{} Batch {}/{}  Training Loss:{}  Training Prec@1:{}  Training Prec@5:{}'.format(
-                        epoch + 1, NUM_EPOCH, batch + 1, len(train_loader) * NUM_EPOCH, loss.numpy(), best_prec1, best_prec5))
-
+            
             OPTIMIZER.clear_grad()
             OPTIMIZER_decay.clear_grad()
             loss.backward()
