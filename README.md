@@ -658,6 +658,29 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 - Please consult and consider citing the following papers:
 
+      @article{wang2021face,
+      title={Face. evoLVe: A High-Performance Face Recognition Library},
+      author={Wang, Qingzhong and Zhang, Pengfei and Xiong, Haoyi and Zhao, Jian},
+      journal={arXiv preprint arXiv:2107.08621},
+      year={2021}
+      }
+      
+      
+      @article{tu2021image,
+      title={Image-to-Video Generation via 3D Facial Dynamics},
+      author={Tu, Xiaoguang and Zou, Yingtian and Zhao, Jian and Ai, Wenjie and Dong, Jian and Yao, Yuan and Wang, Zhikang and Guo, Guodong and Li, Zhifeng and Liu, Wei and others},
+      journal={T-CSVT},
+      year={2021}
+      }
+      
+      
+      @article{tu2021joint,
+      title={Joint Face Image Restoration and Frontalization for Recognition},
+      author={Tu, Xiaoguang and Zhao, Jian and Liu, Qiankun and Ai, Wenjie and Guo, Guodong and Li, Zhifeng and Liu, Wei and Feng, Jiashi},
+      journal={T-CSVT},
+      year={2021}
+      }
+
 
       @article{zhao2020towards,
       title={Towards age-invariant face recognition},
