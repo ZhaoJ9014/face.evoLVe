@@ -23,7 +23,8 @@ Raw face image:
 * [Model Zoo](###Model-Zoo)
 * [Inference](##Inference)
 ****
-###Data-Zoo 
+
+### Data-Zoo 
 :tiger:
 
 |数据集|Version|\#Identity|\#Image|\#Frame|\#Video|下载地址|
@@ -31,7 +32,7 @@ Raw face image:
 |[LFW](https://hal.inria.fr/file/index/docid/321923/filename/Huang_long_eccv2008-lfw.pdf)|Raw|5,749|13,233|-|-|[Google Drive](https://drive.google.com/file/d/1JIgAXYqXrH-RbUvcsB3B6LXctLU9ijBA/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1VzSI_xqiBw-uHKyRbi6zzw)
 |[Vgg-Face2-clean](https://arxiv.org/pdf/1710.08092.pdf)|Align_112x112|1,333|440,028|-|-|[AI Studio](https://aistudio.baidu.com/aistudio/datasetdetail/102305), [-]()
 |[CASIA-WebFace](https://arxiv.org/pdf/1411.7923.pdf)|Align_112x112|10,575|455,594|-|-|[AI Studio](https://aistudio.baidu.com/aistudio/datasetdetail/103163), [-]()
-###Model-Zoo
+### Model-Zoo
 
 * Model
 
@@ -112,9 +113,7 @@ Raw face image:
 * 在`paddle/data` 配置好数据集(见config.py)
 * 运行`train.py`文件即可开始训练
 
-##Inference
-
-##推理部署
+## Inference&推理部署
 
 **以下是我在不同设备不同模型上的推理情况**
 
