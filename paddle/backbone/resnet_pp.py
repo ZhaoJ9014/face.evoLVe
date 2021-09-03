@@ -11,6 +11,7 @@ from paddle.vision.ops import DeformConv2D
 from collections import namedtuple
 import os
 import requests, tqdm, shutil
+from paddle.static import InputSpec
 
 __all__ = ['ResNet', 'Res5Head', 'Blocks', 'BasicBlock', 'BottleNeck']
 
@@ -556,7 +557,7 @@ class ResNet(nn.Layer):
                 channels=self._out_channels[i], stride=self._out_strides[i])
             for i in self.return_idx
         ]
-
+        
     def forward(self, inputs):
         x = inputs
         conv1 = self.conv1(x)

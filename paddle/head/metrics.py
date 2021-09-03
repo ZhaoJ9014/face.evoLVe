@@ -5,7 +5,6 @@ import paddle.nn as nn
 import paddle.nn.functional as F
 import math
 
-
 # Support: ['Softmax', 'ArcFace', 'CosFace', 'SphereFace', 'Am_softmax']
 
 class Softmax(nn.Layer):
@@ -57,9 +56,16 @@ class ArcFace(nn.Layer):
         input = paddle.divide(input, input_norm)  # support broadcast
         # norm weight
         weight = self.fc0.weight
-        weight_norm = paddle.sqrt(
-            paddle.sum(paddle.square(weight), axis=0, keepdim=True))
+        w_square = paddle.square(weight) #[512,2500]
+        w_sum = paddle.sum(w_square, axis=0, keepdim=True) #[1,2500]
+        weight_norm = paddle.sqrt(w_sum)
         weight = paddle.divide(weight, weight_norm)
+
+        # # norm input
+        # input = paddle.fluid.layers.l2_normalize(input,axis =-1)
+        # # norm weight
+        # weight = paddle.fluid.layers.l2_normalize(self.fc0.weight,axis =-1)
+
         # get cos(sita)
         cos = paddle.matmul(input, weight)
         sin = paddle.sqrt(1.0 - paddle.square(cos) + 1e-6)
