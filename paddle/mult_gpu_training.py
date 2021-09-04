@@ -3,7 +3,7 @@ import paddle.nn as nn
 import paddle.optimizer as optim
 from paddle.vision import transforms
 from config import configurations
-from dataload import LFWDataset
+from dataload import NormalDataset,BalancingClassDataset
 from backbone.model_resnet import ResNet_50, ResNet_101, ResNet_152
 from backbone.model_irse import IR_50, IR_101, IR_152, IR_SE_50, IR_SE_101, IR_SE_152
 from backbone.resnet_pp import ResNet, download, load_weight
