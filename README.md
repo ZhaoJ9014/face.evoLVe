@@ -49,6 +49,7 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 * [Model Zoo](#Model-Zoo)
 * [Achievement](#Achievement)
 * [Acknowledgement](#Acknowledgement)
+* [Donation](#Donation)
 * [Citation](#Citation)
 
 ****
