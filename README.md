@@ -658,9 +658,9 @@ While not required, for optimal performance it is **highly** recommended to run 
 ### Donation 
 :moneybag:
 
-* Your donation is highly welcomed to help us further develop face.evoLVe to better facilitate cutting-edge researches and applications on facial analytics and human-centric multi-media understanding. 
-
-  <img src="https://github.com/ZhaoJ9014/face.evoLVe/blob/master/disp/Donation.jpeg" width="900px"/>
+* Your donation is highly welcomed to help us further develop face.evoLVe to better facilitate more cutting-edge researches and applications on facial analytics and human-centric multi-media understanding. The donation QR code via Wechat is as below. Appreciate it very much:heart:
+ 
+  <img src="https://github.com/ZhaoJ9014/face.evoLVe/blob/master/disp/Donation.jpeg" width="300px"/>
 
 ****
 ### Citation 
