@@ -17,7 +17,7 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 ****
 ## News
 
-:white_check_mark: **`CLOSED 02 September 2021`**: ~~Baidu PaddlePaddle officially merged face.evoLVe to faciliate researches and applications on face-related analytics ([Official Announcement](https://mp.weixin.qq.com/s/JT_4pqRvSsAOhQln0GSH_g)).~~
+:white_check_mark: **`CLOSED 02 September 2021`**: ~~Baidu PaddlePaddle officially merged [face.evoLVe](#Introduction) to faciliate researches and applications on face-related analytics ([Official Announcement](https://mp.weixin.qq.com/s/JT_4pqRvSsAOhQln0GSH_g)).~~
 
 :white_check_mark: **`CLOSED 03 July 2021`**: ~~Provides training code for the paddlepaddle framework.~~
 
@@ -659,7 +659,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 ### Donation 
 :moneybag:
 
-* Your donation is highly welcomed to help us further develop face.evoLVe to better facilitate more cutting-edge researches and applications on facial analytics and human-centric multi-media understanding. The donation QR code via Wechat is as below. Appreciate it very much:heart:
+* Your donation is highly welcomed to help us further develop [face.evoLVe](#Introduction) to better facilitate more cutting-edge researches and applications on facial analytics and human-centric multi-media understanding. The donation QR code via Wechat is as below. Appreciate it very much:heart:
  
   <img src="https://github.com/ZhaoJ9014/face.evoLVe/blob/master/disp/Donation.jpeg" width="200px"/>
 
