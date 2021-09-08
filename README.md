@@ -655,6 +655,14 @@ While not required, for optimal performance it is **highly** recommended to run 
 * We would like to thank [Prof. Jiashi Feng](https://sites.google.com/site/jshfeng/), [Dr. Jianshu Li](https://sites.google.com/view/li-js), Mr. Yu Cheng (Learning and Vision group, National University of Singapore), Mr. Yuan Xin, Mr. Di Wu, Mr. Zhenyuan Shen, Mr. Jianwei Liu (Tencent FiT DeepSea AI Lab, China), [Prof. Ran He](http://www.nlpr.ia.ac.cn/english/irds/People/rhe.html), [Prof. Junliang Xing](http://people.ucas.ac.cn/~0051452?language=en), [Mr. Xiang Wu](http://alfredxiangwu.github.io/) (Institute of Automation, Chinese Academy of Sciences), [Prof. Guosheng Hu](https://www.linkedin.com/in/guosheng-hu-6801b333/) (AnyVision Inc., U.K.), [Dr. Lin Xiong](https://bruinxiong.github.io/xionglin.github.io/) (JD Digits, U.S.), Miss Yi Cheng (Panasonic R\&D Center, Singapore) for helpful discussions.
 
 ****
+### Donation 
+:moneybag:
+
+* Your donation is highly welcomed to help us further develop face.evoLVe to better facilitate cutting-edge researches and applications on facial analytics and human-centric multi-media understanding. 
+
+  <img src="https://github.com/ZhaoJ9014/face.evoLVe/blob/master/disp/Donation.jpeg" width="900px"/>
+
+****
 ### Citation 
 :bookmark_tabs:
 
