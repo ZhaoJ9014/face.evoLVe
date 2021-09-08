@@ -17,7 +17,7 @@ The code of [face.evoLVe](#Introduction) is released under the MIT License.
 ****
 ## News
 
-:triangular_flag: **`OPEN 03 July 2021`**: Baidu PaddlePaddle officially merged face.evoLVe to faciliate researches and applications on face-related analytics ([Official Announcement](https://mp.weixin.qq.com/s/JT_4pqRvSsAOhQln0GSH_g)).
+:triangular_flag: **`OPEN 02 September 2021`**: Baidu PaddlePaddle officially merged face.evoLVe to faciliate researches and applications on face-related analytics ([Official Announcement](https://mp.weixin.qq.com/s/JT_4pqRvSsAOhQln0GSH_g)).
 
 :white_check_mark: **`CLOSED 03 July 2021`**: ~~Provides training code for the paddlepaddle framework.~~
 
