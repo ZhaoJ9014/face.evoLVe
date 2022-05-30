@@ -670,6 +670,22 @@ While not required, for optimal performance it is **highly** recommended to run 
       }
       
       
+      @article{feihong2022toward,
+      title={Toward High-quality Face-Mask Occluded Restoration},
+      author={Feihong, Lu and Hang, Chen and Kang, Li and Qiliang, Deng and jian, Zhao and Kaipeng, Zhang and Hong*, Han},
+      journal={T-OMM},
+      year={2022}
+      }
+      
+      
+      @inproceedings{sun2021multi,
+      title={Multi-caption Text-to-Face Synthesis: Dataset and Algorithm},
+      author={Sun, Jianxin and Li, Qi and Wang, Weining and Zhao, Jian and Sun, Zhenan},
+      booktitle={ACM MM},
+      year={2021}
+      }
+      
+      
       @article{tu2021image,
       title={Image-to-Video Generation via 3D Facial Dynamics},
       author={Tu, Xiaoguang and Zou, Yingtian and Zhao, Jian and Ai, Wenjie and Dong, Jian and Yao, Yuan and Wang, Zhikang and Guo, Guodong and Li, Zhifeng and Liu, Wei and others},
