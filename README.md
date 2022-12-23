@@ -662,34 +662,18 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 - Please consult and consider citing the following papers:
 
-      @article{wang2021face,
-      title={Face. evoLVe: A High-Performance Face Recognition Library},
-      author={Wang, Qingzhong and Zhang, Pengfei and Xiong, Haoyi and Zhao, Jian},
-      journal={arXiv preprint arXiv:2107.08621},
-      year={2021}
-      }
-      
-      
-      @article{feihong2022toward,
-      title={Toward High-quality Face-Mask Occluded Restoration},
-      author={Feihong, Lu and Hang, Chen and Kang, Li and Qiliang, Deng and jian, Zhao and Kaipeng, Zhang and Hong*, Han},
-      journal={T-OMM},
+      @article{wu20223d,
+      title={3D-Guided Frontal Face Generation for Pose-Invariant Recognition},
+      author={Wu, Hao and Gu, Jianyang and Fan*, Xiaojin and Li, He and Xie, Lidong and Zhao, Jian},
+      journal={T-IST},
       year={2022}
       }
-      
-      
-      @inproceedings{sun2021multi,
-      title={Multi-caption Text-to-Face Synthesis: Dataset and Algorithm},
-      author={Sun, Jianxin and Li, Qi and Wang, Weining and Zhao, Jian and Sun, Zhenan},
-      booktitle={ACM MM},
-      year={2021}
-      }
-      
-      
-      @article{tu2021image,
-      title={Image-to-Video Generation via 3D Facial Dynamics},
-      author={Tu, Xiaoguang and Zou, Yingtian and Zhao, Jian and Ai, Wenjie and Dong, Jian and Yao, Yuan and Wang, Zhikang and Guo, Guodong and Li, Zhifeng and Liu, Wei and others},
-      journal={T-CSVT},
+
+
+      @article{wang2021face,
+      title={Face.evoLVe: A High-Performance Face Recognition Library},
+      author={Wang, Qingzhong and Zhang, Pengfei and Xiong, Haoyi and Zhao, Jian},
+      journal={arXiv preprint arXiv:2107.08621},
       year={2021}
       }
       
@@ -710,64 +694,13 @@ While not required, for optimal performance it is **highly** recommended to run 
       }
 
 
-      @article{liang2020fine,
-      title={Fine-grained facial expression recognition in the wild},
-      author={Liang, Liqian and Lang, Congyan and Li, Yidong and Feng, Songhe and Zhao, Jian},
-      journal={T-IFS},
-      pages={482--494},
-      year={2020}
-      }
-
-
-      @article{tu2020learning,
-      title={Learning generalizable and identity-discriminative representations for face anti-spoofing},
-      author={Tu, Xiaoguang and Ma, Zheng and Zhao, Jian and Du, Guodong and Xie, Mei and Feng, Jiashi},
-      journal={T-IST},
-      pages={1--19},
-      year={2020}
-      }
-
-
-      @article{tu20203d,
-      title={3D face reconstruction from a single image assisted by 2D face images in the wild},
-      author={Tu, Xiaoguang and Zhao, Jian and Xie, Mei and Jiang, Zihang and Balamurugan, Akshaya and Luo, Yao and Zhao, Yang and He, Lingxiao and Ma, Zheng and Feng, Jiashi},
-      journal={T-MM},
-      year={2020}
-      }
-
-
-      @inproceedings{wang2020learning,
-      title={Learning to Detect Head Movement in Unconstrained Remote Gaze Estimation in the Wild},
-      author={Wang, Zhecan and Zhao, Jian and Lu, Cheng and Yang, Fan and Huang, Han and Guo, Yandong and others},
-      booktitle={WACV},
-      pages={3443--3452},
-      year={2020}
-      }
-
-
       @article{zhao2019recognizing,
       title={Recognizing Profile Faces by Imagining Frontal View},
       author={Zhao, Jian and Xing, Junliang and Xiong, Lin and Yan, Shuicheng and Feng, Jiashi},
       journal={IJCV},
       pages={1--19},
       year={2019}
-      }
-
-
-      @article{kong2019cross,
-      title={Cross-Resolution Face Recognition via Prior-Aided Face Hallucination and Residual Knowledge Distillation},
-      author={Kong, Hanyang and Zhao, Jian and Tu, Xiaoguang and Xing, Junliang and Shen, Shengmei and Feng, Jiashi},
-      journal={arXiv preprint arXiv:1905.10777},
-      year={2019}
-      }
-
-
-      @article{tu2019joint,
-      title={Joint 3D face reconstruction and dense face alignment from a single image with 2D-assisted self-supervised learning},
-      author={Tu, Xiaoguang and Zhao, Jian and Jiang, Zihang and Luo, Yao and Xie, Mei and Zhao, Yang and He, Linxiao and Ma, Zheng and Feng, Jiashi},
-      journal={arXiv preprint arXiv:1903.09359},
-      year={2019}
-      }     
+      }    
 
 
       @inproceedings{zhao2019multi,
@@ -782,22 +715,6 @@ While not required, for optimal performance it is **highly** recommended to run 
       title={Look Across Elapse: Disentangled Representation Learning and Photorealistic Cross-Age Face Synthesis for Age-Invariant Face Recognition},
       author={Zhao, Jian and Cheng, Yu and Cheng, Yi and Yang, Yang and Lan, Haochong and Zhao, Fang and Xiong, Lin and Xu, Yan and Li, Jianshu and Pranata, Sugiri and others},
       booktitle={AAAI},
-      year={2019}
-      }
-      
-      
-      @article{tu2019joint,
-      title={Joint 3D Face Reconstruction and Dense Face Alignment from A Single Image with 2D-Assisted Self-Supervised Learning},
-      author={Tu, Xiaoguang and Zhao, Jian and Jiang, Zihang and Luo, Yao and Xie, Mei and Zhao, Yang and He, Linxiao and Ma, Zheng and Feng, Jiashi},
-      journal={arXiv preprint arXiv:1903.09359},
-      year={2019}
-      }
-      
-      
-      @article{tu2019learning,
-      title={Learning Generalizable and Identity-Discriminative Representations for Face Anti-Spoofing},
-      author={Tu, Xiaoguang and Zhao, Jian and Xie, Mei and Du, Guodong and Zhang, Hengsheng and Li, Jianshu and Ma, Zheng and Feng, Jiashi},
-      journal={arXiv preprint arXiv:1901.05602},
       year={2019}
       }
       
@@ -863,54 +780,8 @@ While not required, for optimal performance it is **highly** recommended to run 
       }
       
       
-      @inproceedings{xu2017high,
-      title={High performance large scale face recognition with multi-cognition softmax and feature retrieval},
-      author={Xu, Yan and Cheng, Yu and Zhao, Jian and Wang, Zhecan and Xiong, Lin and Jayashree, Karlekar and Tamura, Hajime and Kagaya, Tomoyuki and Shen, Shengmei and Pranata, Sugiri and others},
-      booktitle={ICCVW},
-      pages={1898--1906},
-      year={2017}
-      }
-      
-      
       @inproceedings{wangconditional,
       title={Conditional Dual-Agent GANs for Photorealistic and Annotation Preserving Image Synthesis},
       author={Wang, Zhecan and Zhao, Jian and Cheng, Yu and Xiao, Shengtao and Li, Jianshu and Zhao, Fang and Feng, Jiashi and Kassim, Ashraf},
       booktitle={BMVCW},
-      }
-      
-      
-      @inproceedings{li2017integrated,
-      title={Integrated face analytics networks through cross-dataset hybrid training},
-      author={Li, Jianshu and Xiao, Shengtao and Zhao, Fang and Zhao, Jian and Li, Jianan and Feng, Jiashi and Yan, Shuicheng and Sim, Terence},
-      booktitle={ACM MM},
-      pages={1531--1539},
-      year={2017}
-      }
-      
-      
-      @article{xiong2017good,
-      title={A good practice towards top performance of face recognition: Transferred deep feature fusion},
-      author={Xiong, Lin and Karlekar, Jayashree and Zhao, Jian and Cheng, Yi and Xu, Yan and Feng, Jiashi and Pranata, Sugiri and Shen, Shengmei},
-      journal={arXiv preprint arXiv:1704.00438},
-      year={2017}
-      }
-      
-      
-      @article{zhao2017robust,
-      title={Robust lstm-autoencoders for face de-occlusion in the wild},
-      author={Zhao, Fang and Feng, Jiashi and Zhao, Jian and Yang, Wenhan and Yan, Shuicheng},
-      journal={T-IP},
-      volume={27},
-      number={2},
-      pages={778--790},
-      year={2017}
-      }
- 
- 
-      @inproceedings{li2016robust,
-      title={Robust face recognition with deep multi-view representation learning},
-      author={Li, Jianshu and Zhao, Jian and Zhao, Fang and Liu, Hao and Li, Jing and Shen, Shengmei and Feng, Jiashi and Sim, Terence},
-      booktitle={ACM MM},
-      pages={1068--1072},
-      year={2016}
       }
