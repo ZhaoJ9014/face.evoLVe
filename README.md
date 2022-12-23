@@ -664,7 +664,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
       @article{wu20223d,
       title={3D-Guided Frontal Face Generation for Pose-Invariant Recognition},
-      author={Wu, Hao and Gu, Jianyang and Fan*, Xiaojin and Li, He and Xie, Lidong and Zhao, Jian},
+      author={Wu, Hao and Gu, Jianyang and Fan, Xiaojin and Li, He and Xie, Lidong and Zhao, Jian},
       journal={T-IST},
       year={2022}
       }
