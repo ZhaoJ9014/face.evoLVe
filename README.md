@@ -663,7 +663,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 - Please consult and consider citing the following papers:
      
       @inproceedings{li2024two,
-      title={Two in One Go: Single-stage Emotion Recognition with Decoupled Subject-context Transformer},
+      title={Two in One Go: Single-stage Emotion Recognition with Decoupled Subject-Context Transformer},
       author={Li, Xinpeng and Wang, Teng and Zhao, Jian and Mao, Shuyi and Wang, Jinbao and Zheng, Feng and Peng, Xiaojiang and Li, Xuelong},
       booktitle={ACM MM},
       year={2024}
@@ -671,7 +671,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 
       @article{zhang2024leaf,
-      title={LEAF: unveiling two sides of the same coin in semi-supervised facial expression recognition},
+      title={LEAF: Unveiling Two Sides of The Same Coin in Semi-Supervised Facial Expression Recognition},
       author={Zhang, Fan and Cheng, Zhi-Qi and Zhao, Jian and Peng, Xiaojiang and Li, Xuelong},
       journal={arXiv preprint arXiv:2404.15041},
       year={2024}
@@ -687,7 +687,7 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 
       @article{fan2023joint,
-      title={Joint coupled representation and homogeneous reconstruction for multi-resolution small sample face recognition},
+      title={Joint Coupled Representation and Homogeneous Reconstruction for Multi-Resolution Small Sample Face Recognition},
       author={Fan, Xiaojin and Liao, Mengmeng and Xue, Jingfeng and Wu, Hao and Jin, Lei and Zhao, Jian and Zhu, Liehuang},
       journal={Neurocomputing},
       year={2023}
