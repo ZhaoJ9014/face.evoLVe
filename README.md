@@ -662,28 +662,28 @@ While not required, for optimal performance it is **highly** recommended to run 
 
 - Please consult and consider citing the following papers:
      
-     @inproceedings{li2024two,
-     title={Two in One Go: Single-stage Emotion Recognition with Decoupled Subject-context Transformer},
-     author={Li, Xinpeng and Wang, Teng and Zhao, Jian and Mao, Shuyi and Wang, Jinbao and Zheng, Feng and Peng, Xiaojiang and Li, Xuelong},
-     booktitle={ACM MM},
-     year={2024}
-     }
+      @inproceedings{li2024two,
+      title={Two in One Go: Single-stage Emotion Recognition with Decoupled Subject-context Transformer},
+      author={Li, Xinpeng and Wang, Teng and Zhao, Jian and Mao, Shuyi and Wang, Jinbao and Zheng, Feng and Peng, Xiaojiang and Li, Xuelong},
+      booktitle={ACM MM},
+      year={2024}
+      }
 
 
-     @article{zhang2024leaf,
-     title={LEAF: unveiling two sides of the same coin in semi-supervised facial expression recognition},
-     author={Zhang, Fan and Cheng, Zhi-Qi and Zhao, Jian and Peng, Xiaojiang and Li, Xuelong},
-     journal={arXiv preprint arXiv:2404.15041},
-     year={2024}
-     }
+      @article{zhang2024leaf,
+      title={LEAF: unveiling two sides of the same coin in semi-supervised facial expression recognition},
+      author={Zhang, Fan and Cheng, Zhi-Qi and Zhao, Jian and Peng, Xiaojiang and Li, Xuelong},
+      journal={arXiv preprint arXiv:2404.15041},
+      year={2024}
+      }
 
 
-     @article{xu2025uniface++,
-     title={UniFace++: Revisiting a Unified Framework for Face Reenactment and Swapping via 3D Priors},
-     author={Xu, Chao and Qian, Yijie and Zhu, Shaoting and Sun, Baigui and Zhao, Jian and Liu, Yong and Li, Xuelong},
-     journal={IJCV},
-     year={2025}
-     }
+      @article{xu2025uniface++,
+      title={UniFace++: Revisiting a Unified Framework for Face Reenactment and Swapping via 3D Priors},
+      author={Xu, Chao and Qian, Yijie and Zhu, Shaoting and Sun, Baigui and Zhao, Jian and Liu, Yong and Li, Xuelong},
+      journal={IJCV},
+      year={2025}
+      }
 
 
       @article{fan2023joint,
